@@ -16,7 +16,8 @@
         android:id="@+id/itemLayout"
         android:layout_width="@dimen/_140sdp"
        android:layout_margin="4dp"
-        android:layout_height="165dp">
+        android:layout_height="165dp"
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,17 +34,29 @@
                 android:layout_height="match_parent">
 
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    app:srcCompat="@drawable/ic_svg_note"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
                 <TextView
                     android:id="@+id/poem_menu_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{book.books}"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@drawable/books_text_right_style"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingRight="6dp"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,28 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <data>
 
         <variable
             name="poetry"
             type="ir.rahnama.sherapp.model.PoetModel" />
 
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_75sdp">
-
-        <ImageView
-            android:id="@+id/image_selection_poetry_item"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:background="@drawable/circle_back"
-            android:elevation="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardview"
-            app:layout_constraintStart_toStartOf="@+id/cardview"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview"
@@ -84,7 +75,7 @@
         </androidx.cardview.widget.CardView>
 
 
-       <!-- <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginTop="8dp"
@@ -102,7 +93,7 @@
                 android:src="@drawable/shaer" />
 
 
-        </androidx.cardview.widget.CardView>-->
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

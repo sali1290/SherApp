@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_1sdp"
                 android:text="نگاردون"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
@@ -111,13 +111,15 @@
                 android:id="@+id/negarCon_progressbar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_8sdp"
+                android:layout_height="@dimen/_11sdp"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_6sdp"
-                android:progress="100"
-                android:progressDrawable="@drawable/progress_bar_style" />
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:progress="20"
+                android:progressDrawable="@drawable/shape"
+
+                />
 
         </LinearLayout>
 

@@ -23,7 +23,8 @@
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/books_left_style">
+        android:background="@drawable/books_left_style"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,8 +32,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                app:srcCompat="@drawable/ic_svg_note"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/poem_menu_item_name"
@@ -40,11 +51,14 @@
                 android:layout_height="wrap_content"
                 android:text="@{book.books}"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/books_text_left_style"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="3dp"
+                android:paddingLeft="6dp"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
