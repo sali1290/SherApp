@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // icon size dimens
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="icon_size_larg">32dp</dimen>
+    <dimen name="icon_size_xlarg">64dp</dimen>
+    //margins
+    <dimen name="default_elevation">4dp</dimen>
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_meduim">16dp</dimen>
+
+
+    <dimen name="def_radius">10dp</dimen>
+
+
+
+</resources>

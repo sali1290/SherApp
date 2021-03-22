@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/transparent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/transparent"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:background="@drawable/fab_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/image_back_font_dialog_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:id="@+id/text_color_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="تغییر رنگ متن"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="10dp"
+                    android:gravity="right"
+                    android:layoutDirection="rtl">
+
+                    <RadioGroup
+                        android:id="@+id/radio_group_color_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:layoutDirection="ltr"
+                        android:orientation="vertical"
+                        android:weightSum="4">
+
+                        <RadioButton
+                            android:id="@+id/radio_button_color_red"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:background="@color/red"
+                            android:gravity="right"
+                            android:padding="8dp"
+                            android:text="قرمز"
+                            android:textColor="@color/white" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_color_blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:background="@color/blue1"
+                            android:gravity="right"
+                            android:padding="8dp"
+                            android:text="آبی"
+                            android:textColor="@color/white" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_color_black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:background="@color/black"
+                            android:gravity="right"
+                            android:padding="8dp"
+                            android:text="مشکی"
+                            android:textColor="@color/white" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_color_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:padding="8dp"
+                            android:text="سفید"
+                            android:textColor="@color/black" />
+
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_save_dialog_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="ذخیره" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

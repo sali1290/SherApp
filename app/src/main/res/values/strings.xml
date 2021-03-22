@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Sarv</string>
+    <string name="new_poetry_title">شاعر های معاصر</string>
+    <string name="seeAllPoetry">مشاهده تمامی شاعرها</string>
+    <string name="old_poetry_title">شاعر های سنتی</string>
+    <string name="last_poem_read">آخرین شعر خوانده شده</string>
+    <string name="search">جست و جو</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="LoadRemoteDataError">عدم دسترسی به اینترنت</string>
+    <string name="dictionary">لغت نامه</string>
+    <string name="favorite">علاقه مندی</string>
+    <string name="store">فروشگاه</string>
+    <string name="home">خانه</string>
+    <string name="back">برگشت</string>
+    <string name="ticket">تیکت</string>
+    <string name="more">بیشتر</string>
+    <string name="coin">نگاره</string>
+    <string name="fal">فال حافظ</string>
+    <string name= "settings">تنظیمات</string>
+    <string name="height_text">ارتفاع متن</string>
+    <string name="background_color">رنگ پس زمینه</string>
+    <string name="nextWithVolume">بعدی با ولوم</string>
+    <string name="lighting">روشنایی</string>
+    <string name="font_type">نوع فونت</string>
+    <string name="font_size">اندازه فونت</string>
+    <string name="celebrity">معروف ترینها</string>
+    <string name="font_color">رنگ فونت</string>
+    <string name="userNameText">نام کاربری</string>
+    <string name="phoneNumberText">شماره تلفن</string>
+    <string name="verificationCode">کد فعال سازی</string>
+    <string name="email">ایمیل</string>
+    <string name="confirm">تایید</string>
+    <string name="condition">وضعیت</string>
+    <string name="buySub">خرید اشتراک</string>
+    <string name="buyCoin">نگارستان</string>
+    <string name="firstTimeLogIn">نام کاربری خود را وارد کنید و درغیر این صورت حساب کاربری خود را ایجاد کنید</string>
+    <string name="loginUpDeatil">این حساب کاربری برای حفظ اشتراک و تعداد نگاره های شما میباشد ، درصورت عدم تمایل ما هیچ مسئولیتی را به عهده نمیگیریم</string>
+    <string name="vpnWarining">لطفا درزمان پرداخت ویا ایجاد حساب کاربری فیلترشکن خود را خاموش کنید</string>
+
+</resources>

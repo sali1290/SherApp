@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ir.rahnama.sherapp.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/actionHomeToCategory"
+            app:destination="@id/poetryCategoryFragment" />
+        <action
+            android:id="@+id/actionHomeToBookList"
+            app:destination="@id/booksListFragment" />
+        <action
+            android:id="@+id/actionHomeToShop"
+            app:destination="@id/subscriptionFragment" >
+            <argument
+                android:name="type " />
+        </action>
+
+            app:destination="@id/subscriptionFragment3" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentFav"
+            app:destination="@id/fragmentFav" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/poetryCategoryFragment"
+        android:name="ir.rahnama.sherapp.view.PoetryCategoryFragment"
+        android:label="fragment_poetry_category"
+        tools:layout="@layout/fragment_poetry_category">
+
+
+        <argument
+            android:name="type"
+            android:defaultValue="1"
+            app:argType="string" />
+        <action
+            android:id="@+id/actionPoetryToBooks"
+            app:destination="@id/booksListFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/booksListFragment"
+        android:name="ir.rahnama.sherapp.view.BooksListFragment"
+        android:label="fragment_books_list"
+        tools:layout="@layout/fragment_books_list" >
+
+
+
+        <argument
+            android:name="petry_id"
+            app:nullable="true"
+            app:argType="string" />
+        <action
+            android:id="@+id/actionBookToBookContent"
+            app:destination="@id/bookContentFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/bookContentFragment"
+        android:name="ir.rahnama.sherapp.view.BookContentFragment"
+        android:label="fragment_book_content"
+        tools:layout="@layout/fragment_book_content" >
+        <argument
+            android:name="bookId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/actionToPoemBody"
+            app:destination="@id/showPoemBodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showPoemBodyFragment"
+        android:name="ir.rahnama.sherapp.view.ShowPoemBodyFragment"
+        android:label="ShowPoemBodyFragment" >
+        <argument
+            android:name="pome_id"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/subscriptionFragment"
+        android:name="ir.rahnama.sherapp.view.SubscriptionFragment"
+        android:label="SubscriptionFragment" >
+        <argument
+            android:name="shopType"
+            app:argType="integer" />
+    </fragment>
+        android:label="SubscriptionFragment" />
+    <fragment
+        android:id="@+id/fragmentFav"
+        android:name="ir.rahnama.sherapp.view.FragmentFav"
+        android:label="fragment_fav" />
+</navigation>
