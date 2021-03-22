@@ -12,6 +12,7 @@
 
 
     //from XD Color
+
     <color name="green">#22B25E</color>
     <color name="blue">#00A7F1</color>
     <color name="light_blue_2x">#F0FFFF</color>
@@ -24,4 +25,5 @@
     <color name="progressBlue">#DEFFFF</color>
     <color name="primaryColor">#2F989F</color>
     <color name="transparent">#00555555</color>
+    <color name="oiledBlue">#051C6C</color>
 </resources>

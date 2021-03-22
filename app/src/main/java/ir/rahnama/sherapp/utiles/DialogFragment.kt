@@ -110,9 +110,15 @@ class SubDialogFragmentPopUp : DialogFragment() {
             )
         }
 
+
+
         //Home
-        view.fab_home_dialog_popup.setOnClickListener {
+        view.back_subFab_Linear.setOnClickListener {
             dialog?.dismiss()
+            MainDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
         }
 
         //Font Text
@@ -169,6 +175,10 @@ class SizeDialogFragmentPopUp : DialogFragment() {
 
         view.image_back_dialog_size.setOnClickListener {
             dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
         }
 
         view.image_minus_size_text.setOnClickListener {
@@ -396,6 +406,13 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.image_background_dialog_size.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
 
         view.radio_group_background_text.setOnCheckedChangeListener { group, checkedId ->
 

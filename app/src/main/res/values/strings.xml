@@ -37,5 +37,20 @@
     <string name="firstTimeLogIn">نام کاربری خود را وارد کنید و درغیر این صورت حساب کاربری خود را ایجاد کنید</string>
     <string name="loginUpDeatil">این حساب کاربری برای حفظ اشتراک و تعداد نگاره های شما میباشد ، درصورت عدم تمایل ما هیچ مسئولیتی را به عهده نمیگیریم</string>
     <string name="vpnWarining">لطفا درزمان پرداخت ویا ایجاد حساب کاربری فیلترشکن خود را خاموش کنید</string>
+    <string name="TicketTitle_txt">تیکت</string>
+    <string name="WriteAmessage_txt">نوشتن پیام</string>
+    <string name="HopeToBeDoneTicket_txt">امیدواریم که مشکل رفع شده باشه!</string>
+    <string name="IsTicketAnswered_txt">سوالت جواب داده شد ؟</string>
+    <string name="YesCloseTicket_txt">اره ، تیکت رو ببند</string>
+    <string name="NoContinue_txt">نه هنوز</string>
+    <string name="SendTime_txt">ارسال شده :</string>
+    <string name="ReciveTitle_txt">دریافت شده :</string>
+    <string name="active_ticket"> تیکت فعال</string>
+    <string name="inactive_ticket"> تیکت غیرفعال</string>
+    <string name="TicketListTitle_txt">لیست تیکت ها</string>
+    <string name="CreateNewTicket_txt">ایجاد تیکت جدید</string>
+    <string name="shouldToCreateAccount_txt">برای ارسال تیکت لازم است حساب کاربری را فعال کنید</string>
+    <string name="summaryTitle_txt">خلاصه ای از موضوع …</string>
+    <string name="CreateTicket_btn">ساخت تیکت</string>
 
 </resources>
