@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ShowPoemContentFragment">
+    tools:context=".view.ShowPoemBodyFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,25 +50,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            app:cardCornerRadius="200dp"
+        <ImageView
+            android:id="@+id/image_poem_adapter"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/shaer" />
-
-
-        </androidx.cardview.widget.CardView>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
@@ -79,22 +69,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
-            />
+            tools:ignore="UnknownId" />
 
 
         <ImageView
+            android:id="@+id/mark_fav_show_poem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:src="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            android:id="@+id/star"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -102,7 +91,6 @@
             android:src="@drawable/ic_font"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -121,6 +109,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/background_show_poem_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/poemBodyRecyclerView"
@@ -129,8 +122,9 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginBottom="4dp"
+            android:elevation="@dimen/_12sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,18 +139,18 @@
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:elevation="@dimen/default_elevation"
         android:background="@drawable/btn_next_poem_shape"
+        android:elevation="@dimen/default_elevation"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            tools:text="بعدی"/>
+            tools:text="بعدی" />
 
     </LinearLayout>
 
@@ -169,8 +163,8 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/btn_prev_poem_shape"
         android:elevation="@dimen/default_elevation"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -178,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            tools:text="قبلی"/>
+            tools:text="قبلی" />
 
     </LinearLayout>
 

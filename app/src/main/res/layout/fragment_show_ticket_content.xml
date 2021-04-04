@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="4dp"
-            android:background="@color/white_deep"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -64,8 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/TicketTitle_txt"
-                    android:textColor="@color/textColor_deep_blue"
-                    android:textSize="@dimen/font_header_2"
+                    android:textColor="@color/profile_green"
+                    android:textSize="@dimen/_13ssp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_close_ticket"
@@ -145,13 +145,13 @@
             android:layout_height="wrap_content"
             android:elevation="5dp"
             android:visibility="gone"
-            android:background="@color/trikyRed"
+            android:background="@color/red"
             app:layout_constraintBottom_toBottomOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:background="@color/trikyRed"
+                android:background="@color/red"
                 android:layout_height="match_parent">
 
 
@@ -163,7 +163,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/inActive_ticket"
-                    android:textColor="@color/white_deep"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_15ssp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -184,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/SendNewMessage_txt"
-            android:textColor="@color/gray"
+            android:textColor="@color/light_gray"
             android:textSize="@dimen/_13ssp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

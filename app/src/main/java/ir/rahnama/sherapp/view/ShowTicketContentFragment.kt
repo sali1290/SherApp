@@ -56,7 +56,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
         val view = inflater.inflate(R.layout.fragment_show_ticket_content, container, false)
 
         //api interface
-        apiService= ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)
+       /* apiService= ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)*/
         closed_ticket_layout=view.findViewById(R.id.closed_ticket_layout)
         btn_close_ticket=view.findViewById(R.id.btn_close_ticket)
         ticket_chat_page_coordinator=view.findViewById(R.id.ticket_chat_page_coordinator)
@@ -76,7 +76,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
             closed_ticket_layout.visibility=View.VISIBLE
             btn_close_ticket.visibility=View.INVISIBLE
         }
-
+/*
         MessageSeen()//message from support has  seen
 
         getAllMessages()
@@ -90,7 +90,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
 
             }
 
-        }
+        }*/
 
 
         btn_close_ticket.setOnClickListener{CloseTicketAlertDialog()}
@@ -117,7 +117,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
         close_ticket_btn_cancel.setOnClickListener{ builder.dismiss() }
 
         close_ticket_btn_close.setOnClickListener{
-            CloseTicket(ticketId)
+           /* CloseTicket(ticketId)*/
             builder.dismiss()
         }
 
@@ -126,6 +126,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
         builder.show()
     }
 
+/*
 
     private fun CloseTicket(ticket_id: Int){
         val call: Call<Void> = apiService.closeTicket(ticket_id)
@@ -237,6 +238,7 @@ class ShowTicketContentFragment(private var ticketId: Int, private var ticketSta
         }
     }
 
+*/
 
 
 }

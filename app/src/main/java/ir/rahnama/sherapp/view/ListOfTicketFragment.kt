@@ -66,11 +66,11 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
         Hawk.init(requireActivity()).build()
 
-        userPhoneNumber = Hawk.get("userPhone")
+       /* userPhoneNumber = Hawk.get("userPhone")
         if ( Hawk.contains("userPhone") ) {
             firstTimeAddNewTicket.visibility=View.GONE
             requestForTicketList(userPhoneNumber!!)
-        }
+        }*/
 
 
 
@@ -79,7 +79,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
 
 
-        refreshData.setOnRefreshListener {
+       /* refreshData.setOnRefreshListener {
 
             if (Hawk.contains("userPhone")){
                 requestForTicketList(userPhoneNumber!!)
@@ -90,7 +90,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
                 }
             }, 1000)
         }
-
+*/
 
 
 
@@ -171,11 +171,10 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
 
 
-        btn_add_ticket.setOnClickListener{
+       /* btn_add_ticket.setOnClickListener{
 
 
             if (toDoLogIn){
-                loadFragment(ProfileFragment())
                 builder.dismiss()
             }else{
                 if (titleValid){
@@ -195,7 +194,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
 
 
-        }
+        }*/
 
         builder.setView(dialogLayout)
         builder.show()
@@ -209,7 +208,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
 
 
-    private fun requestForTicketList(phone: String) {
+  /*  private fun requestForTicketList(phone: String) {
         if (Hawk.contains("userPhone")){
             val apiService: ApiInterface = ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)
             val call : Call<MutableList<TicketListModel>> =apiService.getTicketList(phone)
@@ -242,10 +241,10 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
         }
 
-    }
+    }*/
 
 
-    private fun requestForAddTicket(name: String, phone: String, title: String, category: String){
+    /*private fun requestForAddTicket(name: String, phone: String, title: String, category: String){
 
         val apiService: ApiInterface = ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)
         val call:Call<Void> = apiService.addTicket(name, phone, title, category)
@@ -268,7 +267,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
         })
 
 
-    }
+    }*/
 
 
 

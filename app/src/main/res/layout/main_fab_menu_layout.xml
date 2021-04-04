@@ -167,6 +167,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/poem_fav_popup"
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
@@ -211,6 +212,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_mainFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -218,7 +220,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/home_ImageView"
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
@@ -262,7 +263,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/more_Fab_Lieaner"
+                    android:id="@+id/settings_Fab_Lieaner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -273,20 +274,21 @@
                         android:layout_gravity="center"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_more"
+                        android:src="@drawable/ic_settings"
                         app:tint="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/more"
+                        android:text="@string/settings"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/negare_mainFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"

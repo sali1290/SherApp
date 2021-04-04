@@ -26,4 +26,5 @@
     <color name="primaryColor">#2F989F</color>
     <color name="transparent">#00555555</color>
     <color name="oiledBlue">#051C6C</color>
+    <color name="supportChatBlue">#557EF2</color>
 </resources>

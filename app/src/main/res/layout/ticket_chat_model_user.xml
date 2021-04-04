@@ -75,7 +75,7 @@
         android:src="@drawable/ic_check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/textColor_deep_blue" />
+        app:tint="@color/oiledBlue" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

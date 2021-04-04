@@ -55,13 +55,15 @@ class MainDialogFragmentPopUp : DialogFragment() {
                 "popup"
             )
         }
-
         view.poem_fav_popup.setOnClickListener {
             dialog?.dismiss()
             loadFragments(view.poem_fav_popup.id,view)
-
         }
 
+        view.negare_mainFab_Linear.setOnClickListener {
+            loadFragments(R.id.negare_mainFab_Linear , view)
+            dialog?.dismiss()
+        }
 
     }
 
@@ -78,6 +80,10 @@ class MainDialogFragmentPopUp : DialogFragment() {
             }
             R.id.poem_fav_popup -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
+                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+            }
+            R.id.negare_mainFab_Linear -> {
+                val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
                 view?.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.negare_mainFab_Linear -> {
@@ -390,6 +396,10 @@ class ColorTextDialogFragmentPopUp : DialogFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
 }
 
 class BackgroundTextDialogFragmentPopUp : DialogFragment() {

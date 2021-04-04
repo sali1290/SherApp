@@ -6,6 +6,7 @@
 
 
     <data>
+
         <variable
             name="poetry"
             type="ir.rahnama.sherapp.model.SelectionPoetryModel" />
@@ -14,6 +15,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_75sdp">
+
+        <ImageView
+            android:id="@+id/imageSelectionPoetry"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/circle_back"
+            android:elevation="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardview"
+            app:layout_constraintStart_toStartOf="@+id/cardview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview"
@@ -71,25 +83,25 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="200dp"
-            android:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardview"
-            app:layout_constraintStart_toStartOf="@+id/cardview"
-            app:layout_constraintTop_toTopOf="parent">
+        <!-- <com.google.android.material.card.MaterialCardView
+             android:layout_width="45dp"
+             android:layout_height="45dp"
+             android:layout_marginTop="8dp"
+             app:cardCornerRadius="200dp"
+             android:elevation="4dp"
+             app:layout_constraintEnd_toEndOf="@+id/cardview"
+             app:layout_constraintStart_toStartOf="@+id/cardview"
+             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/poets_list_item_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/bahar"/>
+             <ImageView
+                 android:id="@+id/poets_list_item_image"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:scaleType="fitXY"
+                 android:src="@drawable/bahar"/>
 
 
-        </com.google.android.material.card.MaterialCardView>
+         </com.google.android.material.card.MaterialCardView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
