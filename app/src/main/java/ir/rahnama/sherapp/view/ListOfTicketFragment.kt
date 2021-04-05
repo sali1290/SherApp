@@ -23,7 +23,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.orhanobut.hawk.Hawk
 import ir.rahnama.sherapp.R
+import ir.rahnama.sherapp.databinding.FragmentListOfTicketBinding
 import ir.rahnama.sherapp.model.TicketListModel
+import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.ListOfTicketAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,16 +35,8 @@ import retrofit2.Response
 class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
 
-    private lateinit var TicketListRecyclerView : RecyclerView
-
-    private lateinit var btn_add_new_ticket:ImageView
-    private lateinit var add_ticket_btn_back:ImageView
-    private lateinit var ticket_coordinator_layout:CoordinatorLayout
-    private lateinit var firstTimeAddNewTicket:LinearLayout
     private lateinit var adapter:ListOfTicketAdapter
-    private lateinit var refreshData:SwipeRefreshLayout
-
-
+    var binding : FragmentListOfTicketBinding by autoCleared()
 
     private var userPhoneNumber :String? = null
 
@@ -51,20 +45,9 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_list_of_ticket, container, false)
-
-        btn_add_new_ticket=view.findViewById(R.id.btn_add_new_ticket)
-        add_ticket_btn_back=view.findViewById(R.id.add_ticket_btn_back)
-        ticket_coordinator_layout=view.findViewById(R.id.ticket_coordinator_layout)
-        TicketListRecyclerView=view.findViewById(R.id.TicketListRecyclerView)
-        firstTimeAddNewTicket=view.findViewById(R.id.firstTimeAddNewTicket)
-        refreshData=view.findViewById(R.id.refreshData)
-
+        binding = FragmentListOfTicketBinding.inflate(inflater , container , false )
         //init adapter
         adapter = ListOfTicketAdapter(requireActivity(), this)
-
-
-        Hawk.init(requireActivity()).build()
 
        /* userPhoneNumber = Hawk.get("userPhone")
         if ( Hawk.contains("userPhone") ) {
