@@ -11,12 +11,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
+import com.bumptech.glide.Glide
 import com.orhanobut.hawk.Hawk
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FragmentShowPoemsBinding
-import ir.rahnama.sherapp.model.PoemBodyModel
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.PoemBodyAdapter
 import ir.rahnama.sherapp.viewmodel.PoemBodyViewModel
@@ -93,7 +92,7 @@ class ShowPoemBodyFragment : Fragment() {
         //Set Image
         sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
         val image: String? = sharedImage!!.getString("image", "")
-        Picasso.get().load(image).into(view.image_poem_adapter)
+        context?.let { Glide.with(it).load(image).into(view.image_poem_adapter) }
         Toast.makeText(context,image,Toast.LENGTH_SHORT).show()
 
 

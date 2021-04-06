@@ -18,12 +18,11 @@ abstract class CheckApiResponse  {
             return error("${response.code()} ${response.message()}")
 
         }catch (e:Exception) {
+
             return error(e.message ?: e.toString())
         }
 
-
     }
-
 
     private fun <T> error (message:String) :Resource<T> = Resource.error("NetWork Failed : $message")
 

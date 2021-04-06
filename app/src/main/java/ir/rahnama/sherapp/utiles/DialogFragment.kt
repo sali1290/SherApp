@@ -16,6 +16,7 @@ import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
+import com.apandroid.colorwheel.ColorWheel
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
@@ -424,43 +425,6 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
             )
         }
 
-        view.radio_group_background_text.setOnCheckedChangeListener { group, checkedId ->
-
-            when (checkedId) {
-
-                R.id.radio_button_background_red -> {
-                    background = Color.RED
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_blue -> {
-                    background = Color.BLUE
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_black -> {
-                    background = Color.BLACK
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_white -> {
-                    background = Color.WHITE
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-            }
-
-        }
-
-        view.btn_save_dialog_background.setOnClickListener {
-            val shared: SharedPreferences =
-                context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
-            val editor: SharedPreferences.Editor = shared.edit()
-            editor.putInt("background_color", background!!)
-            bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
-            editor.apply()
-            dialog?.dismiss()
-        }
 
     }
 
