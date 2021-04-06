@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.apandroid.colorwheel.ColorWheel
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.radio_group_color_text
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.image_back_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.text_size_dialog
 import kotlinx.android.synthetic.main.sub_mian_fab_layout.view.*
+
 
 class MainDialogFragmentPopUp : DialogFragment() {
     override fun onCreateView(
@@ -417,6 +419,9 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        colorWheel.rgb = Color.rgb(13, 37, 42)
+        background = colorWheel.rgb
+
         view.image_background_dialog_size.setOnClickListener {
             dialog?.dismiss()
             SubDialogFragmentPopUp().show(
@@ -425,15 +430,27 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
             )
         }
 
-
+        view.btn_save_dialog_background.setOnClickListener {
+            val shared: SharedPreferences =
+                context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
+            val editor: SharedPreferences.Editor = shared.edit()
+            editor.putInt("text_color", background!!)
+            bb?.let { it1 -> editor.putBoolean("bbc", it1) }
+            editor.apply()
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
 }
+
 
 
 
