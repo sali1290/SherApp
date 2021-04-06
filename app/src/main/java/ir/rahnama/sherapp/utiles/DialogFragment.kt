@@ -425,51 +425,6 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
             )
         }
 
-        view.radio_group_background_text.setOnCheckedChangeListener { group, checkedId ->
-
-            val colorWheel =<ColorWheel>(R.id.colorWheel)
-
-            colorWheel.rgb = Color.rgb(13, 37, 42)
-
-            val currentColor = colorWheel.rgb
-
-
-
-            when (checkedId) {
-
-                R.id.radio_button_background_red -> {
-                    background = Color.RED
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_blue -> {
-                    background = Color.BLUE
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_black -> {
-                    background = Color.BLACK
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-                R.id.radio_button_background_white -> {
-                    background = Color.WHITE
-                    view.linear_background.setBackgroundColor(background!!)
-                }
-
-            }
-
-        }
-
-        view.btn_save_dialog_background.setOnClickListener {
-            val shared: SharedPreferences =
-                context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
-            val editor: SharedPreferences.Editor = shared.edit()
-            editor.putInt("background_color", background!!)
-            bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
-            editor.apply()
-            dialog?.dismiss()
-        }
 
     }
 
