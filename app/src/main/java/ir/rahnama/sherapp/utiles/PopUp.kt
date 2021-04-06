@@ -176,6 +176,7 @@ fun checkUser(context: Context) {
                 if (response.body() == 1) {
                     popupWindow.dismiss()
                     Hawk.put("logIn" , 1)
+                    Hawk.put("phoneNumber" , userPhone)
                 } else {
 
                 }

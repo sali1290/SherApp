@@ -26,7 +26,9 @@ import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FragmentListOfTicketBinding
 import ir.rahnama.sherapp.model.TicketListModel
 import ir.rahnama.sherapp.utiles.autoCleared
+import ir.rahnama.sherapp.utiles.checkUser
 import ir.rahnama.sherapp.view.adapter.ListOfTicketAdapter
+import kotlinx.android.synthetic.main.fragment_list_of_ticket.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,11 +51,7 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
         //init adapter
         adapter = ListOfTicketAdapter(requireActivity(), this)
 
-       /* userPhoneNumber = Hawk.get("userPhone")
-        if ( Hawk.contains("userPhone") ) {
-            firstTimeAddNewTicket.visibility=View.GONE
-            requestForTicketList(userPhoneNumber!!)
-        }*/
+        checkUser(requireContext())
 
 
 
