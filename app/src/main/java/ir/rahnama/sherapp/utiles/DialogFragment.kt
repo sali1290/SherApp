@@ -16,7 +16,10 @@ import androidx.navigation.fragment.NavHostFragment
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.gradientSeekBar
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
+import kotlinx.android.synthetic.main.color_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
@@ -357,6 +360,9 @@ class ColorTextDialogFragmentPopUp : DialogFragment() {
         }
 
         colorWheel.colorChangeListener = { rgb: Int ->
+
+            view.text_color_dialog.setTextColor(rgb)
+
         view.btn_save_dialog_color.setOnClickListener {
                 color = rgb
                 val shared: SharedPreferences =
@@ -403,6 +409,7 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
         gradientSeekBar.endColor = endcolor
         gradientSeekBar.setColors(startcolor,endcolor)
 
+
         view.image_background_dialog_size.setOnClickListener {
             dialog?.dismiss()
             SubDialogFragmentPopUp().show(
@@ -412,6 +419,9 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
         }
 
         colorWheel.colorChangeListener = { rgb: Int ->
+
+            view.text_back_color_dialog.setTextColor(rgb)
+
         view.btn_save_dialog_background.setOnClickListener {
                 background = rgb
                 val shared: SharedPreferences =
