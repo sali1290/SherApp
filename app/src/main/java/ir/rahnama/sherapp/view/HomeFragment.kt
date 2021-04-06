@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
         val action = HomeFragmentDirections.actionHomeToCategory()
         action.type = type
         view?.let { Navigation.findNavController(it).navigate(action) }
-    }
 
+    }
 
 }

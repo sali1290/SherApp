@@ -21,8 +21,7 @@ data class PoetModel(
     @SerializedName("poet_type")
     var poet_type : String ,
     @SerializedName("image_url")
-    var image :String){
-}
+    var image :String){}
 
 @Entity(tableName = "selection_poetry")
 data class SelectionPoetryModel(

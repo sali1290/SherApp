@@ -15,5 +15,4 @@ class SubscriptionViewModel @ViewModelInject constructor(val repository: Reposit
     fun getSubscription () {
         _data.value= true
     }
-
 }

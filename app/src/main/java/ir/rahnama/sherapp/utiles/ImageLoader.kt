@@ -1,7 +1,6 @@
 package ir.rahnama.sherapp.utiles
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -19,16 +18,15 @@ fun getProgressDrawable(context: Context) : CircularProgressDrawable{
 }
 
 
-
 fun ImageView.loadImage (uri : String?, progressDrawable: CircularProgressDrawable){
     uri?.let {
         val options : RequestOptions = RequestOptions()
             .placeholder(progressDrawable)
             .error(R.mipmap.ic_launcher)
-        Glide.with(context)
-            .setDefaultRequestOptions(options)
-            .load(uri)
-            .into(this)
+            Glide.with(context)
+                    .setDefaultRequestOptions(options)
+                    .load(uri)
+                    .into(this)
     }
 
 }
@@ -36,5 +34,6 @@ fun ImageView.loadImage (uri : String?, progressDrawable: CircularProgressDrawab
 
 @BindingAdapter("android:imageLoader")
 fun LoadImage ( view : ImageView , url : String ) {
-    view.loadImage(url , getProgressDrawable(view.context))
+
+    view.loadImage(url, getProgressDrawable(view.context))
 }

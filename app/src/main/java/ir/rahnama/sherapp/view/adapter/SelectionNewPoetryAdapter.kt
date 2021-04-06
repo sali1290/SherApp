@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.SelectionPoetryItemBinding
 import ir.rahnama.sherapp.model.SelectionPoetryModel
@@ -40,10 +40,10 @@ class SelectionNewPoetryAdapter : RecyclerView.Adapter<SelectionNewPoetryAdapter
 
         holder.view.poetry = poetryList[position]
         val image = poetryList[position].image
-        image?.let {
-            if (image != "") {
-                Picasso.get().load(image).into(holder.view.imageSelectionPoetry)
-            }
+        image.let {
+
+            Glide.with(holder.itemView.context).load(image).into(holder.view.imageSelectionPoetry)
+
         }
         holder.view.cardview.setOnClickListener {
             val action =
