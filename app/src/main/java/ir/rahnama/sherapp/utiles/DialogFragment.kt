@@ -16,6 +16,7 @@ import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
+import com.apandroid.colorwheel.ColorWheel
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
@@ -425,6 +426,14 @@ class BackgroundTextDialogFragmentPopUp : DialogFragment() {
         }
 
         view.radio_group_background_text.setOnCheckedChangeListener { group, checkedId ->
+
+            val colorWheel =<ColorWheel>(R.id.colorWheel)
+
+            colorWheel.rgb = Color.rgb(13, 37, 42)
+
+            val currentColor = colorWheel.rgb
+
+
 
             when (checkedId) {
 
