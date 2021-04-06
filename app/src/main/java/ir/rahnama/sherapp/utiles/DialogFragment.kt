@@ -116,7 +116,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
         }
 
 
-
         //Home
         view.back_subFab_Linear.setOnClickListener {
             dialog?.dismiss()
@@ -153,291 +152,334 @@ class SubDialogFragmentPopUp : DialogFragment() {
             )
         }
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-}
-
-class SizeDialogFragmentPopUp : DialogFragment() {
-
-    var sizeNum = 16
-    var bb: Boolean? = true
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.size_mian_fab_layout, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.image_back_dialog_size.setOnClickListener {
+        //brightness
+        view.lighting_subFab_Linear.setOnClickListener {
             dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
+           brightnessFragmentPopUp().show(
                 requireActivity().supportFragmentManager,
                 "popup"
             )
         }
+    }
 
-        view.image_minus_size_text.setOnClickListener {
-
-            sizeNum--
-            view.text_size_dialog.textSize = sizeNum.toFloat()
-            view.text_number_font_size.text = sizeNum.toString()
-
-
-        }
-
-        view.image_plus_size_text.setOnClickListener {
-
-            sizeNum++
-            view.text_size_dialog.textSize = sizeNum.toFloat()
-            view.text_number_font_size.text = sizeNum.toString()
-
-        }
-
-        view.text_number_font_size.text = sizeNum.toString()
-
-        view.btn_save_dialog_size.setOnClickListener {
-            val shared: SharedPreferences = context?.getSharedPreferences("shared", MODE_PRIVATE)!!
-            val editor: SharedPreferences.Editor = shared.edit()
-            editor.putInt("text_size", sizeNum)
-            bb?.let { it1 -> editor.putBoolean("bb", it1) }
-            editor.apply()
-            dialog?.dismiss()
-
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
+    class SizeDialogFragmentPopUp : DialogFragment() {
 
-}
+        var sizeNum = 16
+        var bb: Boolean? = true
 
-class FontSizeDialogFragmentPopUp : DialogFragment() {
-    var fontId: Int? = null
-    var typeface: Typeface? = null
-    var bb: Boolean? = true
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.font_size_mian_fab_layout, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.image_back_font_dialog_size.setOnClickListener {
-            dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.size_mian_fab_layout, container, false)
         }
 
-        view.radio_group_font_text.setOnCheckedChangeListener { group, checkedId ->
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
 
-            when (checkedId) {
-
-                R.id.radio_button_bnazanin_font -> {
-                    fontId = R.font.bnazanin
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        typeface = resources.getFont(fontId!!)
-                        view.text_size_dialog.typeface = typeface
-                    } else {
-                        typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
-                        view.text_size_dialog.typeface = typeface
-                    }
-
-                }
-
-                R.id.radio_button_vazir_font -> {
-                    fontId = R.font.vazir
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        typeface = resources.getFont(fontId!!)
-                        view.text_size_dialog.typeface = typeface
-                    } else {
-                        typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
-                        view.text_size_dialog.typeface = typeface
-                    }
-
-                }
-
-                R.id.radio_button_tahoma_font -> {
-                    fontId = R.font.tahoma
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        typeface = resources.getFont(fontId!!)
-                        view.text_size_dialog.typeface = typeface
-                    } else {
-                        typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
-                        view.text_size_dialog.typeface = typeface
-                    }
-
-                }
-
-                R.id.radio_button_sahel_font -> {
-                    fontId = R.font.sahel
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        typeface = resources.getFont(fontId!!)
-                        view.text_size_dialog.typeface = typeface
-                    } else {
-                        typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
-                        view.text_size_dialog.typeface = typeface
-                    }
-
-                }
-
-
-            }
-
-        }
-
-        view.btn_save_dialog_font.setOnClickListener {
-            val shared: SharedPreferences =
-                context?.getSharedPreferences("shared_font", MODE_PRIVATE)!!
-            val editor: SharedPreferences.Editor = shared.edit()
-            editor.putInt("font_text", fontId!!)
-            bb?.let { it1 -> editor.putBoolean("bbf", it1) }
-            editor.apply()
-            dialog?.dismiss()
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-}
-
-class ColorTextDialogFragmentPopUp : DialogFragment() {
-    var bb: Boolean? = true
-    var color: Int? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.color_text_mian_fab_layout, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        colorWheel.rgb = Color.rgb(13, 37, 42)
-        color = colorWheel.rgb
-        val startcolor = Color.argb(0,0,0,0)
-        val endcolor = Color.argb(0xff,0xff,0xff,0xff)
-        gradientSeekBar.startColor = startcolor
-        gradientSeekBar.endColor = endcolor
-        gradientSeekBar.setColors(startcolor,endcolor)
-
-
-        view.image_back_font_dialog_size.setOnClickListener {
-            dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-
-        colorWheel.colorChangeListener = { rgb: Int ->
-
-            view.text_color_dialog.setTextColor(rgb)
-
-        view.btn_save_dialog_color.setOnClickListener {
-                color = rgb
-                val shared: SharedPreferences =
-                    context?.getSharedPreferences("shared_color", MODE_PRIVATE)!!
-                val editor: SharedPreferences.Editor = shared.edit()
-                editor.putInt("text_color", color!!)
-                bb?.let { it1 -> editor.putBoolean("bbc", it1) }
-                editor.apply()
+            view.image_back_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
                     requireActivity().supportFragmentManager,
                     "popup"
                 )
             }
-        }
 
-    }
+            view.image_minus_size_text.setOnClickListener {
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-}
-
-class BackgroundTextDialogFragmentPopUp : DialogFragment() {
-    var bb: Boolean? = true
-    var background: Int? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.color_background_text_mian_fab_layout, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        colorWheel.rgb = Color.rgb(13, 37, 42)
-        background = colorWheel.rgb
-        val startcolor = Color.argb(0,0,0,0)
-        val endcolor = Color.argb(0xff,0xff,0xff,0xff)
-        gradientSeekBar.startColor = startcolor
-        gradientSeekBar.endColor = endcolor
-        gradientSeekBar.setColors(startcolor,endcolor)
+                sizeNum--
+                view.text_size_dialog.textSize = sizeNum.toFloat()
+                view.text_number_font_size.text = sizeNum.toString()
 
 
-        view.image_background_dialog_size.setOnClickListener {
-            dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
+            }
 
-        colorWheel.colorChangeListener = { rgb: Int ->
+            view.image_plus_size_text.setOnClickListener {
 
-            view.text_back_color_dialog.setTextColor(rgb)
+                sizeNum++
+                view.text_size_dialog.textSize = sizeNum.toFloat()
+                view.text_number_font_size.text = sizeNum.toString()
 
-        view.btn_save_dialog_background.setOnClickListener {
-                background = rgb
+            }
+
+            view.text_number_font_size.text = sizeNum.toString()
+
+            view.btn_save_dialog_size.setOnClickListener {
                 val shared: SharedPreferences =
-                    context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
+                    context?.getSharedPreferences("shared", MODE_PRIVATE)!!
                 val editor: SharedPreferences.Editor = shared.edit()
-                editor.putInt("background_color", background!!)
-                bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
+                editor.putInt("text_size", sizeNum)
+                bb?.let { it1 -> editor.putBoolean("bb", it1) }
                 editor.apply()
+                dialog?.dismiss()
+
+            }
+
+        }
+
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+
+    }
+
+    class FontSizeDialogFragmentPopUp : DialogFragment() {
+        var fontId: Int? = null
+        var typeface: Typeface? = null
+        var bb: Boolean? = true
+
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.font_size_mian_fab_layout, container, false)
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            view.image_back_font_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
                     requireActivity().supportFragmentManager,
                     "popup"
                 )
             }
+
+            view.radio_group_font_text.setOnCheckedChangeListener { group, checkedId ->
+
+                when (checkedId) {
+
+                    R.id.radio_button_bnazanin_font -> {
+                        fontId = R.font.bnazanin
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            typeface = resources.getFont(fontId!!)
+                            view.text_size_dialog.typeface = typeface
+                        } else {
+                            typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
+                            view.text_size_dialog.typeface = typeface
+                        }
+
+                    }
+
+                    R.id.radio_button_vazir_font -> {
+                        fontId = R.font.vazir
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            typeface = resources.getFont(fontId!!)
+                            view.text_size_dialog.typeface = typeface
+                        } else {
+                            typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
+                            view.text_size_dialog.typeface = typeface
+                        }
+
+                    }
+
+                    R.id.radio_button_tahoma_font -> {
+                        fontId = R.font.tahoma
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            typeface = resources.getFont(fontId!!)
+                            view.text_size_dialog.typeface = typeface
+                        } else {
+                            typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
+                            view.text_size_dialog.typeface = typeface
+                        }
+
+                    }
+
+                    R.id.radio_button_sahel_font -> {
+                        fontId = R.font.sahel
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            typeface = resources.getFont(fontId!!)
+                            view.text_size_dialog.typeface = typeface
+                        } else {
+                            typeface = context?.let { ResourcesCompat.getFont(it, fontId!!) }
+                            view.text_size_dialog.typeface = typeface
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+            view.btn_save_dialog_font.setOnClickListener {
+                val shared: SharedPreferences =
+                    context?.getSharedPreferences("shared_font", MODE_PRIVATE)!!
+                val editor: SharedPreferences.Editor = shared.edit()
+                editor.putInt("font_text", fontId!!)
+                bb?.let { it1 -> editor.putBoolean("bbf", it1) }
+                editor.apply()
+                dialog?.dismiss()
+            }
+
+        }
+
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+
+    }
+
+    class ColorTextDialogFragmentPopUp : DialogFragment() {
+        var bb: Boolean? = true
+        var color: Int? = null
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.color_text_mian_fab_layout, container, false)
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            colorWheel.rgb = Color.rgb(13, 37, 42)
+            color = colorWheel.rgb
+            val startcolor = Color.argb(0, 0, 0, 0)
+            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
+            gradientSeekBar.startColor = startcolor
+            gradientSeekBar.endColor = endcolor
+            gradientSeekBar.setColors(startcolor, endcolor)
+
+
+            view.image_back_font_dialog_size.setOnClickListener {
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            colorWheel.colorChangeListener = { rgb: Int ->
+
+                view.text_color_dialog.setTextColor(rgb)
+
+                view.btn_save_dialog_color.setOnClickListener {
+                    color = rgb
+                    val shared: SharedPreferences =
+                        context?.getSharedPreferences("shared_color", MODE_PRIVATE)!!
+                    val editor: SharedPreferences.Editor = shared.edit()
+                    editor.putInt("text_color", color!!)
+                    bb?.let { it1 -> editor.putBoolean("bbc", it1) }
+                    editor.apply()
+                    dialog?.dismiss()
+                    SubDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                    )
+                }
+            }
+
+        }
+
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
+
+    class BackgroundTextDialogFragmentPopUp : DialogFragment() {
+        var bb: Boolean? = true
+        var background: Int? = null
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(
+                R.layout.color_background_text_mian_fab_layout,
+                container,
+                false
+            )
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            colorWheel.rgb = Color.rgb(13, 37, 42)
+            background = colorWheel.rgb
+            val startcolor = Color.argb(0, 0, 0, 0)
+            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
+            gradientSeekBar.startColor = startcolor
+            gradientSeekBar.endColor = endcolor
+            gradientSeekBar.setColors(startcolor, endcolor)
+
+
+            view.image_background_dialog_size.setOnClickListener {
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            colorWheel.colorChangeListener = { rgb: Int ->
+
+                view.text_back_color_dialog.setTextColor(rgb)
+
+                view.btn_save_dialog_background.setOnClickListener {
+                    background = rgb
+                    val shared: SharedPreferences =
+                        context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
+                    val editor: SharedPreferences.Editor = shared.edit()
+                    editor.putInt("background_color", background!!)
+                    bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
+                    editor.apply()
+                    dialog?.dismiss()
+                    SubDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                    )
+                }
+            }
+        }
+
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+    }
+
+    class brightnessFragmentPopUp : DialogFragment() {
+
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.brightness_main_fab_layout, container, false)
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            view.image_background_dialog_size.setOnClickListener {
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+
+        }
 
         override fun onStart() {
             super.onStart()
