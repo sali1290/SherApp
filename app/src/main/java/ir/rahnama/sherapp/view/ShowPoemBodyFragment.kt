@@ -93,7 +93,7 @@ class ShowPoemBodyFragment : Fragment() {
         sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
         val image: String? = sharedImage!!.getString("image", "")
         context?.let { Glide.with(it).load(image).into(view.image_poem_adapter) }
-        Toast.makeText(context,image,Toast.LENGTH_SHORT).show()
+        // Toast.makeText(context,image,Toast.LENGTH_SHORT).show()
 
 
     }
