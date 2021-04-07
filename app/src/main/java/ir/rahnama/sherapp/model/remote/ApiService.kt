@@ -36,31 +36,6 @@ interface ApiService {
     @GET("get_all_subscription.php")
     suspend fun getAllSubscription ():Response<MutableList<Subscribtion>>
 
-    @POST("AddTicket.php")
-    @FormUrlEncoded
-    suspend fun addTicket( @Field("name") name :String , @Field("phone") phone :String , @Field("title") title :String , @Field("ticket_category") category :String ):Call<Void>
 
-    @POST("get_ticket_list.php")
-    @FormUrlEncoded
-    suspend fun getTicketList( @Field("phone") phone :String):Call<MutableList<TicketListModel>>
-
-    @POST("close_ticket.php")
-    @FormUrlEncoded
-    suspend fun closeTicket( @Field("ticket_id") ticket_id :Int):Call<Void>
-
-
-    @POST("user_message.php")
-    @FormUrlEncoded
-    suspend fun sendMessage( @Field("ticket_id") ticket_id :Int , @Field("message") message :String ):Call<Void>
-
-
-    @POST("get_all_message.php")
-    @FormUrlEncoded
-    suspend fun getAllMessages( @Field("ticket_id") ticket_id :Int):Call<MutableList<TicketMessageModel>>
-
-
-    @POST("support_message_seen.php")
-    @FormUrlEncoded
-    suspend fun MessageSeen( @Field("ticket_id") ticket_id :Int):Call<Void>
 
 }

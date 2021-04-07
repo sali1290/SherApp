@@ -24,45 +24,36 @@ import com.google.android.material.textfield.TextInputLayout
 import com.orhanobut.hawk.Hawk
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FragmentListOfTicketBinding
+import ir.rahnama.sherapp.di.AppModule
 import ir.rahnama.sherapp.model.TicketListModel
+import ir.rahnama.sherapp.model.remote.VerficationCodeApiClient1
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.utiles.checkUser
 import ir.rahnama.sherapp.view.adapter.ListOfTicketAdapter
+import kotlinx.android.synthetic.main.add_new_ticket_alertdialog.view.*
 import kotlinx.android.synthetic.main.fragment_list_of_ticket.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
+class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
 
 
-    private lateinit var adapter:ListOfTicketAdapter
-    var binding : FragmentListOfTicketBinding by autoCleared()
-
-    private var userPhoneNumber :String? = null
-
+    private lateinit var adapter: ListOfTicketAdapter
+    var binding: FragmentListOfTicketBinding by autoCleared()
+    private var userPhoneNumber: String? = null
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentListOfTicketBinding.inflate(inflater , container , false )
+        binding = FragmentListOfTicketBinding.inflate(inflater, container, false)
         //init adapter
         adapter = ListOfTicketAdapter(requireActivity(), this)
-
         checkUser(requireContext())
-
-
-
-
-
-
-
-
-       /* refreshData.setOnRefreshListener {
-
-            if (Hawk.contains("userPhone")){
+        refreshData.setOnRefreshListener {
+            if (Hawk.contains("userPhone")) {
                 requestForTicketList(userPhoneNumber!!)
             }
             Handler().postDelayed({
@@ -71,23 +62,11 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
                 }
             }, 1000)
         }
-*/
-
-
-
-
-
-
-
-        btn_add_new_ticket.setOnClickListener{addTicketAlertDialog()}
-        add_ticket_btn_back.setOnClickListener{popBackStack()}
-        firstTimeAddNewTicket.setOnClickListener{addTicketAlertDialog()}
-
-
-
+        binding.btnAddNewTicket.setOnClickListener { addTicketAlertDialog() }
+        binding.addTicketBtnBack.setOnClickListener { popBackStack() }
+        binding.firstTimeAddNewTicket.setOnClickListener { addTicketAlertDialog() }
         return view
     }
-
 
 
     private fun addTicketAlertDialog() {
@@ -95,115 +74,102 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
         val builder = AlertDialog.Builder(requireActivity()).create()
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.add_new_ticket_alertdialog, null)
-        val spinner =dialogLayout.findViewById<Spinner>(R.id.add_ticket_spinner)
-        val txt_show_toLogin =dialogLayout.findViewById<TextView>(R.id.txt_show_toLogin)
-        val spinner_layout =dialogLayout.findViewById<ConstraintLayout>(R.id.spinner_layout)
-        val btn_add_ticket=dialogLayout.findViewById<Button>(R.id.add_ticket_btn_create)
-        val add_ticket_edt_title=dialogLayout.findViewById<TextInputEditText>(R.id.add_ticket_edt_title)
-        val title_textinputLayout=dialogLayout.findViewById<TextInputLayout>(R.id.title_textinputLayout)
+//        val spinner = dialogLayout.findViewById<Spinner>(R.id.add_ticket_spinner)
+//        val txt_show_toLogin = dialogLayout.findViewById<TextView>(R.id.txt_show_toLogin)
+//        val spinner_layout = dialogLayout.findViewById<ConstraintLayout>(R.id.spinner_layout)
+//        val btn_add_ticket = dialogLayout.findViewById<Button>(R.id.add_ticket_btn_create)
+//        val add_ticket_edt_title = dialogLayout.findViewById<TextInputEditText>(R.id.add_ticket_edt_title)
+//        val title_textinputLayout = dialogLayout.findViewById<TextInputLayout>(R.id.title_textinputLayout)
 
-        var toDoLogIn=false
+        var toDoLogIn = false
 
-        if (Hawk.contains("logIn")){
-            txt_show_toLogin.visibility=View.INVISIBLE
-        }else{
-            title_textinputLayout.visibility=View.INVISIBLE
-            spinner_layout.visibility=View.INVISIBLE
-            btn_add_ticket.text="ساخت حساب"
-            toDoLogIn=true
+        if (Hawk.contains("logIn")) {
+            dialogLayout.txt_show_toLogin.visibility = View.INVISIBLE
+        } else {
+            dialogLayout.title_textinputLayout.visibility = View.INVISIBLE
+            dialogLayout.spinner_layout.visibility = View.INVISIBLE
+            dialogLayout.add_ticket_btn_create.text = "ساخت حساب"
+            toDoLogIn = true
         }
-
         val items = arrayOf("مشکلات فنی", "مشکلات پرداخت", "محتوای برنامه", "سایر")
         val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, items)
-        spinner.adapter = adapter
+        dialogLayout.add_ticket_spinner.adapter = adapter
 
 
+        var titleValid = false
 
-        var titleValid=false
-
-        add_ticket_edt_title.addTextChangedListener(object : TextWatcher {
+        dialogLayout.add_ticket_edt_title.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                title_textinputLayout.isErrorEnabled = false
+                dialogLayout.title_textinputLayout.isErrorEnabled = false
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                if (add_ticket_edt_title.text.toString().isEmpty()) {
-                    title_textinputLayout.isErrorEnabled = true
-                    title_textinputLayout.error = "موضوع تیکت را وارد کنید"
+                if (dialogLayout.add_ticket_edt_title.text.toString().isEmpty()) {
+                    dialogLayout.title_textinputLayout.isErrorEnabled = true
+                    dialogLayout.title_textinputLayout.error = "موضوع تیکت را وارد کنید"
                     titleValid = false
                 } else {
-                    title_textinputLayout.isErrorEnabled = false
+                    dialogLayout.title_textinputLayout.isErrorEnabled = false
                     titleValid = true
                 }
             }
         })
 
 
+         dialogLayout.add_ticket_btn_create.setOnClickListener{
+
+
+             if (toDoLogIn){
+                 builder.dismiss()
+             }else{
+                 if (titleValid){
+                     requestForAddTicket(
+                         Hawk.get("userName"),
+                         Hawk.get("userPhone"),
+                         dialogLayout.add_ticket_edt_title.text.toString(),
+                         dialogLayout.add_ticket_spinner.selectedItemPosition.toString()
+                     )
+                     builder.dismiss()
+                 }else{
+                     Toast.makeText(requireActivity(), "لطفا اطلاعات را به صورت صحیح وارد کنید", Toast.LENGTH_SHORT).show()
+                 }
+             }
 
 
 
 
 
-
-
-
-
-
-       /* btn_add_ticket.setOnClickListener{
-
-
-            if (toDoLogIn){
-                builder.dismiss()
-            }else{
-                if (titleValid){
-                    requestForAddTicket(
-                        Hawk.get("userName"),
-                        Hawk.get("userPhone"),
-                        add_ticket_edt_title.text.toString(),
-                        spinner.selectedItemPosition.toString()
-                    )
-                    builder.dismiss()
-                }else{
-                    Toast.makeText(requireActivity(), "لطفا اطلاعات را به صورت صحیح وارد کنید", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-
-
-
-
-        }*/
+         }
 
         builder.setView(dialogLayout)
         builder.show()
     }
 
-    private fun popBackStack(){
-        val fragmentManager: FragmentTransaction =requireActivity().supportFragmentManager.beginTransaction()
+    private fun popBackStack() {
+        val fragmentManager: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         requireActivity().supportFragmentManager.popBackStack()
         fragmentManager.remove(this).commit()
     }
 
 
-
-  /*  private fun requestForTicketList(phone: String) {
-        if (Hawk.contains("userPhone")){
-            val apiService: ApiInterface = ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)
-            val call : Call<MutableList<TicketListModel>> =apiService.getTicketList(phone)
+    private  fun requestForTicketList(phone: String) {
+        if (Hawk.contains("userPhone")) {
+            val apiService: VerficationCodeApiClient1 = AppModule.provideRetrofit(AppModule.provideGson()).create(VerficationCodeApiClient1::class.java)
+            val call: Call<MutableList<TicketListModel>> = apiService.getTicketList(phone)
             call.enqueue(object : Callback<MutableList<TicketListModel>> {
                 override fun onResponse(
-                    call: Call<MutableList<TicketListModel>>,
-                    response: Response<MutableList<TicketListModel>>
+                        call: Call<MutableList<TicketListModel>>,
+                        response: Response<MutableList<TicketListModel>>
                 ) {
                     Log.i("test", response.toString())
                     if (response.isSuccessful) {
                         if (response.body() != null) {
                             TicketListRecyclerView.adapter = adapter
                             TicketListRecyclerView.layoutManager =
-                                LinearLayoutManager(requireContext())
+                                    LinearLayoutManager(requireContext())
                             adapter.setItems(response.body()!!)
                         }
 
@@ -212,9 +178,9 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
                 override fun onFailure(call: Call<MutableList<TicketListModel>>, t: Throwable) {
                     Snackbar.make(
-                        ticket_coordinator_layout,
-                        "مطمئنی اینترنتت وصله؟ ",
-                        Snackbar.LENGTH_LONG
+                            ticket_coordinator_layout,
+                            "مطمئنی اینترنتت وصله؟ ",
+                            Snackbar.LENGTH_LONG
                     ).show()
                     Log.i("test", t.message.toString())
                 }
@@ -222,12 +188,12 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
 
         }
 
-    }*/
+    }
 
 
-    /*private fun requestForAddTicket(name: String, phone: String, title: String, category: String){
+    private fun requestForAddTicket(name: String, phone: String, title: String, category: String){
 
-        val apiService: ApiInterface = ApiClient.getApiClient(Hawk.get("Unknown"))!!.create(ApiInterface::class.java)
+        val apiService: VerficationCodeApiClient1 = AppModule.provideRetrofit(AppModule.provideGson()).create(VerficationCodeApiClient1::class.java)
         val call:Call<Void> = apiService.addTicket(name, phone, title, category)
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -248,15 +214,10 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
         })
 
 
-    }*/
+    }
 
 
-
-
-
-
-
-    private fun loadFragment(fragment: Fragment){
+    private fun loadFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)
         fragmentTransaction.addToBackStack(null)
@@ -266,8 +227,6 @@ class ListOfTicketFragment : Fragment() , ListOfTicketAdapter.OpenTicket{
     override fun openTicket(id: Int, State: Int) {
         loadFragment(ShowTicketContentFragment(id, State))
     }
-
-
 
 
 }
