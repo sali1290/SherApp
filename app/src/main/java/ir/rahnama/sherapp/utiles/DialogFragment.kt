@@ -19,7 +19,6 @@ import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import kotlinx.android.synthetic.main.brightness_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
-import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.gradientSeekBar
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.image_background_dialog_size
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.text_back_color_dialog
@@ -67,12 +66,12 @@ class MainDialogFragmentPopUp : DialogFragment() {
             dialog?.dismiss()
         }
 
-    }
+        }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
 
     fun loadFragments(id: Int, view: View) {
         when (id) {
@@ -106,8 +105,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         return inflater.inflate(R.layout.sub_mian_fab_layout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
 
         //Text Size
         view.fab_font_size_popup.setOnClickListener {
@@ -174,12 +173,12 @@ class SubDialogFragmentPopUp : DialogFragment() {
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    }
+        }
 
     class SizeDialogFragmentPopUp : DialogFragment() {
 
-        var sizeNum = 16
-        var bb: Boolean? = true
+        private var sizeNum = 16
+        private var bb: Boolean? = true
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -207,7 +206,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 view.text_number_font_size.text = sizeNum.toString()
 
 
-            }
+                }
 
             view.image_plus_size_text.setOnClickListener {
 
@@ -230,19 +229,19 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
             }
 
-        }
+            }
 
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    }
+        }
 
     class FontSizeDialogFragmentPopUp : DialogFragment() {
-        var fontId: Int? = null
-        var typeface: Typeface? = null
-        var bb: Boolean? = true
+        private var fontId: Int? = null
+        private var typeface: Typeface? = null
+        private var bb: Boolean? = true
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -263,7 +262,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 )
             }
 
-            view.radio_group_font_text.setOnCheckedChangeListener { group, checkedId ->
+            view.radio_group_font_text.setOnCheckedChangeListener { _, checkedId ->
 
                 when (checkedId) {
 
@@ -320,7 +319,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                     }
 
 
-                }
+                    }
 
             }
 
@@ -334,17 +333,17 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 dialog?.dismiss()
             }
 
-        }
+            }
 
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    }
+        }
 
     class ColorTextDialogFragmentPopUp : DialogFragment() {
-        var bb: Boolean? = true
+        private var bb: Boolean? = true
         var color: Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -359,12 +358,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
             colorWheel.rgb = Color.rgb(13, 37, 42)
             color = colorWheel.rgb
-            val startcolor = Color.argb(0, 0, 0, 0)
-            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
-            gradientSeekBar.startColor = startcolor
-            gradientSeekBar.endColor = endcolor
-            gradientSeekBar.setColors(startcolor, endcolor)
-
 
             view.image_back_font_dialog_size.setOnClickListener {
                 dialog?.dismiss()
@@ -403,7 +396,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
     }
 
     class BackgroundTextDialogFragmentPopUp : DialogFragment() {
-        var bb: Boolean? = true
+        private var bb: Boolean? = true
         var background: Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -422,12 +415,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
             colorWheel.rgb = Color.rgb(13, 37, 42)
             background = colorWheel.rgb
-            val startcolor = Color.argb(0, 0, 0, 0)
-            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
-            gradientSeekBar.startColor = startcolor
-            gradientSeekBar.endColor = endcolor
-            gradientSeekBar.setColors(startcolor, endcolor)
-
 
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
@@ -465,7 +452,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
     }
 
     class BrightnessFragmentPopUp : DialogFragment() {
-        var brightness:Int? = null
+        private var brightness:Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -481,7 +468,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
             view.seekBar.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
 
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-                    Settings.System.putInt(context?.getContentResolver(),
+                    Settings.System.putInt(context?.contentResolver,
                             Settings.System.SCREEN_BRIGHTNESS, progress)
                 }
 
@@ -502,13 +489,14 @@ class SubDialogFragmentPopUp : DialogFragment() {
             }
 
 
-        }
+            }
 
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 }
+
 
 
 

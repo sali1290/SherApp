@@ -28,10 +28,10 @@ class ShowPoemBodyFragment : Fragment() {
 
     private val viewModel: PoemBodyViewModel by viewModels()
     private var binding: FragmentShowPoemsBinding by autoCleared()
-    var shared: SharedPreferences? = null
-    var mId: String? = null
-    var sharedBackground: SharedPreferences? = null
-    var sharedImage: SharedPreferences? = null
+    private var shared: SharedPreferences? = null
+    private var mId: String? = null
+    private var sharedBackground: SharedPreferences? = null
+    private var sharedImage: SharedPreferences? = null
 
     private val poemAdapter = PoemBodyAdapter()
 
@@ -92,10 +92,14 @@ class ShowPoemBodyFragment : Fragment() {
         //Set Image
         sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
         val image: String? = sharedImage!!.getString("image", "")
-        context?.let { Glide.with(it).load(image).into(view.image_poem_adapter) }
-        // Toast.makeText(context,image,Toast.LENGTH_SHORT).show()
+        context?.let {
 
-
+                Glide.with(this)
+                    .load(image)
+                    .centerCrop()
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(view.image_poem_adapter)
+        }
     }
 
     private fun obserViewModel() {

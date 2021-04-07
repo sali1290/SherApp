@@ -13,7 +13,7 @@ import ir.rahnama.sherapp.view.HomeFragmentDirections
 
 class SelectionNewPoetryAdapter : RecyclerView.Adapter<SelectionNewPoetryAdapter.MyViewHolder>() {
 
-    var poetryList: MutableList<SelectionPoetryModel> = arrayListOf()
+    private var poetryList: MutableList<SelectionPoetryModel> = arrayListOf()
 
     fun refreshData(newPoetryList: List<SelectionPoetryModel>) {
         if (newPoetryList.size > poetryList.size) {
@@ -42,9 +42,12 @@ class SelectionNewPoetryAdapter : RecyclerView.Adapter<SelectionNewPoetryAdapter
         val image = poetryList[position].image
         image.let {
 
-            Glide.with(holder.itemView.context).load(image).into(holder.view.imageSelectionPoetry)
-
-        }
+                Glide.with(holder.itemView.context)
+                    .load(image)
+                    .centerCrop()
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(holder.view.imageSelectionPoetry)
+            }
         holder.view.cardview.setOnClickListener {
             val action =
                 HomeFragmentDirections.actionHomeToBookList(poetryList[position].category_id)
@@ -52,7 +55,6 @@ class SelectionNewPoetryAdapter : RecyclerView.Adapter<SelectionNewPoetryAdapter
         }
 
     }
-
 
     override fun getItemCount() = poetryList.size
 

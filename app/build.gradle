@@ -42,7 +42,7 @@ android {
         // for view binding:
         viewBinding true
     }
-    buildToolsVersion '30.0.2'
+    buildToolsVersion '31.0.0 rc2'
 
 }
 
@@ -50,7 +50,6 @@ android {
 def lifecycle_version = "2.3.0"
 def supportVersion = '28.0.0'
 def retrofitVersion = '2.9.0'
-def glideVersion = '4.12.0'
 def roomVersion = '2.3.0-beta01'
 def navigationVersion = '2.3.3'
 def activity_version = "1.2.0"
@@ -92,10 +91,14 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
     //glide
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
     //prefrences
    // implementation "androidx.preference:preference-ktx:$prefrencesVersion"
+
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"

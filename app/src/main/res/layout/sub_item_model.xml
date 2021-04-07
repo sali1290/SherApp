@@ -42,7 +42,7 @@
 
 
             <ImageView
-                android:imageLoader="@{Sub.image}"
+                android:src="@mipmap/ic_launcher"
                 android:id="@+id/sub_imageView"
                 android:layout_width="@dimen/_38sdp"
                 android:layout_height="@dimen/_70sdp"
