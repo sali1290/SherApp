@@ -1,10 +1,13 @@
 package ir.rahnama.sherapp.utiles
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -12,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
@@ -77,19 +81,19 @@ class MainDialogFragmentPopUp : DialogFragment() {
         when (id) {
             R.id.shop_ImageView -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 0)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.poem_fav_popup -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.negare_mainFab_Linear -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.negare_mainFab_Linear -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
         }
     }
@@ -108,65 +112,65 @@ class SubDialogFragmentPopUp : DialogFragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-        //Text Size
-        view.fab_font_size_popup.setOnClickListener {
-            dialog?.dismiss()
-            SizeDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
-            )
-        }
-
-
-        //Home
-        view.back_subFab_Linear.setOnClickListener {
-            dialog?.dismiss()
-            MainDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
-            )
-        }
-
-        //Font Text
-        view.fab_font_text_view_popup.setOnClickListener {
-            dialog?.dismiss()
-            FontSizeDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
-            )
-        }
-
-        //Color Text
-        view.fab_color_text_popup.setOnClickListener {
-            dialog?.dismiss()
-            ColorTextDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
-            )
-        }
-
-        //Background Color
-        view.fab_background_color_popup.setOnClickListener {
-            dialog?.dismiss()
-            BackgroundTextDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
-            )
-        }
-
-        //brightness
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            view.lighting_subFab_Linear.setOnClickListener {
+            //Text Size
+            view.fab_font_size_popup.setOnClickListener {
                 dialog?.dismiss()
-                BrightnessFragmentPopUp().show(
-                        requireActivity().supportFragmentManager,
-                        "popup"
+                SizeDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
                 )
             }
+
+
+            //Home
+            view.back_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                MainDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Font Text
+            view.fab_font_text_view_popup.setOnClickListener {
+                dialog?.dismiss()
+                FontSizeDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Color Text
+            view.fab_color_text_popup.setOnClickListener {
+                dialog?.dismiss()
+                ColorTextDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Background Color
+            view.fab_background_color_popup.setOnClickListener {
+                dialog?.dismiss()
+                BackgroundTextDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //brightness
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                view.lighting_subFab_Linear.setOnClickListener {
+                    dialog?.dismiss()
+                    BrightnessFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                    )
+                }
+            }
+            else
+                view.lighting_subFab_Linear.visibility = View.INVISIBLE
         }
-        else
-            view.lighting_subFab_Linear.visibility = View.INVISIBLE
-    }
 
         override fun onStart() {
             super.onStart()
@@ -452,7 +456,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
     }
 
     class BrightnessFragmentPopUp : DialogFragment() {
-        private var brightness:Int? = null
+
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -463,22 +467,19 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
-            view.seekBar.progress = brightness!!
-            view.seekBar.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
 
-                override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-                    Settings.System.putInt(context?.contentResolver,
-                            Settings.System.SCREEN_BRIGHTNESS, progress)
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                }
+                if (!Settings.System.canWrite(context)) {
 
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    startManageWriteSettingsPermission()
 
                 }
-            })
+
+               else {
+                    brightnessChenger()
+                }
+            }
 
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
@@ -488,8 +489,60 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 )
             }
 
-
             }
+
+        private fun startManageWriteSettingsPermission() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Intent(
+                    Settings.ACTION_MANAGE_WRITE_SETTINGS,
+                    Uri.parse("package:${context?.packageName}")
+                ).let {
+                    startActivityForResult(it, REQUEST_CODE_WRITE_SETTINGS_PERMISSION)
+                }
+            }
+        }
+
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+
+            when (requestCode) {
+                REQUEST_CODE_WRITE_SETTINGS_PERMISSION -> {
+                    if (context?.canWriteSettings == true) {
+                        brightnessChenger()
+                    } else {
+                        Toast.makeText(context, "Write settings permission is not granted!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        private val Context.canWriteSettings: Boolean
+            get() = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.System.canWrite(this)
+
+        companion object {
+            private const val REQUEST_CODE_WRITE_SETTINGS_PERMISSION = 5
+        }
+
+         private fun brightnessChenger() {
+
+            val brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
+            view?.seekBar?.progress = brightness
+            view?.seekBar?.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
+                    Settings.System.putInt(context?.contentResolver,
+                        Settings.System.SCREEN_BRIGHTNESS, progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                }
+            })
+        }
+
 
         override fun onStart() {
             super.onStart()
