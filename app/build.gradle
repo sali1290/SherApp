@@ -42,7 +42,7 @@ android {
         // for view binding:
         viewBinding true
     }
-    buildToolsVersion '30.0.2'
+    buildToolsVersion '31.0.0 rc2'
 
 }
 

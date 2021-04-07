@@ -7,19 +7,22 @@ import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
-import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
+import kotlinx.android.synthetic.main.brightness_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.gradientSeekBar
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
-import kotlinx.android.synthetic.main.color_text_mian_fab_layout.*
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.image_background_dialog_size
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.text_back_color_dialog
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
@@ -110,8 +113,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         view.fab_font_size_popup.setOnClickListener {
             dialog?.dismiss()
             SizeDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
+                    requireActivity().supportFragmentManager,
+                    "popup"
             )
         }
 
@@ -120,8 +123,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         view.back_subFab_Linear.setOnClickListener {
             dialog?.dismiss()
             MainDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
+                    requireActivity().supportFragmentManager,
+                    "popup"
             )
         }
 
@@ -129,8 +132,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         view.fab_font_text_view_popup.setOnClickListener {
             dialog?.dismiss()
             FontSizeDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
+                    requireActivity().supportFragmentManager,
+                    "popup"
             )
         }
 
@@ -138,8 +141,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         view.fab_color_text_popup.setOnClickListener {
             dialog?.dismiss()
             ColorTextDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
+                    requireActivity().supportFragmentManager,
+                    "popup"
             )
         }
 
@@ -147,19 +150,23 @@ class SubDialogFragmentPopUp : DialogFragment() {
         view.fab_background_color_popup.setOnClickListener {
             dialog?.dismiss()
             BackgroundTextDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
+                    requireActivity().supportFragmentManager,
+                    "popup"
             )
         }
 
         //brightness
-        view.lighting_subFab_Linear.setOnClickListener {
-            dialog?.dismiss()
-           brightnessFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            view.lighting_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                BrightnessFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                )
+            }
         }
+        else
+            view.lighting_subFab_Linear.visibility = View.INVISIBLE
     }
 
         override fun onStart() {
@@ -457,8 +464,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
         }
     }
 
-    class brightnessFragmentPopUp : DialogFragment() {
-
+    class BrightnessFragmentPopUp : DialogFragment() {
+        var brightness:Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -469,6 +476,22 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+            brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
+            view.seekBar.progress = brightness!!
+            view.seekBar.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
+                    Settings.System.putInt(context?.getContentResolver(),
+                            Settings.System.SCREEN_BRIGHTNESS, progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                }
+            })
 
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
