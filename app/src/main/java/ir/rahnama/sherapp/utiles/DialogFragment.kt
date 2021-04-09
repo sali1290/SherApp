@@ -36,8 +36,10 @@ import kotlinx.android.synthetic.main.height_size_text_fab.view.*
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_size
+import kotlinx.android.synthetic.main.size_mian_fab_layout.view.image_back_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.text_size_dialog
 import kotlinx.android.synthetic.main.sub_mian_fab_layout.view.*
+import kotlinx.android.synthetic.main.volume_button_fab.view.*
 
 
 class MainDialogFragmentPopUp : DialogFragment() {
@@ -173,6 +175,15 @@ class SubDialogFragmentPopUp : DialogFragment() {
             view.fontMargin_subFab_Linear.setOnClickListener {
                 dialog?.dismiss()
                 HeightSizeDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                )
+
+            }
+            //nextvolume
+            view.nextPageVolume_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                NextVolumeFragmentPopUp().show(
                         requireActivity().supportFragmentManager,
                         "popup"
                 )
@@ -643,4 +654,43 @@ class SubDialogFragmentPopUp : DialogFragment() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
+}
+
+class NextVolumeFragmentPopUp : DialogFragment() {
+
+    private var bb: Boolean? = true
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.volume_button_fab, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.image_back_dialog_volume.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+            )
+        }
+            /*val shared: SharedPreferences =
+                    context?.getSharedPreferences("shared", MODE_PRIVATE)!!
+            val editor: SharedPreferences.Editor = shared.edit()
+            editor.putInt("situation", )
+            bb?.let { it1 -> editor.putBoolean("bb", it1) }
+            editor.apply()
+            dialog?.dismiss()*/
+
+        }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
 }
