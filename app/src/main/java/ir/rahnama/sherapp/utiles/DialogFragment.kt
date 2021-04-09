@@ -32,10 +32,10 @@ import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
+import kotlinx.android.synthetic.main.height_size_text_fab.view.*
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_size
-import kotlinx.android.synthetic.main.size_mian_fab_layout.view.image_back_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.text_size_dialog
 import kotlinx.android.synthetic.main.sub_mian_fab_layout.view.*
 
@@ -168,8 +168,17 @@ class SubDialogFragmentPopUp : DialogFragment() {
             }
             else
                 view.lighting_subFab_Linear.visibility = View.INVISIBLE
-        }
 
+            //height
+            view.fontMargin_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                HeightSizeDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                )
+
+            }
+        }
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -239,6 +248,65 @@ class SubDialogFragmentPopUp : DialogFragment() {
         }
 
         }
+
+    class HeightSizeDialogFragmentPopUp : DialogFragment() {
+
+    private var sizeNum = 16
+    private var bb: Boolean? = true
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.height_size_text_fab, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.image_back_dialog_height_size.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+            )
+        }
+
+        view.image_minus_height_size_text.setOnClickListener {
+
+            sizeNum--
+            view.text_number_font_size.text = sizeNum.toString()
+
+        }
+
+        view.image_plus_height_size_text.setOnClickListener {
+
+            sizeNum++
+            view.text_number_height_size.text = sizeNum.toString()
+
+        }
+
+        view.text_number_height_size.text = sizeNum.toString()
+
+        view.btn_save_dialog_height_size.setOnClickListener {
+            val shared: SharedPreferences =
+                    context?.getSharedPreferences("shared", MODE_PRIVATE)!!
+            val editor: SharedPreferences.Editor = shared.edit()
+            editor.putInt("height_size", sizeNum)
+            bb?.let { it1 -> editor.putBoolean("bb", it1) }
+            editor.apply()
+            dialog?.dismiss()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+}
 
     class FontSizeDialogFragmentPopUp : DialogFragment() {
         private var fontId: Int? = null
