@@ -22,10 +22,12 @@ import androidx.navigation.fragment.NavHostFragment
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import kotlinx.android.synthetic.main.brightness_main_fab_layout.view.*
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.image_background_dialog_size
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.text_back_color_dialog
+import kotlinx.android.synthetic.main.color_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
@@ -77,7 +79,7 @@ class MainDialogFragmentPopUp : DialogFragment() {
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    fun loadFragments(id: Int, view: View) {
+    private fun loadFragments(id: Int, view: View) {
         when (id) {
             R.id.shop_ImageView -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 0)
@@ -85,10 +87,6 @@ class MainDialogFragmentPopUp : DialogFragment() {
             }
             R.id.poem_fav_popup -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
-                view.let { NavHostFragment.findNavController(this).navigate(action) }
-            }
-            R.id.negare_mainFab_Linear -> {
-                val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.negare_mainFab_Linear -> {
@@ -360,9 +358,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            colorWheel.rgb = Color.rgb(13, 37, 42)
-            color = colorWheel.rgb
-
             view.image_back_font_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
@@ -370,25 +365,42 @@ class SubDialogFragmentPopUp : DialogFragment() {
                     "popup"
                 )
             }
+            colorWheel.rgb = Color.rgb(13, 37, 42)
 
             colorWheel.colorChangeListener = { rgb: Int ->
+                val startColor = Color.WHITE
+                val endColor = Color.BLACK
+                verticalgradientSeekBar.startColor = startColor
+                verticalgradientSeekBar.setColors(rgb, startColor)
+                horizontalgradientSeekBar.endColor = endColor
+                horizontalgradientSeekBar.setColors(rgb, endColor)
 
                 view.text_color_dialog.setTextColor(rgb)
 
-                view.btn_save_dialog_color.setOnClickListener {
-                    color = rgb
-                    val shared: SharedPreferences =
+            }
+            verticalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_color_dialog.setTextColor(argb)
+            }
+
+            horizontalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_color_dialog.setTextColor(argb)
+            }
+
+            view.btn_save_dialog_color.setOnClickListener {
+                color = view.text_color_dialog.currentTextColor
+                val shared: SharedPreferences =
                         context?.getSharedPreferences("shared_color", MODE_PRIVATE)!!
-                    val editor: SharedPreferences.Editor = shared.edit()
-                    editor.putInt("text_color", color!!)
-                    bb?.let { it1 -> editor.putBoolean("bbc", it1) }
-                    editor.apply()
-                    dialog?.dismiss()
-                    SubDialogFragmentPopUp().show(
+                val editor: SharedPreferences.Editor = shared.edit()
+                editor.putInt("text_color", color!!)
+                bb?.let { it1 -> editor.putBoolean("bbc", it1) }
+                editor.apply()
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
                         requireActivity().supportFragmentManager,
                         "popup"
-                    )
-                }
+                )
             }
 
         }
@@ -418,34 +430,50 @@ class SubDialogFragmentPopUp : DialogFragment() {
             super.onViewCreated(view, savedInstanceState)
 
             colorWheel.rgb = Color.rgb(13, 37, 42)
-            background = colorWheel.rgb
-
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
+                        requireActivity().supportFragmentManager,
+                        "popup"
                 )
             }
 
             colorWheel.colorChangeListener = { rgb: Int ->
 
                 view.text_back_color_dialog.setTextColor(rgb)
+                val startColor = Color.WHITE
+                val endColor = Color.BLACK
+                backverticalgradientSeekBar.startColor = startColor
+                backverticalgradientSeekBar.setColors(rgb, startColor)
+                backhorizontalgradientSeekBar.endColor = endColor
+                backhorizontalgradientSeekBar.setColors(rgb, endColor)
 
-                view.btn_save_dialog_background.setOnClickListener {
-                    background = rgb
-                    val shared: SharedPreferences =
+            }
+
+            backverticalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_back_color_dialog.setTextColor(argb)
+            }
+
+            backhorizontalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_back_color_dialog.setTextColor(argb)
+            }
+
+            view.btn_save_dialog_background?.setOnClickListener {
+                background = view.text_back_color_dialog.currentTextColor
+                val shared: SharedPreferences =
                         context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
-                    val editor: SharedPreferences.Editor = shared.edit()
-                    editor.putInt("background_color", background!!)
-                    bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
-                    editor.apply()
-                    dialog?.dismiss()
-                    SubDialogFragmentPopUp().show(
+                val editor: SharedPreferences.Editor = shared.edit()
+                editor.putInt("background_color", background!!)
+                bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
+                editor.apply()
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
                         requireActivity().supportFragmentManager,
                         "popup"
-                    )
-                }
+                )
+
             }
         }
 
@@ -477,7 +505,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 }
 
                else {
-                    brightnessChenger()
+                    brightnessChanger()
                 }
             }
 
@@ -508,7 +536,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
             when (requestCode) {
                 REQUEST_CODE_WRITE_SETTINGS_PERMISSION -> {
                     if (context?.canWriteSettings == true) {
-                        brightnessChenger()
+                        brightnessChanger()
                     } else {
                         Toast.makeText(context, "Write settings permission is not granted!", Toast.LENGTH_SHORT).show()
                     }
@@ -523,7 +551,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
             private const val REQUEST_CODE_WRITE_SETTINGS_PERMISSION = 5
         }
 
-         private fun brightnessChenger() {
+         private fun brightnessChanger() {
 
             val brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
             view?.seekBar?.progress = brightness
@@ -543,15 +571,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
             })
         }
 
-
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 }
-
-
-
-
-
-
