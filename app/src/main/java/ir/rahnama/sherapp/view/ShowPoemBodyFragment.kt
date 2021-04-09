@@ -20,6 +20,7 @@ import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.PoemBodyAdapter
 import ir.rahnama.sherapp.viewmodel.PoemBodyViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
+import ir.rahnama.sherapp.utiles.SubDialogFragmentPopUp
 import ir.rahnama.sherapp.utiles.toast
 import kotlinx.android.synthetic.main.fragment_show_poems.view.*
 
@@ -78,6 +79,12 @@ class ShowPoemBodyFragment : Fragment() {
             }
 
 
+        }
+
+        binding.textOption.setOnClickListener {
+            SubDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popUp")
         }
 
         //Set Background Text
