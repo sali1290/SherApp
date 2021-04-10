@@ -51,12 +51,33 @@
                     android:text="روشنایی"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <com.jem.rubberpicker.RubberSeekBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/rubberSeekBar"
+                    app:dampingRatio="0.3"
+                    app:defaultThumbInsideColor="#FFF"
+                    app:defaultThumbRadius="16dp"
+                    app:elasticBehavior="cubic"
+                    app:highlightDefaultThumbOnTouchColor="#4FC3F7"
+                    app:highlightTrackColor="#2196F3"
+                    app:highlightTrackWidth="8dp"
+                    app:maxValue="100"
+                    app:minValue="0"
+                    app:normalTrackColor="#AAAAAA"
+                    app:normalTrackWidth="4dp"
+                    app:stiffness="300"
+                    app:stretchRange="24dp" />
+
+            </LinearLayout>
 
             </LinearLayout>
 
