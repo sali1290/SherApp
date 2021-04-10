@@ -14,14 +14,14 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
+import com.jem.rubberpicker.RubberSeekBar
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
-import kotlinx.android.synthetic.main.brightness_main_fab_layout.view.*
+import kotlinx.android.synthetic.main.brightness_main_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
@@ -632,23 +632,18 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
          private fun brightnessChanger() {
 
-            val brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
-            view?.seekBar?.progress = brightness
-            view?.seekBar?.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
-
-                override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-                    Settings.System.putInt(context?.contentResolver,
-                        Settings.System.SCREEN_BRIGHTNESS, progress)
-                }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                }
-
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-                }
-            })
+             rubberSeekBar?.setCurrentValue((Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS)/2.5).toInt())
+             rubberSeekBar?.setOnRubberSeekBarChangeListener(object : RubberSeekBar.OnRubberSeekBarChangeListener {
+                 override fun onProgressChanged(seekBar: RubberSeekBar, value: Int, fromUser: Boolean) {
+                     Settings.System.putInt(context?.contentResolver,
+                         Settings.System.SCREEN_BRIGHTNESS, (value*2.5).toInt()
+                     )
+                 }
+                 override fun onStartTrackingTouch(seekBar: RubberSeekBar) {}
+                 override fun onStopTrackingTouch(seekBar: RubberSeekBar) {}
+             })
         }
+
 
         override fun onStart() {
             super.onStart()
