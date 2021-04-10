@@ -1,35 +1,45 @@
 package ir.rahnama.sherapp.utiles
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
+import kotlinx.android.synthetic.main.brightness_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
-import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.gradientSeekBar
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.image_background_dialog_size
+import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.text_back_color_dialog
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
+import kotlinx.android.synthetic.main.height_size_text_fab.view.*
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.image_back_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.text_size_dialog
 import kotlinx.android.synthetic.main.sub_mian_fab_layout.view.*
+import kotlinx.android.synthetic.main.volume_button_fab.view.*
 
 
 class MainDialogFragmentPopUp : DialogFragment() {
@@ -64,30 +74,26 @@ class MainDialogFragmentPopUp : DialogFragment() {
             dialog?.dismiss()
         }
 
-    }
+        }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
+        override fun onStart() {
+            super.onStart()
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
 
-    fun loadFragments(id: Int, view: View) {
+    private fun loadFragments(id: Int, view: View) {
         when (id) {
             R.id.shop_ImageView -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 0)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.poem_fav_popup -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.negare_mainFab_Linear -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
-            }
-            R.id.negare_mainFab_Linear -> {
-                val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
         }
     }
@@ -103,76 +109,98 @@ class SubDialogFragmentPopUp : DialogFragment() {
         return inflater.inflate(R.layout.sub_mian_fab_layout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
 
-        //Text Size
-        view.fab_font_size_popup.setOnClickListener {
-            dialog?.dismiss()
-            SizeDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
+            //Text Size
+            view.fab_font_size_popup.setOnClickListener {
+                dialog?.dismiss()
+                SizeDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+
+            //Home
+            view.back_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                MainDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Font Text
+            view.fab_font_text_view_popup.setOnClickListener {
+                dialog?.dismiss()
+                FontSizeDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Color Text
+            view.fab_color_text_popup.setOnClickListener {
+                dialog?.dismiss()
+                ColorTextDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //Background Color
+            view.fab_background_color_popup.setOnClickListener {
+                dialog?.dismiss()
+                BackgroundTextDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+                )
+            }
+
+            //brightness
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                view.lighting_subFab_Linear.setOnClickListener {
+                    dialog?.dismiss()
+                    BrightnessFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                    )
+                }
+            }
+            else
+                view.lighting_subFab_Linear.visibility = View.INVISIBLE
+
+            //height
+            view.fontMargin_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                HeightSizeDialogFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                )
+
+            }
+            //nextvolume
+            view.nextPageVolume_subFab_Linear.setOnClickListener {
+                dialog?.dismiss()
+                NextVolumeFragmentPopUp().show(
+                        requireActivity().supportFragmentManager,
+                        "popup"
+                )
+
+            }
         }
-
-
-        //Home
-        view.back_subFab_Linear.setOnClickListener {
-            dialog?.dismiss()
-            MainDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-
-        //Font Text
-        view.fab_font_text_view_popup.setOnClickListener {
-            dialog?.dismiss()
-            FontSizeDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-
-        //Color Text
-        view.fab_color_text_popup.setOnClickListener {
-            dialog?.dismiss()
-            ColorTextDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-
-        //Background Color
-        view.fab_background_color_popup.setOnClickListener {
-            dialog?.dismiss()
-            BackgroundTextDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-
-        //brightness
-        view.lighting_subFab_Linear.setOnClickListener {
-            dialog?.dismiss()
-           brightnessFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
-    }
-
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    }
+        }
 
     class SizeDialogFragmentPopUp : DialogFragment() {
 
-        var sizeNum = 16
-        var bb: Boolean? = true
+        private var sizeNum = 16
+        private var bb: Boolean? = true
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -200,7 +228,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 view.text_number_font_size.text = sizeNum.toString()
 
 
-            }
+                }
 
             view.image_plus_size_text.setOnClickListener {
 
@@ -223,19 +251,78 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
             }
 
-        }
+            }
 
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
+        }
+
+    class HeightSizeDialogFragmentPopUp : DialogFragment() {
+
+    private var sizeNum = 16
+    private var bb: Boolean? = true
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.height_size_text_fab, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.image_back_dialog_height_size.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+            )
+        }
+
+        view.image_minus_height_size_text.setOnClickListener {
+
+            sizeNum--
+            view.text_number_font_size.text = sizeNum.toString()
+
+        }
+
+        view.image_plus_height_size_text.setOnClickListener {
+
+            sizeNum++
+            view.text_number_height_size.text = sizeNum.toString()
+
+        }
+
+        view.text_number_height_size.text = sizeNum.toString()
+
+        view.btn_save_dialog_height_size.setOnClickListener {
+            val shared: SharedPreferences =
+                    context?.getSharedPreferences("shared", MODE_PRIVATE)!!
+            val editor: SharedPreferences.Editor = shared.edit()
+            editor.putInt("height_size", sizeNum)
+            bb?.let { it1 -> editor.putBoolean("bb", it1) }
+            editor.apply()
+            dialog?.dismiss()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+}
+
     class FontSizeDialogFragmentPopUp : DialogFragment() {
-        var fontId: Int? = null
-        var typeface: Typeface? = null
-        var bb: Boolean? = true
+        private var fontId: Int? = null
+        private var typeface: Typeface? = null
+        private var bb: Boolean? = true
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -256,7 +343,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 )
             }
 
-            view.radio_group_font_text.setOnCheckedChangeListener { group, checkedId ->
+            view.radio_group_font_text.setOnCheckedChangeListener { _, checkedId ->
 
                 when (checkedId) {
 
@@ -313,7 +400,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
                     }
 
 
-                }
+                    }
 
             }
 
@@ -327,17 +414,17 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 dialog?.dismiss()
             }
 
-        }
+            }
 
         override fun onStart() {
             super.onStart()
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-    }
+        }
 
     class ColorTextDialogFragmentPopUp : DialogFragment() {
-        var bb: Boolean? = true
+        private var bb: Boolean? = true
         var color: Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -350,15 +437,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            colorWheel.rgb = Color.rgb(13, 37, 42)
-            color = colorWheel.rgb
-            val startcolor = Color.argb(0, 0, 0, 0)
-            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
-            gradientSeekBar.startColor = startcolor
-            gradientSeekBar.endColor = endcolor
-            gradientSeekBar.setColors(startcolor, endcolor)
-
-
             view.image_back_font_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
@@ -366,25 +444,42 @@ class SubDialogFragmentPopUp : DialogFragment() {
                     "popup"
                 )
             }
+            colorWheel.rgb = Color.rgb(13, 37, 42)
 
             colorWheel.colorChangeListener = { rgb: Int ->
+                val startColor = Color.WHITE
+                val endColor = Color.BLACK
+                verticalgradientSeekBar.startColor = startColor
+                verticalgradientSeekBar.setColors(rgb, startColor)
+                horizontalgradientSeekBar.endColor = endColor
+                horizontalgradientSeekBar.setColors(rgb, endColor)
 
                 view.text_color_dialog.setTextColor(rgb)
 
-                view.btn_save_dialog_color.setOnClickListener {
-                    color = rgb
-                    val shared: SharedPreferences =
+            }
+            verticalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_color_dialog.setTextColor(argb)
+            }
+
+            horizontalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_color_dialog.setTextColor(argb)
+            }
+
+            view.btn_save_dialog_color.setOnClickListener {
+                color = view.text_color_dialog.currentTextColor
+                val shared: SharedPreferences =
                         context?.getSharedPreferences("shared_color", MODE_PRIVATE)!!
-                    val editor: SharedPreferences.Editor = shared.edit()
-                    editor.putInt("text_color", color!!)
-                    bb?.let { it1 -> editor.putBoolean("bbc", it1) }
-                    editor.apply()
-                    dialog?.dismiss()
-                    SubDialogFragmentPopUp().show(
+                val editor: SharedPreferences.Editor = shared.edit()
+                editor.putInt("text_color", color!!)
+                bb?.let { it1 -> editor.putBoolean("bbc", it1) }
+                editor.apply()
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
                         requireActivity().supportFragmentManager,
                         "popup"
-                    )
-                }
+                )
             }
 
         }
@@ -396,7 +491,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
     }
 
     class BackgroundTextDialogFragmentPopUp : DialogFragment() {
-        var bb: Boolean? = true
+        private var bb: Boolean? = true
         var background: Int? = null
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -414,40 +509,50 @@ class SubDialogFragmentPopUp : DialogFragment() {
             super.onViewCreated(view, savedInstanceState)
 
             colorWheel.rgb = Color.rgb(13, 37, 42)
-            background = colorWheel.rgb
-            val startcolor = Color.argb(0, 0, 0, 0)
-            val endcolor = Color.argb(0xff, 0xff, 0xff, 0xff)
-            gradientSeekBar.startColor = startcolor
-            gradientSeekBar.endColor = endcolor
-            gradientSeekBar.setColors(startcolor, endcolor)
-
-
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
-                    requireActivity().supportFragmentManager,
-                    "popup"
+                        requireActivity().supportFragmentManager,
+                        "popup"
                 )
             }
 
             colorWheel.colorChangeListener = { rgb: Int ->
 
                 view.text_back_color_dialog.setTextColor(rgb)
+                val startColor = Color.WHITE
+                val endColor = Color.BLACK
+                backverticalgradientSeekBar.startColor = startColor
+                backverticalgradientSeekBar.setColors(rgb, startColor)
+                backhorizontalgradientSeekBar.endColor = endColor
+                backhorizontalgradientSeekBar.setColors(rgb, endColor)
 
-                view.btn_save_dialog_background.setOnClickListener {
-                    background = rgb
-                    val shared: SharedPreferences =
+            }
+
+            backverticalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_back_color_dialog.setTextColor(argb)
+            }
+
+            backhorizontalgradientSeekBar.colorChangeListener = { _: Float, argb: Int ->
+
+                view.text_back_color_dialog.setTextColor(argb)
+            }
+
+            view.btn_save_dialog_background?.setOnClickListener {
+                background = view.text_back_color_dialog.currentTextColor
+                val shared: SharedPreferences =
                         context?.getSharedPreferences("shared_background_color", MODE_PRIVATE)!!
-                    val editor: SharedPreferences.Editor = shared.edit()
-                    editor.putInt("background_color", background!!)
-                    bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
-                    editor.apply()
-                    dialog?.dismiss()
-                    SubDialogFragmentPopUp().show(
+                val editor: SharedPreferences.Editor = shared.edit()
+                editor.putInt("background_color", background!!)
+                bb?.let { it1 -> editor.putBoolean("bbcg", it1) }
+                editor.apply()
+                dialog?.dismiss()
+                SubDialogFragmentPopUp().show(
                         requireActivity().supportFragmentManager,
                         "popup"
-                    )
-                }
+                )
+
             }
         }
 
@@ -457,7 +562,7 @@ class SubDialogFragmentPopUp : DialogFragment() {
         }
     }
 
-    class brightnessFragmentPopUp : DialogFragment() {
+    class BrightnessFragmentPopUp : DialogFragment() {
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -470,6 +575,19 @@ class SubDialogFragmentPopUp : DialogFragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                if (!Settings.System.canWrite(context)) {
+
+                    startManageWriteSettingsPermission()
+
+                }
+
+               else {
+                    brightnessChanger()
+                }
+            }
+
             view.image_background_dialog_size.setOnClickListener {
                 dialog?.dismiss()
                 SubDialogFragmentPopUp().show(
@@ -478,7 +596,58 @@ class SubDialogFragmentPopUp : DialogFragment() {
                 )
             }
 
+            }
 
+        private fun startManageWriteSettingsPermission() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Intent(
+                    Settings.ACTION_MANAGE_WRITE_SETTINGS,
+                    Uri.parse("package:${context?.packageName}")
+                ).let {
+                    startActivityForResult(it, REQUEST_CODE_WRITE_SETTINGS_PERMISSION)
+                }
+            }
+        }
+
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+
+            when (requestCode) {
+                REQUEST_CODE_WRITE_SETTINGS_PERMISSION -> {
+                    if (context?.canWriteSettings == true) {
+                        brightnessChanger()
+                    } else {
+                        Toast.makeText(context, "Write settings permission is not granted!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        private val Context.canWriteSettings: Boolean
+            get() = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.System.canWrite(this)
+
+        companion object {
+            private const val REQUEST_CODE_WRITE_SETTINGS_PERMISSION = 5
+        }
+
+         private fun brightnessChanger() {
+
+            val brightness = Settings.System.getInt(context?.contentResolver,Settings.System.SCREEN_BRIGHTNESS,0)
+            view?.seekBar?.progress = brightness
+            view?.seekBar?.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
+                    Settings.System.putInt(context?.contentResolver,
+                        Settings.System.SCREEN_BRIGHTNESS, progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                }
+            })
         }
 
         override fun onStart() {
@@ -487,7 +656,41 @@ class SubDialogFragmentPopUp : DialogFragment() {
         }
 }
 
+class NextVolumeFragmentPopUp : DialogFragment() {
 
+    private var bb: Boolean? = true
 
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.volume_button_fab, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        view.image_back_dialog_volume.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                    requireActivity().supportFragmentManager,
+                    "popup"
+            )
+        }
+            /*val shared: SharedPreferences =
+                    context?.getSharedPreferences("shared", MODE_PRIVATE)!!
+            val editor: SharedPreferences.Editor = shared.edit()
+            editor.putInt("situation", )
+            bb?.let { it1 -> editor.putBoolean("bb", it1) }
+            editor.apply()
+            dialog?.dismiss()*/
+
+        }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+}

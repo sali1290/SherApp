@@ -1,17 +1,14 @@
 package ir.rahnama.sherapp.view.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.SubItemModelBinding
 import ir.rahnama.sherapp.model.Subscribtion
-import ir.rahnama.sherapp.utiles.loadImage
-import kotlinx.android.synthetic.main.sub_item_model.view.*
+
 
 class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {
 

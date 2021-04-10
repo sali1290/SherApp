@@ -1,11 +1,13 @@
 package ir.rahnama.sherapp.utiles
 
+/*
 import android.content.Context
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.squareup.picasso.Picasso
 import ir.rahnama.sherapp.R
 
 
@@ -23,10 +25,10 @@ fun ImageView.loadImage (uri : String?, progressDrawable: CircularProgressDrawab
         val options : RequestOptions = RequestOptions()
             .placeholder(progressDrawable)
             .error(R.mipmap.ic_launcher)
-            Glide.with(context)
-                    .setDefaultRequestOptions(options)
-                    .load(uri)
-                    .into(this)
+        Picasso.get()
+            .load(uri)
+            .error(R.drawable.ic_launcher_foreground)
+            .into(this);
     }
 
 }
@@ -36,4 +38,4 @@ fun ImageView.loadImage (uri : String?, progressDrawable: CircularProgressDrawab
 fun LoadImage ( view : ImageView , url : String ) {
 
     view.loadImage(url, getProgressDrawable(view.context))
-}
+}*/

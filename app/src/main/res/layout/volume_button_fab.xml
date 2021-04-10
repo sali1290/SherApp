@@ -30,67 +30,50 @@
 
 
             <LinearLayout
-                android:id="@+id/linear_color"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/image_back_font_dialog_size"
+                    android:id="@+id/image_back_dialog_volume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/text_color_dialog"
+                    android:id="@+id/text_size_dialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="تغییر رنگ متن"
+                    android:text="بعدی با ولووم"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_margin="10dp"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.apandroid.colorwheel.ColorWheel
-                        android:id="@+id/colorWheel"
-                        android:layout_width="205dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/volume_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textOn="ON"
+                        android:textOff="OFF"
+                        android:checked="true"
+                        android:minWidth="5dp"
+                        android:gravity="right"/>
 
-                    <com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
-                        android:id="@+id/verticalgradientSeekBar"
-                        android:layout_width="35dp"
-                        android:layout_height="220dp"
-                        android:layout_gravity="center"
-                        app:asb_orientation="vertical" />
 
-                </LinearLayout>
 
-                <com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
-                    android:id="@+id/horizontalgradientSeekBar"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    app:asb_orientation="horizontal"/>
-
-                <Button
-                    android:id="@+id/btn_save_dialog_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="ذخیره" />
 
             </LinearLayout>
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

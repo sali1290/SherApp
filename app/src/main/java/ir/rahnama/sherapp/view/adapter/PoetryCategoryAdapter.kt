@@ -43,9 +43,12 @@ class PoetryCategoryAdapter : RecyclerView.Adapter<PoetryCategoryAdapter.MyViewH
         holder.view.poetry = poetryList[position]
         val image = poetryList[position].image
         image.let {
-
-            Glide.with(holder.itemView.context).load(image).into(holder.view.imageSelectionPoetryItem)
-        }
+                Glide.with(holder.itemView.context)
+                    .load(image)
+                    .centerCrop()
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(holder.view.imageSelectionPoetryItem)
+            }
         holder.view.cardview.setOnClickListener {
             val action =
                 PoetryCategoryFragmentDirections.actionPoetryToBooks(poetryList[position].category_id)

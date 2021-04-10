@@ -30,60 +30,62 @@
 
 
             <LinearLayout
-                android:id="@+id/linear_color"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
                 <ImageView
-                    android:id="@+id/image_back_font_dialog_size"
+                    android:id="@+id/image_back_dialog_height_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/text_color_dialog"
+                    android:id="@+id/text_height_size_dialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="تغییر رنگ متن"
+                    android:text="تغییر سایز ارتفاع متن"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:layout_margin="10dp"
-                    android:gravity="right"
-                    android:orientation="horizontal">
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <com.apandroid.colorwheel.ColorWheel
-                        android:id="@+id/colorWheel"
-                        android:layout_width="205dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right" />
+                    <ImageView
+                        android:id="@+id/image_minus_height_size_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_remove" />
 
-                    <com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
-                        android:id="@+id/verticalgradientSeekBar"
-                        android:layout_width="35dp"
-                        android:layout_height="220dp"
-                        android:layout_gravity="center"
-                        app:asb_orientation="vertical" />
+                    <TextView
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/text_number_height_size"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_20sdp" />
+
+                    <ImageView
+                        android:id="@+id/image_plus_height_size_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_add" />
 
                 </LinearLayout>
 
-                <com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
-                    android:id="@+id/horizontalgradientSeekBar"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    app:asb_orientation="horizontal"/>
-
                 <Button
-                    android:id="@+id/btn_save_dialog_color"
+                    android:id="@+id/btn_save_dialog_height_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -91,6 +93,7 @@
                     android:text="ذخیره" />
 
             </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
