@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
-import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FragmentBooksListBinding
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.BookContentAdapter

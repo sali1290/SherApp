@@ -73,6 +73,10 @@ class MainDialogFragmentPopUp : DialogFragment() {
             loadFragments(R.id.negare_mainFab_Linear , view)
             dialog?.dismiss()
         }
+        view.ticket_mainFab_Linear.setOnClickListener {
+            loadFragments(R.id.ticket_mainFab_Linear , view)
+            dialog?.dismiss()
+        }
 
         }
 
@@ -93,6 +97,10 @@ class MainDialogFragmentPopUp : DialogFragment() {
             }
             R.id.negare_mainFab_Linear -> {
                 val action = HomeFragmentDirections.actionHomeToShop("shop" , 1)
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
+            }
+            R.id.ticket_mainFab_Linear -> {
+                val action = HomeFragmentDirections.actionHomeToTicket()
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
         }
