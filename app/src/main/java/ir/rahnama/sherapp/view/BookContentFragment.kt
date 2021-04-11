@@ -55,7 +55,7 @@ class BookContentFragment : Fragment() {
     }
 
     private fun observViewModel(){
-        viewModel.bookContent.observe(viewLifecycleOwner, Observer {
+        viewModel.bookContent.observe(viewLifecycleOwner , Observer {
             when (it.status) {
                 SUCCESS -> it.data?.let { bookContentAdapter.refreshData(it) }
                 ERROR ->  it.message?.let { requireActivity().toast(it) }

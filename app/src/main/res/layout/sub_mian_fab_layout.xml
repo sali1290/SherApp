@@ -22,7 +22,7 @@
             android:id="@+id/constraintLayout5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="8.5"
+            android:layout_weight="7.5"
             android:background="@drawable/fab_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

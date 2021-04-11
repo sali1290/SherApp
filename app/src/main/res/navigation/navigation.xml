@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fragmentFav"
             app:destination="@id/fragmentFav" />
+        <action
+            android:id="@+id/actionHomeToTicket"
+            app:destination="@id/listOfTicketFragment" />
 
     </fragment>
     <fragment
@@ -99,4 +102,8 @@
         android:id="@+id/fragmentFav"
         android:name="ir.rahnama.sherapp.view.FragmentFav"
         android:label="fragment_fav" />
+    <fragment
+        android:id="@+id/listOfTicketFragment"
+        android:name="ir.rahnama.sherapp.view.ListOfTicketFragment"
+        android:label="ListOfTicketFragment" />
 </navigation>

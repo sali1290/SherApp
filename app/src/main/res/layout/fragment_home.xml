@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    android:text="@string/new_poetry_title"
+                    android:text="@string/old_poetry_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:layout_marginStart="8dp"
-                    android:text="@string/old_poetry_title"
+                    android:text="@string/new_poetry_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

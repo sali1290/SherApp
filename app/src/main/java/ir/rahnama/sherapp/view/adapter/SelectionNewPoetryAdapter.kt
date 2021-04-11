@@ -1,5 +1,6 @@
 package ir.rahnama.sherapp.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -40,6 +41,7 @@ class SelectionNewPoetryAdapter : RecyclerView.Adapter<SelectionNewPoetryAdapter
 
         holder.view.poetry = poetryList[position]
         val image = poetryList[position].image
+        Log.i("image" , image)
         image.let {
 
                 Glide.with(holder.itemView.context)

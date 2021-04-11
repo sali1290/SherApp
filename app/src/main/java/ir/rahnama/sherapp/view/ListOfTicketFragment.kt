@@ -42,7 +42,6 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
 
     private lateinit var adapter: ListOfTicketAdapter
     var binding: FragmentListOfTicketBinding by autoCleared()
-    private var userPhoneNumber: String? = null
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -51,21 +50,22 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
         binding = FragmentListOfTicketBinding.inflate(inflater, container, false)
         //init adapter
         adapter = ListOfTicketAdapter(requireActivity(), this)
+        binding.TicketListRecyclerView.adapter = adapter
         checkUser(requireContext())
-        refreshData.setOnRefreshListener {
-            if (Hawk.contains("userPhone")) {
-                requestForTicketList(userPhoneNumber!!)
+        binding.refreshData.setOnRefreshListener {
+            if (Hawk.contains("phoneNumber")) {
+                requestForTicketList(Hawk.get("phoneNumber")!!)
             }
             Handler().postDelayed({
-                if (refreshData.isRefreshing) {
-                    refreshData.isRefreshing = false
+                if (binding.refreshData.isRefreshing) {
+                    binding.refreshData.isRefreshing = false
                 }
             }, 1000)
         }
         binding.btnAddNewTicket.setOnClickListener { addTicketAlertDialog() }
         binding.addTicketBtnBack.setOnClickListener { popBackStack() }
         binding.firstTimeAddNewTicket.setOnClickListener { addTicketAlertDialog() }
-        return view
+        return binding.root
     }
 
 
@@ -128,7 +128,7 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
                  if (titleValid){
                      requestForAddTicket(
                          Hawk.get("userName"),
-                         Hawk.get("userPhone"),
+                         Hawk.get("phoneNumber"),
                          dialogLayout.add_ticket_edt_title.text.toString(),
                          dialogLayout.add_ticket_spinner.selectedItemPosition.toString()
                      )
@@ -156,7 +156,7 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
 
 
     private  fun requestForTicketList(phone: String) {
-        if (Hawk.contains("userPhone")) {
+        if (Hawk.contains("phoneNumber")) {
             val apiService: VerficationCodeApiClient1 = AppModule.provideRetrofit(AppModule.provideGson()).create(VerficationCodeApiClient1::class.java)
             val call: Call<MutableList<TicketListModel>> = apiService.getTicketList(phone)
             call.enqueue(object : Callback<MutableList<TicketListModel>> {
@@ -198,7 +198,7 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    requestForTicketList(userPhoneNumber!!)
+                    requestForTicketList(Hawk.get("phoneNumber")!!)
                 }
             }
 

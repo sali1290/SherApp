@@ -239,6 +239,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ticket_mainFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
