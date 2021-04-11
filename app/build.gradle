@@ -133,4 +133,6 @@ dependencies {
     //color picker
     implementation 'com.apandroid:colorwheel:1.1.12'
 
+    implementation 'com.github.Chrisvin:RubberPicker:v1.5'
+
 }
