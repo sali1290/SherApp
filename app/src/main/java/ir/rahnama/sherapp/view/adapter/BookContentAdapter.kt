@@ -2,14 +2,13 @@ package ir.rahnama.sherapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.BookContentItemModelBinding
 import ir.rahnama.sherapp.model.BookContentModel
-import ir.rahnama.sherapp.view.BookContentFragmentDirections
-import ir.rahnama.sherapp.view.PoetryCategoryFragmentDirections
 
 
 class BookContentAdapter: RecyclerView.Adapter<BookContentAdapter.MyViewHolder>() {
@@ -36,8 +35,8 @@ class BookContentAdapter: RecyclerView.Adapter<BookContentAdapter.MyViewHolder>(
         holder.view.bookContent = bookContentList[position]
 
         holder.view.bookContentLayout.setOnClickListener {
-            val action = BookContentFragmentDirections.actionToPoemBody(bookContentList[position].id)
-            it?.let { Navigation.findNavController(it).navigate(action) }
+            val bundle = bundleOf("id" to bookContentList[position].id,"fId" to bookContentList[0].id,"lId" to bookContentList[bookContentList.size-1].id )
+            holder.itemView.findNavController().navigate(R.id.showPoemBodyFragment,bundle)
         }
 
     }

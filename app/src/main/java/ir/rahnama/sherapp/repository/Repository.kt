@@ -46,7 +46,6 @@ class Repository @Inject constructor(
         saveNetworkResult = {booksContentDao.insert(it)}
     )
 
-
     fun getPoemById(poem_id :String) = DataSourceOperation(
         getFromLocal = {poemBodyDao.getPoemBody(poem_id)} ,
         getFromNetwork = {apiClient.getPoemById(poem_id)},

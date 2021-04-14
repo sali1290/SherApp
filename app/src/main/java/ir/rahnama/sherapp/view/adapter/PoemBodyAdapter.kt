@@ -7,7 +7,6 @@ import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +14,7 @@ import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.ShowPoemMesra1TxtBinding
 import ir.rahnama.sherapp.databinding.ShowPoemMesra2TxtBinding
 import ir.rahnama.sherapp.model.PoemBodyModel
-import kotlinx.android.synthetic.main.show_poem_mesra1_txt.view.*
-import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
+
 
 
 class PoemBodyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -33,14 +31,12 @@ class PoemBodyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var poemBodyList: MutableList<PoemBodyModel> = arrayListOf()
 
     fun updatePoems(newPoem: MutableList<PoemBodyModel>) {
-        if (newPoem.size > poemBodyList.size) {
             Log.i("poemSize", "1:${poemBodyList.size}")
             poemBodyList.clear()
             Log.i("poemSize", "2:${poemBodyList.size}")
             poemBodyList.addAll(newPoem)
             Log.i("poemSize", "3:${poemBodyList.size}")
             notifyDataSetChanged()
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -158,12 +154,10 @@ class PoemBodyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class MyViewHolderOne(var view: ShowPoemMesra1TxtBinding) : RecyclerView.ViewHolder(view.root) {
         val text1 = view.showPoemTxt1
-        val back1 = view.backgroundTextPoem
     }
 
     class MyViewHolderTwo(var view: ShowPoemMesra2TxtBinding) : RecyclerView.ViewHolder(view.root) {
         val text2 = view.showPoemTxt2
-        val back2 = view.backgroundTextPoem
     }
 
 

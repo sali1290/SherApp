@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:imeOptions="actionDone"
     tools:context=".view.ShowPoemBodyFragment">
 
 
@@ -104,7 +105,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/books_left_style"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/nextPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
@@ -134,7 +135,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/nextPage"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
@@ -156,7 +157,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/previousPage"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"

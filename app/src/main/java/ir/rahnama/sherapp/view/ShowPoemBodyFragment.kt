@@ -23,14 +23,17 @@ import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.SubDialogFragmentPopUp
 import ir.rahnama.sherapp.utiles.toast
 import kotlinx.android.synthetic.main.fragment_show_poems.view.*
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class ShowPoemBodyFragment : Fragment() {
+class ShowPoemBodyFragment : Fragment(){
 
     private val viewModel: PoemBodyViewModel by viewModels()
     private var binding: FragmentShowPoemsBinding by autoCleared()
     private var shared: SharedPreferences? = null
-    private var mId: String? = null
+    private var mId by Delegates.notNull<Int>()
+    private var fId by Delegates.notNull<Int>()
+    private var lId by Delegates.notNull<Int>()
     private var sharedBackground: SharedPreferences? = null
     private var sharedImage: SharedPreferences? = null
 
@@ -49,14 +52,13 @@ class ShowPoemBodyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.poemBodyRecyclerView.adapter = poemAdapter
-
-        arguments?.let {
-            val id = ShowPoemBodyFragmentArgs.fromBundle(it).pomeId
-            viewModel.getPoemById(id!!)
-            Hawk.put("lastSeen", id)
-            Log.i("pomeid", id)
-            mId = id
-        }
+        val id = requireArguments().getString("id")?.toIntOrNull()!!
+        fId = requireArguments().getString("fId")?.toIntOrNull()!!
+        lId = requireArguments().getString("lId")?.toIntOrNull()!!
+        viewModel.getPoemById(id.toString())
+        Hawk.put("lastSeen", id.toString())
+        Log.i("pomeid", id.toString())
+        mId = id
 
         obserViewModel()
 
@@ -73,7 +75,7 @@ class ShowPoemBodyFragment : Fragment() {
                 binding.markFavShowPoem.setImageResource(R.drawable.ic_star_bold)
                 shared = context?.getSharedPreferences("shared_fav", Context.MODE_PRIVATE)
                 val editor: SharedPreferences.Editor = shared!!.edit()
-                editor.putString("id", mId)
+                editor.putString("id", mId.toString())
                 Toast.makeText(context, "به لیست علاقه مندی ها اضافه شد", Toast.LENGTH_SHORT).show()
                 editor.apply()
             }
@@ -83,9 +85,34 @@ class ShowPoemBodyFragment : Fragment() {
 
         binding.textOption.setOnClickListener {
             SubDialogFragmentPopUp().show(
-                        requireActivity().supportFragmentManager,
-                        "popUp")
+                requireActivity().supportFragmentManager,
+                "popUp"
+            )
         }
+
+        if (mId == lId) {
+
+            binding.nextPage.visibility = View.INVISIBLE
+
+        } else
+
+        binding.nextPage.setOnClickListener {
+
+            nextPage()
+
+        }
+
+        if (mId==fId) {
+
+            binding.previousPage.visibility = View.INVISIBLE
+        }
+         else {
+        binding.previousPage.setOnClickListener{
+
+            previousPage()
+
+        }
+    }
 
         //Set Background Text
         sharedBackground =
@@ -101,15 +128,16 @@ class ShowPoemBodyFragment : Fragment() {
         val image: String? = sharedImage!!.getString("image", "")
         context?.let {
 
-                Glide.with(this)
-                    .load(image)
-                    .centerCrop()
-                    .error(R.drawable.ic_launcher_foreground)
-                    .into(view.image_poem_adapter)
+            Glide.with(this)
+                .load(image)
+                .centerCrop()
+                .error(R.drawable.ic_launcher_foreground)
+                .into(view.image_poem_adapter)
         }
+
     }
 
-    private fun obserViewModel() {
+      fun obserViewModel() {
         viewModel.poemBody.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 SUCCESS -> it.data?.let {
@@ -124,5 +152,20 @@ class ShowPoemBodyFragment : Fragment() {
         })
     }
 
+      private fun nextPage(){
+         binding.previousPage.visibility = View.VISIBLE
+         mId += 1
+         viewModel.getPoemById(mId.toString())
+         Hawk.put("lastSeen", mId.toString())
+         Log.i("pomeid", mId.toString())
+         obserViewModel()
+    }
+    private fun previousPage(){
+        binding.nextPage.visibility = View.VISIBLE
+        mId -= 1
+        viewModel.getPoemById(mId.toString())
+        Hawk.put("lastSeen", mId.toString())
+        Log.i("pomeid", mId.toString())
+        obserViewModel()
+    }
 }
-

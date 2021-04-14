@@ -20,5 +20,4 @@ interface BooksContentDao {
     @Query("SELECT * FROM book_content WHERE catgeory_id = :category_id")
      fun getBooksContent (category_id : String) : LiveData<MutableList<BookContentModel>>
 
-
 }

@@ -1,14 +1,13 @@
 package ir.rahnama.sherapp.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.rahnama.sherapp.repository.Repository
+import javax.inject.Inject
 
 
-
-class PoemBodyViewModel @ViewModelInject constructor(val repository: Repository) : ViewModel() {
+@HiltViewModel
+class PoemBodyViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
     private val _id = MutableLiveData<String>()
@@ -16,6 +15,5 @@ class PoemBodyViewModel @ViewModelInject constructor(val repository: Repository)
     val poemBody = _poemBody
 
     fun getPoemById(poem_id:String){ _id.value=poem_id }
-
 
 }

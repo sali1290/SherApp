@@ -4,13 +4,12 @@ package ir.rahnama.sherapp.viewmodel
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import ir.rahnama.sherapp.model.PoemBodyModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.rahnama.sherapp.repository.Repository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.io.IOException
+import javax.inject.Inject
 
-class PoetryViewModel @ViewModelInject constructor(var repository: Repository): ViewModel() {
+@HiltViewModel
+class PoetryViewModel @Inject constructor(var repository: Repository): ViewModel() {
 
 
     private val _id = MutableLiveData<String>()
