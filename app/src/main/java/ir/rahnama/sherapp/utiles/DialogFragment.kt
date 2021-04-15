@@ -270,8 +270,8 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
     class HeightSizeDialogFragmentPopUp : DialogFragment() {
 
-    private var sizeNum = 16
-    private var bb: Boolean? = true
+    private var heightspace = 16
+    private var bbh: Boolean? = true
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -294,26 +294,26 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
         view.image_minus_height_size_text.setOnClickListener {
 
-            sizeNum--
-            view.text_number_font_size.text = sizeNum.toString()
+            heightspace--
+            view.text_number_height_size.text = heightspace.toString()
 
         }
 
         view.image_plus_height_size_text.setOnClickListener {
 
-            sizeNum++
-            view.text_number_height_size.text = sizeNum.toString()
+            heightspace++
+            view.text_number_height_size.text = heightspace.toString()
 
         }
 
-        view.text_number_height_size.text = sizeNum.toString()
+        view.text_number_height_size.text = heightspace.toString()
 
         view.btn_save_dialog_height_size.setOnClickListener {
             val shared: SharedPreferences =
                     context?.getSharedPreferences("shared", MODE_PRIVATE)!!
             val editor: SharedPreferences.Editor = shared.edit()
-            editor.putInt("height_size", sizeNum)
-            bb?.let { it1 -> editor.putBoolean("bb", it1) }
+            editor.putInt("height_size", heightspace)
+            bbh?.let { it1 -> editor.putBoolean("bbh", it1) }
             editor.apply()
             dialog?.dismiss()
         }

@@ -22,6 +22,7 @@ import ir.rahnama.sherapp.viewmodel.PoemBodyViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.SubDialogFragmentPopUp
 import ir.rahnama.sherapp.utiles.toast
+import ir.rahnama.sherapp.view.adapter.PoemBodySpaceItem
 import kotlinx.android.synthetic.main.fragment_show_poems.view.*
 import kotlin.properties.Delegates
 
@@ -45,13 +46,14 @@ class ShowPoemBodyFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentShowPoemsBinding.inflate(inflater, container, false)
+        binding.poemBodyRecyclerView.adapter = poemAdapter
+        binding.poemBodyRecyclerView.addItemDecoration(PoemBodySpaceItem())
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.poemBodyRecyclerView.adapter = poemAdapter
         val id = requireArguments().getString("id")?.toIntOrNull()!!
         fId = requireArguments().getString("fId")?.toIntOrNull()!!
         lId = requireArguments().getString("lId")?.toIntOrNull()!!
@@ -137,7 +139,7 @@ class ShowPoemBodyFragment : Fragment(){
 
     }
 
-      fun obserViewModel() {
+      private fun obserViewModel() {
         viewModel.poemBody.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 SUCCESS -> it.data?.let {

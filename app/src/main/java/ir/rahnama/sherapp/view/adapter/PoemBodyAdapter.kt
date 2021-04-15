@@ -146,8 +146,6 @@ class PoemBodyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
-
-
     override fun getItemCount() = poemBodyList.size
 
     override fun getItemViewType(position: Int) = if (position % 2 == 0) LAYOUT_ONE else LAYOUT_TWO
