@@ -135,4 +135,6 @@ dependencies {
 
     implementation 'com.github.Chrisvin:RubberPicker:v1.5'
 
+    //zarrinpall
+    implementation 'com.zarinpal:purchase:0.0.8-beta'
 }

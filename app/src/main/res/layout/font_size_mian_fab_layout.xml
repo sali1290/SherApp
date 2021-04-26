@@ -19,21 +19,23 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/fab_style_light"
             android:id="@+id/constraintLayout5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="8.5"
-            android:background="@drawable/fab_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
 
             <LinearLayout
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="20dp"
+                >
 
                 <ImageView
                     android:id="@+id/image_back_font_dialog_size"
@@ -58,7 +60,8 @@
                     android:layout_gravity="right"
                     android:layout_margin="10dp"
                     android:gravity="right"
-                    android:layoutDirection="rtl">
+                    android:layoutDirection="rtl"
+                    >
 
                     <RadioGroup
                         android:id="@+id/radio_group_font_text"
@@ -68,7 +71,8 @@
                         android:gravity="right"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:weightSum="4">
+                        android:weightSum="4"
+                        >
 
                         <RadioButton
                             android:id="@+id/radio_button_bnazanin_font"
@@ -78,7 +82,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="B_Nazanin"
-                            android:textColor="@color/white" />
+                            />
 
                         <RadioButton
                             android:id="@+id/radio_button_vazir_font"
@@ -88,7 +92,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="Vazir"
-                            android:textColor="@color/white" />
+                            />
 
                         <RadioButton
                             android:id="@+id/radio_button_tahoma_font"
@@ -98,7 +102,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="Tahoma"
-                            android:textColor="@color/white" />
+                            />
 
                         <RadioButton
                             android:id="@+id/radio_button_sahel_font"
@@ -108,7 +112,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="Sahel"
-                            android:textColor="@color/white" />
+                            />
 
 
                     </RadioGroup>

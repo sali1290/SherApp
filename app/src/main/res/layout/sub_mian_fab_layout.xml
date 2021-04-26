@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#00FFFFFF"
     android:layout_gravity="center"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,23 +15,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+       >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="7.5"
-            android:background="@drawable/fab_style"
+            android:layout_weight="8.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+
+          >
 
 
             <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -42,7 +44,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
 
                 <LinearLayout
                     android:id="@+id/fontMargin_subFab_Linear"
@@ -56,15 +60,17 @@
                         android:layout_gravity="center"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_height_text" />
+                        android:src="@drawable/ic_height_text"
+                        android:background="@drawable/fab_image_background_night"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/height_text"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+
+                        />
 
                 </LinearLayout>
 
@@ -83,14 +89,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_more"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/more"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -109,20 +115,20 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_background_color"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/background_color"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/nextPageVolume_subFab_Linear"
+                    android:id="@+id/nextPageVoloum_subFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -134,14 +140,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_next_with_volume"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/nextWithVolume"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -162,14 +168,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_back"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/back"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -187,14 +193,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_lighting"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/lighting"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -213,14 +219,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_font_type"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/font_type"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -241,14 +247,14 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_text_size"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/font_size"
-                        android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -267,14 +273,15 @@
                         android:elevation="4dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_text_color"
-                        app:tint="@color/white" />
+                        android:background="@drawable/fab_image_background_night"
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/font_color"
-                        android:textColor="@color/white"
+
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>

@@ -48,9 +48,9 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/ticket_chat_page_btn_back"
+                    android:layout_width="22dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="16dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_back"

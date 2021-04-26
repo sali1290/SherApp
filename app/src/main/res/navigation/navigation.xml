@@ -31,6 +31,10 @@
         <action
             android:id="@+id/actionHomeToTicket"
             app:destination="@id/listOfTicketFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_morePageFragment"
+            app:destination="@id/morePageFragment" />
+
 
     </fragment>
     <fragment
@@ -114,4 +118,18 @@
         android:id="@+id/listOfTicketFragment"
         android:name="ir.rahnama.sherapp.view.ListOfTicketFragment"
         android:label="ListOfTicketFragment" />
+    <fragment
+        android:id="@+id/morePageFragment"
+        android:name="ir.rahnama.sherapp.view.MorePageFragment"
+        android:label="morePageFragment" >
+        <action
+            android:id="@+id/action_morePageFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="ir.rahnama.sherapp.view.AboutUsFragment"
+        android:label="AboutUsFragment" />
+
+
 </navigation>

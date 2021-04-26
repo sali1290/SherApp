@@ -8,10 +8,13 @@
     android:scrollbarThumbVertical="@drawable/subscription_gradiant"
     android:scrollbars="vertical">
 
+    <!--  put subscriptionStyleNight / subscriptionStyleLight in theme below  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_4sdp">
+        android:padding="@dimen/_4sdp"
+
+        >
 
 
         <LinearLayout
@@ -26,7 +29,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Orientation">
+            tools:ignore="Orientation"
+
+            >
 
 
             <TextView
@@ -35,7 +40,6 @@
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:text="نگاردون"
-                android:textColor="@color/black"
                 android:textSize="@dimen/_20ssp" />
 
             <LinearLayout
@@ -55,7 +59,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:text="مانده نگار"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
 
                         />
@@ -67,7 +70,6 @@
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:text="100"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp" />
 
 
@@ -88,7 +90,6 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:text="بیشترین نگاره درماه"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
@@ -98,7 +99,6 @@
                         android:layout_gravity="right"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:text="100"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp" />
 
 
@@ -134,7 +134,7 @@
             app:tabInlineLabel="true"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/blue"
-            app:tabTextColor="@color/black" />
+            />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/sub_viewPager"

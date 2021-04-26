@@ -1,33 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تم برنامه"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_10sdp"/>
 
     <Spinner
+        app:layout_constraintTop_toTopOf="@id/theme"
         android:id="@+id/theme_spinner"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:entries="@array/themes"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+
+
         />
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:columnCount="2"
-        android:padding="10dp"
+        android:paddingTop="@dimen/_5sdp"
         android:rowCount="3"
-        android:layout_below="@id/theme_spinner"
-        android:layout_margin="10dp"
-      >
+        app:layout_constraintTop_toBottomOf="@id/theme_spinner"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
-            android:padding="8dp"
-            android:background="@drawable/info_background"
             android:layout_marginRight="10dp"
-            >
+            android:background="@drawable/info_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,25 +58,24 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/profile_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_profile"
-                    android:layout_gravity="center"/>
+                    app:srcCompat="@drawable/ic_profile" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="پروفایل کاربری"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    android:background="@drawable/info_background"
                     android:layout_margin="18dp"
-                    />
+                    android:layout_weight="1"
+                    android:background="@drawable/info_background"
+                    android:gravity="center"
+                    android:text="پروفایل کاربری"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -62,37 +83,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
-            android:padding="8dp"
-            android:background="@drawable/info_background"
             android:layout_marginLeft="10dp"
-            >
+            android:background="@drawable/info_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/inner_background_info"                >
+                android:background="@drawable/inner_background_info"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/resource_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_sources"
-                    android:layout_gravity="center"/>
+                    app:srcCompat="@drawable/ic_sources" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView_resource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="منابع"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    android:background="@drawable/info_background"
                     android:layout_margin="18dp"
-                    />
+                    android:layout_weight="1"
+                    android:background="@drawable/info_background"
+                    android:gravity="center"
+                    android:text="منابع"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -101,19 +120,18 @@
             android:layout_width="180dp"
             android:layout_height="185dp"
             android:layout_marginTop="10dp"
-            android:padding="8dp"
             android:background="@drawable/info_background"
-            >
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:background="@drawable/inner_background_info"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/callUs_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -123,32 +141,33 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
                     android:layout_weight="1"
-                    android:text="تماس با ما"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:gravity="center"
                     android:background="@drawable/info_background"
-                    android:layout_margin="18dp"/>
+                    android:gravity="center"
+                    android:text="تماس با ما"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
-            android:padding="8dp"
-            android:background="@drawable/info_background"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp">
+            android:background="@drawable/info_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"                android:orientation="vertical"
-                android:gravity="center">
+                android:background="@drawable/inner_background_info"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/rules_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,47 +177,46 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="قوانین برنامه"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:gravity="center"
+                    android:layout_margin="18dp"
                     android:layout_weight="1"
                     android:background="@drawable/info_background"
-                    android:layout_margin="18dp"/>
+                    android:gravity="center"
+                    android:text="قوانین برنامه"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
-            android:padding="8dp"
-            android:background="@drawable/info_background"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:background="@drawable/info_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/inner_background_info"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    >
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:id="@+id/imageView13"
+                        android:id="@+id/invite_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_profile"
+                        android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="-10dp"
-                        android:layout_gravity="center"/>
+                        app:srcCompat="@drawable/ic_profile" />
 
                     <ImageView
                         android:id="@+id/imageView11"
@@ -212,52 +230,51 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="دعوت از دوستان"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:gravity="center"
+                    android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:background="@drawable/info_background"
-                    android:layout_margin="16dp"/>
+                    android:gravity="center"
+                    android:text="دعوت از دوستان"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
-            android:padding="8dp"
-            android:background="@drawable/info_background"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp">
+            android:background="@drawable/info_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/inner_background_info"
-                android:orientation="vertical"
                 android:gravity="center"
-                >
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/aboutUs_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_about_us"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_about_us" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/about_us_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="درباره ما"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
+                    android:layout_margin="18dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/info_background"
-                    android:layout_margin="18dp"/>
+                    android:gravity="center"
+                    android:text="درباره ما"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </GridLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
