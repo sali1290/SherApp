@@ -149,10 +149,10 @@ class ListOfTicketFragment : Fragment(), ListOfTicketAdapter.OpenTicket {
     }
 
     private fun popBackStack() {
-        val fragmentManager: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        //val fragmentManager: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         requireActivity().supportFragmentManager.popBackStack()
-        fragmentManager.remove(this).commit()
-        //ListOfTicketFragment().fragmentManager?.removeOnBackStackChangedListener { requireActivity().onBackPressed() }
+        //fragmentManager.remove(this).commit()
+        requireActivity().onBackPressed()
     }
 
 

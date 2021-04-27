@@ -1,5 +1,6 @@
 package ir.rahnama.sherapp.utiles
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -14,14 +15,18 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
 import com.jem.rubberpicker.RubberSeekBar
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
+import ir.rahnama.sherapp.view.MainActivity
 import kotlinx.android.synthetic.main.brightness_main_fab_layout.*
+import kotlinx.android.synthetic.main.choose_theme_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
@@ -32,6 +37,7 @@ import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
+import kotlinx.android.synthetic.main.fragment_us_info.view.*
 import kotlinx.android.synthetic.main.height_size_text_fab.view.*
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
@@ -68,14 +74,22 @@ class MainDialogFragmentPopUp : DialogFragment() {
             dialog?.dismiss()
             loadFragments(view.poem_fav_popup.id, view)
         }
-
-        view.negare_mainFab_Linear.setOnClickListener {
-            loadFragments(R.id.negare_mainFab_Linear, view)
-            dialog?.dismiss()
-        }
         view.ticket_mainFab_Linear.setOnClickListener {
             loadFragments(R.id.ticket_mainFab_Linear, view)
             dialog?.dismiss()
+        }
+        view.game_mainFab_Linear.setOnClickListener {
+            val toast = Toast(requireActivity())
+            toast.setText("این ویژگی فعلا در دسترس نیست!")
+            toast.duration = Toast.LENGTH_LONG
+            toast.show()
+            //dialog?.dismiss()
+        }
+        view.dictionary_mainFab_Linear.setOnClickListener{
+            val toast = Toast(requireActivity())
+            toast.setText("این ویژگی فعلا در دسترس نیست!")
+            toast.duration = Toast.LENGTH_LONG
+            toast.show()
         }
 
     }
@@ -93,10 +107,6 @@ class MainDialogFragmentPopUp : DialogFragment() {
             }
             R.id.poem_fav_popup -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
-                view.let { NavHostFragment.findNavController(this).navigate(action) }
-            }
-            R.id.negare_mainFab_Linear -> {
-                val action = HomeFragmentDirections.actionHomeToShop("shop", 1)
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.ticket_mainFab_Linear -> {
@@ -194,15 +204,14 @@ class SubDialogFragmentPopUp : DialogFragment() {
             loadFragments(R.id.setting_ImageView, view)
         }
 
-        //nextvolume
-//            view.nextPageVolume_subFab_Linear.setOnClickListener {
-//                dialog?.dismiss()
-//                NextVolumeFragmentPopUp().show(
-//                        requireActivity().supportFragmentManager,
-//                        "popup"
-//                )
-//
-//            }
+        //theme
+        view.theme_subFab_Linear.setOnClickListener {
+            dialog?.dismiss()
+            ThemeChooserPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
 
     }
 
@@ -719,6 +728,76 @@ class NextVolumeFragmentPopUp : DialogFragment() {
         dialog?.dismiss()*/
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+}
+
+class ThemeChooserPopUp : DialogFragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.choose_theme_main_fab_layout, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.image_back_theme_dialog.setOnClickListener {
+            dialog?.dismiss()
+            SubDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
+
+        when (view.context.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+            .getString("theme", "def")) {
+            "System default" -> {
+                view.radio_group_theme.check(R.id.radio_button_system_theme)
+            }
+            "Light" -> {
+                view.radio_group_theme.check(R.id.radio_button_light_theme)
+            }
+            "Dark" -> {
+                view.radio_group_theme.check(R.id.radio_button_night_theme)
+            }
+        }
+
+
+        view.radio_group_theme.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.radio_button_light_theme) {
+                if (MainActivity().isDarkTheme(requireActivity())) {
+                    view.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+                        ?.edit()
+                        ?.putString("theme", "Light")?.apply()
+                    MainActivity().toggleTheme(MainActivity().isDarkTheme(requireActivity()))
+                }
+            } else if (checkedId == R.id.radio_button_night_theme) {
+                if (!MainActivity().isDarkTheme(requireActivity())) {
+                    view?.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+                        ?.edit()
+                        ?.putString("theme", "Dark")?.apply()
+                    MainActivity().toggleTheme(MainActivity().isDarkTheme(requireActivity()))
+                }
+            } else if (checkedId == R.id.radio_button_system_theme) {
+                view?.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+                    ?.edit()
+                    ?.putString("theme", "System default")?.apply()
+                MainActivity.ThemeManager.applyTheme("System")
+            }
+        })
+
+
+
+    }
+
 
     override fun onStart() {
         super.onStart()

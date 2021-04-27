@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    android:text="@string/new_poetry_title"
+                    android:text="@string/old_poetry_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -157,9 +157,9 @@
                 android:layout_height="135dp"
                 android:layout_marginStart="@dimen/margin_default"
                 android:layout_marginBottom="@dimen/margin_default"
-                android:background="@drawable/main_category_item_background"
                 android:elevation="@dimen/default_elevation"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                style="@style/main_category_item1">
 
 
                 <TextView
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:layout_marginStart="8dp"
-                    android:text="@string/old_poetry_title"
+                    android:text="@string/new_poetry_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -224,9 +224,9 @@
                 android:layout_height="135dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:layout_marginBottom="@dimen/margin_default"
-                android:background="@drawable/main_category_item_background2"
                 android:elevation="@dimen/default_elevation"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                style="@style/main_category_item2">
 
 
                 <TextView
@@ -268,8 +268,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:background="@drawable/gradient"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    style="@style/last_read_poem_style">
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -313,13 +313,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:elevation="2dp"
-                        android:background="#F3FFFFFF"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
-
-
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+                        style="@style/last_poem_body">
 
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -329,13 +327,14 @@
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -380,11 +379,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
-                        android:background="@drawable/back_of_cardview_light_blue"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/fal_background"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout6"
@@ -401,12 +400,11 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/corner_radius">
+                            style="@style/fal_inner_background">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#A6FFFFFF">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:layout_width="100dp"
@@ -467,11 +465,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
-                        android:background="@drawable/back_of_cardview_light_blue"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/fal_background"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cardView2"
@@ -488,12 +486,12 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/corner_radius">
+                            style="@style/fal_inner_background">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#A6FFFFFF">
+                                >
 
                                 <ImageView
                                     android:layout_width="100dp"

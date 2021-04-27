@@ -2,7 +2,7 @@
     <string name="app_name">Sarv</string>
     <string name="new_poetry_title">شاعر های معاصر</string>
     <string name="seeAllPoetry">مشاهده تمامی شاعرها</string>
-    <string name="old_poetry_title">شاعر های سنتی</string>
+    <string name="old_poetry_title">شاعر های کهن</string>
     <string name="last_poem_read">آخرین شعر خوانده شده</string>
     <string name="search">جست و جو</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -15,12 +15,12 @@
     <string name="back">برگشت</string>
     <string name="ticket">تیکت</string>
     <string name="more">بیشتر</string>
-    <string name="coin">نگاره</string>
+    <string name="game">بازی</string>
     <string name="fal">فال حافظ</string>
     <string name= "settings">تنظیمات</string>
     <string name="height_text">ارتفاع متن</string>
-    <string name="background_color">رنگ پس زمینه</string>
-    <string name="nextWithVolume">بعدی با ولوم</string>
+    <string name="background_color">پس زمینه</string>
+    <string name="theme">تم</string>
     <string name="lighting">روشنایی</string>
     <string name="font_type">نوع فونت</string>
     <string name="font_size">اندازه فونت</string>
@@ -65,5 +65,5 @@
     <string name="resource_explanation">محتوای این برنامه برگرفته از کتب شاعران معاصر و غیرمعاصر ایرانی و همچنین محتوای سایت ها و دیگر منابع معتبر شعر فارسی می باشد.</string>
     <string name="about_us_res">محتوای اصلی این برنامه برگرفته از کتب شاعران و همچنین سایت ها و دیگر منابع شعر فارسی است.</string>
     <string name="about_us_swan">ما در گروه سوان تک تلاش کردیم که اپلیکیشن های پر کاربرد عموم کاربران رو با رابط کاربری زیبا و تجربه کاربری حرفه ای تر طراحی کنیم. عمده فعالیت تیم ما طراحی اپلیکیشن موبایل، تجربه تکنولوژی های جدید در زمینه هوش مصنوعی و همچنین فعالیت در حوزه طراحی گرافیک و سایت با کیفیت بالاست. برای اطلاعات بیشتر میتوانید وارد وبسایت ما بشید، همچنین خوشحال میشیم اگر نظر یا پیشنهادی دارید از قسمت تماس با ما به اشتراک بذارید.</string>
-
+    <string name="abjad">ابجد</string>
 </resources>

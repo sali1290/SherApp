@@ -5,239 +5,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="تم برنامه"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_10sdp"/>
-
-    <Spinner
-        app:layout_constraintTop_toTopOf="@id/theme"
-        android:id="@+id/theme_spinner"
-        android:layout_width="match_parent"
-        android:entries="@array/themes"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-
-
-        />
-
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:columnCount="2"
         android:paddingTop="@dimen/_5sdp"
         android:rowCount="3"
-        app:layout_constraintTop_toBottomOf="@id/theme_spinner"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="185dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/info_background"
-            android:padding="8dp">
+            android:padding="8dp"
+            style="@style/fal_background"
+            >
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_profile" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
-                    android:gravity="center"
-                    android:text="پروفایل کاربری"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="180dp"
-            android:layout_height="185dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/info_background"
-            android:padding="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/resource_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_sources" />
-
-                <TextView
-                    android:id="@+id/textView_resource"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
-                    android:gravity="center"
-                    android:text="منابع"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="180dp"
-            android:layout_height="185dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/info_background"
-            android:padding="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/callUs_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_contact_us" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
-                    android:gravity="center"
-                    android:text="تماس با ما"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="180dp"
-            android:layout_height="185dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/info_background"
-            android:padding="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/rules_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_rules" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
-                    android:gravity="center"
-                    android:text="قوانین برنامه"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="180dp"
-            android:layout_height="185dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/info_background"
-            android:padding="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="@drawable/gradient"
+                >
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1">
+                    style="@style/fal_inner_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/invite_image"
+                        android:id="@+id/profile_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="-10dp"
+                        android:layout_weight="1"
                         app:srcCompat="@drawable/ic_profile" />
 
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="پروفایل کاربری"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="180dp"
+            android:layout_height="185dp"
+            android:layout_marginLeft="10dp"
+            style="@style/fal_background"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/fal_inner_background"
+                    android:orientation="vertical">
+
                     <ImageView
-                        android:id="@+id/imageView11"
+                        android:id="@+id/resource_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        app:srcCompat="@drawable/ic_invite" />
-                </LinearLayout>
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_sources" />
 
-                <TextView
-                    android:id="@+id/textView11"
+                    <TextView
+                        android:id="@+id/textView_resource"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="منابع"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="180dp"
+            android:layout_height="185dp"
+            android:layout_marginTop="10dp"
+            style="@style/fal_background"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
+                    android:layout_height="match_parent"
+                    style="@style/fal_inner_background"
                     android:gravity="center"
-                    android:text="دعوت از دوستان"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-            </LinearLayout>
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/contactUs_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_contact_us" />
+
+                    <TextView
+                        android:id="@+id/contactUs_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="تماس با ما"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -245,35 +154,145 @@
             android:layout_height="185dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/info_background"
+            style="@style/fal_background"
             android:padding="8dp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/inner_background_info"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="@drawable/gradient">
 
-                <ImageView
-                    android:id="@+id/aboutUs_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_about_us" />
-
-                <TextView
-                    android:id="@+id/about_us_btn"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="18dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/info_background"
+                    android:layout_height="match_parent"
+                    style="@style/fal_inner_background"
                     android:gravity="center"
-                    android:text="درباره ما"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-            </LinearLayout>
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/rules_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_rules" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="قوانین برنامه"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="180dp"
+            android:layout_height="185dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            style="@style/fal_background"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/fal_inner_background"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/invite_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="-10dp"
+                            app:srcCompat="@drawable/ic_profile" />
+
+                        <ImageView
+                            android:id="@+id/imageView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            app:srcCompat="@drawable/ic_invite" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="دعوت از دوستان"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="180dp"
+            android:layout_height="185dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            style="@style/fal_background"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/fal_inner_background"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/aboutUs_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_about_us" />
+
+                    <TextView
+                        android:id="@+id/about_us_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/info_background"
+                        android:gravity="center"
+                        android:text="درباره ما"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </GridLayout>
 

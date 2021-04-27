@@ -20,7 +20,6 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@drawable/fab_style_light"
-            android:id="@+id/constraintLayout5"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="8.5"
@@ -38,19 +37,19 @@
                 >
 
                 <ImageView
-                    android:id="@+id/image_back_font_dialog_size"
+                    android:id="@+id/image_back_theme_dialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/text_size_dialog"
+                    android:id="@+id/theme_dialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:text="تغییر فونت متن"
+                    android:text="تغییر تم برنامه"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -64,7 +63,7 @@
                     >
 
                     <RadioGroup
-                        android:id="@+id/radio_group_font_text"
+                        android:id="@+id/radio_group_theme"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
@@ -75,43 +74,36 @@
                         >
 
                         <RadioButton
-                            android:id="@+id/radio_button_bnazanin_font"
+                            android:id="@+id/radio_button_light_theme"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="B_Nazanin"
+                            android:text="روشن"
+                            android:textColor="@color/white"
                             />
 
                         <RadioButton
-                            android:id="@+id/radio_button_vazir_font"
+                            android:id="@+id/radio_button_night_theme"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="Vazir"
+                            android:text="تاریک"
+                            android:textColor="@color/white"
                             />
 
                         <RadioButton
-                            android:id="@+id/radio_button_tahoma_font"
+                            android:id="@+id/radio_button_system_theme"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="Tahoma"
-                            />
-
-                        <RadioButton
-                            android:id="@+id/radio_button_sahel_font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="right"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="Sahel"
+                            android:text="پیش فرض سیستم"
+                            android:textColor="@color/white"
                             />
 
 
@@ -120,15 +112,6 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_save_dialog_font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="ذخیره"
-                    style="@style/subscriptionStyle"
-                    />
 
             </LinearLayout>
 
