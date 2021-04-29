@@ -155,5 +155,22 @@ data class User(
     val negareCount : Int
 )
 
+@Entity(tableName = "search_table")
+data class searchModel(
+    @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
+    var id :Int ,
+    @SerializedName("result_id")
+    var result_id : Int ,
+    @SerializedName("name")
+    var name : String ,
+    @SerializedName("body")
+    var body : String ,
+    @SerializedName("poet_type")
+    var poet_type : String ,
+    @SerializedName("image_url")
+    var image :String){}
+
+
 
 

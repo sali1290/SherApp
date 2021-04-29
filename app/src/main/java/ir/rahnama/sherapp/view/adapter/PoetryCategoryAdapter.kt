@@ -2,14 +2,14 @@ package ir.rahnama.sherapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.PoetsItemMenuBinding
 import ir.rahnama.sherapp.model.PoetModel
-import ir.rahnama.sherapp.view.PoetryCategoryFragmentDirections
 
 
 class PoetryCategoryAdapter : RecyclerView.Adapter<PoetryCategoryAdapter.MyViewHolder>() {
@@ -50,12 +50,9 @@ class PoetryCategoryAdapter : RecyclerView.Adapter<PoetryCategoryAdapter.MyViewH
                     .into(holder.view.imageSelectionPoetryItem)
             }
         holder.view.cardview.setOnClickListener {
-            val action =
-                PoetryCategoryFragmentDirections.actionPoetryToBooks(poetryList[position].category_id)
-            it?.let { Navigation.findNavController(it).navigate(action) }
+            val bundle = bundleOf("id" to poetryList[position].category_id)
+            holder.itemView.findNavController().navigate(R.id.booksListFragment,bundle)
         }
-
-
 
 
     }

@@ -5,13 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.databinding.FragmentBooksListBinding
-import ir.rahnama.sherapp.utiles.Resource
 import ir.rahnama.sherapp.view.adapter.BooksAdapter
 import ir.rahnama.sherapp.viewmodel.BooksViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
@@ -28,6 +25,7 @@ class BooksListFragment : Fragment() {
 
     private val bookAdapter = BooksAdapter()
     var poetryId = ""
+    var image = ""
    // private val binding get() = _binding!!
 
 
@@ -44,11 +42,9 @@ class BooksListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        poetryId= requireArguments().getString("id").toString()
+        viewModel.getBooksList(poetryId)
 
-        arguments?.let {
-            poetryId= BooksListFragmentArgs.fromBundle(it).petryId.toString()
-           viewModel.getBooksList(poetryId)
-        }
 
 
         binding.booksListRecycler.apply {
@@ -62,7 +58,7 @@ class BooksListFragment : Fragment() {
     }
 
     private fun observeViewModel(){
-        viewModel.books.observe(viewLifecycleOwner, Observer {
+        viewModel.books.observe(viewLifecycleOwner, {
             when (it.status) {
                 SUCCESS -> it.data?.let { bookAdapter.refreshData(it) }
                 ERROR -> it.message?.let { requireActivity().toast(it) }

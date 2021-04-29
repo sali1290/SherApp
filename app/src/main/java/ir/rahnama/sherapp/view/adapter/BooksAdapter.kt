@@ -1,16 +1,15 @@
 package ir.rahnama.sherapp.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.BooksItemLeftModelBinding
 import ir.rahnama.sherapp.databinding.BooksItemRightModelBinding
 import ir.rahnama.sherapp.model.BookModel
-import ir.rahnama.sherapp.view.BooksListFragmentDirections
 
 
 class BooksAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,26 +50,33 @@ class BooksAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             LAYOUT_ONE -> {
                 holder as MyViewHolderOne
                 holder.view.book=books[position]
-                holder.view.itemLayout.setOnClickListener { goToBookContent(it,books[position].id) }
+                holder.view.itemLayout.setOnClickListener {
+                    val bundle = bundleOf("id" to books[position].id)
+                    holder.view.itemLayout.findNavController().navigate(R.id.bookContentFragment,bundle)}
             }
             LAYOUT_TWO -> {
                 holder as MyViewHolderTwo
                 holder.view.book=books[position]
-                holder.view.itemLayout.setOnClickListener { goToBookContent(it,books[position].id) }
+                holder.view.itemLayout.setOnClickListener {
+                    val bundle = bundleOf("id" to books[position].id)
+                    holder.view.itemLayout.findNavController().navigate(R.id.bookContentFragment,bundle) }
             }
             LAYOUT_THREE -> {
                 holder as MyViewHolderTwo
                 holder.view.book=books[position]
-                holder.view.itemLayout.setOnClickListener { goToBookContent(it,books[position].id) }
+                holder.view.itemLayout.setOnClickListener {
+                    val bundle = bundleOf("id" to books[position].id)
+                    holder.view.itemLayout.findNavController().navigate(R.id.bookContentFragment,bundle)}
             }
             LAYOUT_FOUR ->{
                 holder as MyViewHolderOne
                 holder.view.book=books[position]
-                holder.view.itemLayout.setOnClickListener { goToBookContent(it,books[position].id) }
+                holder.view.itemLayout.setOnClickListener {
+                    val bundle = bundleOf("id" to books[position].id)
+                    holder.view.itemLayout.findNavController().navigate(R.id.bookContentFragment,bundle)
+                }
             }
         }
-
-
     }
 
 
@@ -99,11 +105,6 @@ class BooksAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class MyViewHolderOne(var view : BooksItemLeftModelBinding) : RecyclerView.ViewHolder(view.root)
 
     class MyViewHolderTwo(var view : BooksItemRightModelBinding) : RecyclerView.ViewHolder(view.root)
-
-    private fun goToBookContent(view:View,id:String){
-        val action = BooksListFragmentDirections.actionBookToBookContent(id)
-        view?.let { Navigation.findNavController(it).navigate(action) }
-    }
 
 }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#81D4FA"
+                    android:gravity="center"
+                    android:hint="انتخاب دسته بندی"
+                    android:padding="10dp"
+                    android:textColor="#EDFFFFFF"
+                    android:textColorHint="#BAFFFFFF"
+                    android:textSize="14.5sp"
+                    app:spinner_arrow_gravity="end"
+                    app:spinner_arrow_padding="8dp"
+                    app:spinner_divider_color="#B3FFFFFF"
+                    app:spinner_divider_show="true"
+                    app:spinner_divider_size="0.4dp"
+                    app:spinner_item_array="@array/questions"
+                    app:spinner_popup_animation="bounce"
+                    app:spinner_popup_elevation="4dp" />
+
+        </LinearLayout>
+
+</RelativeLayout>
+

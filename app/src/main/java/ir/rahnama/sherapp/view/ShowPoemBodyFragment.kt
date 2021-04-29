@@ -126,7 +126,7 @@ class ShowPoemBodyFragment : Fragment(){
         }
 
         //Set Image
-        sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
+       /* sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
         val image: String? = sharedImage!!.getString("image", "")
         context?.let {
 
@@ -135,7 +135,7 @@ class ShowPoemBodyFragment : Fragment(){
                 .centerCrop()
                 .error(R.drawable.ic_launcher_foreground)
                 .into(view.image_poem_adapter)
-        }
+        }*/
 
     }
 

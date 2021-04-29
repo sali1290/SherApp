@@ -29,7 +29,7 @@ class BookContentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentBooksListBinding.inflate(inflater,container,false)
         return binding.root
@@ -38,11 +38,9 @@ class BookContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.let {
-            val id = BookContentFragmentArgs.fromBundle(it).bookId.toString()
+            val id =requireArguments().getString("id").toString()
             viewModel.getBookContent(id)
             Log.i("tag", id)
-        }
 
         setupRecylerView()
         observViewModel()

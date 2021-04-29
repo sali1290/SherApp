@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.databinding.FragmentPoetryCategoryBinding
@@ -31,7 +30,7 @@ class PoetryCategoryFragment : Fragment() {
    // private val binding get() =_binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = FragmentPoetryCategoryBinding.inflate(inflater,container,false)
         return binding.root
@@ -43,10 +42,9 @@ class PoetryCategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        arguments?.let {
-            type =PoetryCategoryFragmentArgs.fromBundle(it).type
-            viewModel.getPoetryNames(type)
-        }
+        val type = requireArguments().getString("type")
+
+            viewModel.getPoetryNames(type!!)
 
 
 
@@ -63,7 +61,7 @@ class PoetryCategoryFragment : Fragment() {
 
     private fun observeViewModel(){
 
-        viewModel.poetryNames.observe(viewLifecycleOwner, Observer {
+        viewModel.poetryNames.observe(viewLifecycleOwner, {
             when (it.status) {
                 SUCCESS -> it.data?.let { categoryAdapter.refreshData(it) }
                 ERROR -> { it.message?.let { requireActivity().toast(it) } }

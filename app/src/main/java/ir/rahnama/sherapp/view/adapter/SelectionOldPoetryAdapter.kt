@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.SelectionPoetryItemBinding
 import ir.rahnama.sherapp.model.SelectionPoetryModel
-import ir.rahnama.sherapp.view.HomeFragmentDirections
 
 class SelectionOldPoetryAdapter : RecyclerView.Adapter<SelectionOldPoetryAdapter.MyViewHolder>() {
 
@@ -44,17 +44,16 @@ class SelectionOldPoetryAdapter : RecyclerView.Adapter<SelectionOldPoetryAdapter
         val image = poetryList[position].image
         image.let {
 
-                Glide.with(holder.itemView.context)
-                    .load(image)
-                    .centerCrop()
-                    .error(R.drawable.ic_launcher_foreground)
-                    .into(holder.view.imageSelectionPoetry)
-            }
+            Glide.with(holder.itemView.context)
+                .load(image)
+                .centerCrop()
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.view.imageSelectionPoetry)
+        }
 
         holder.view.cardview.setOnClickListener {
-            val action =
-                HomeFragmentDirections.actionHomeToBookList(poetryList[position].category_id)
-            it?.let { Navigation.findNavController(it).navigate(action) }
+            val bundle = bundleOf("id" to poetryList[position].category_id,"image" to image)
+            holder.itemView.findNavController().navigate(R.id.booksListFragment,bundle)
         }
 
         val sharedImage: SharedPreferences =
