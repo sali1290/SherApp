@@ -1,10 +1,8 @@
 package ir.rahnama.sherapp.model
 
-import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import org.jetbrains.annotations.NotNull
 
 
 @Entity(tableName = "poetry_table")
@@ -155,22 +153,32 @@ data class User(
     val negareCount : Int
 )
 
-@Entity(tableName = "search_table")
-data class searchModel(
+@Entity(tableName = "search")
+data class SearchModel(
     @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     var id :Int ,
-    @SerializedName("result_id")
-    var result_id : Int ,
+    @SerializedName("category_id")
+    var category_id: Int,
+    @SerializedName("biography_id")
+    var biography_id: Int,
+    @SerializedName("list_id")
+    var list_id: Int,
     @SerializedName("name")
-    var name : String ,
-    @SerializedName("body")
-    var body : String ,
-    @SerializedName("poet_type")
-    var poet_type : String ,
+    var name : String){}
+
+@Entity(tableName = "poster")
+data class PosterModel(
+    @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
+    var id:Int?,
+    @SerializedName("category_id")
+    var category_id: Int?,
+    @SerializedName("biography_id")
+    var biography_id: Int?,
+    @SerializedName("name")
+    var name: String?,
+    @SerializedName("clickable")
+    var clickable: Int? =null,
     @SerializedName("image_url")
-    var image :String){}
-
-
-
-
+    var image:String?){}

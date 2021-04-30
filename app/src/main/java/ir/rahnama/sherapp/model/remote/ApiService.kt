@@ -1,7 +1,6 @@
 package ir.rahnama.sherapp.model.remote
 
 import ir.rahnama.sherapp.model.*
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -9,6 +8,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
+
+    @GET("get_poster.php")
+    suspend fun getPoster ():Response<MutableList<PosterModel>>
 
     @GET("get_poetry_names.php")
     suspend fun getPoetryList ():Response<MutableList<PoetModel>>

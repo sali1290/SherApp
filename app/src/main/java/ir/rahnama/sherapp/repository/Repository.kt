@@ -15,6 +15,7 @@ class Repository @Inject constructor(
      val booksContentDao: BooksContentDao,
      val subscribtion: SubscriptionDao ,
      val negar : NegareDao ,
+     val poster : PosterDao ,
      val apiClient: ApiClient) {
 
 
@@ -52,8 +53,14 @@ class Repository @Inject constructor(
         saveNetworkResult = {poemBodyDao.insert(it)}
     )
 
-     fun getLastSeenPoem(poem_id:String) = poemBodyDao.getPoemBody(poem_id)
+    fun getLastSeenPoem(poem_id:String) = poemBodyDao.getPoemBody(poem_id)
 
+
+    fun getPoster() = DataSourceOperation(
+        getFromLocal = {poster.getAllPoster()} ,
+        getFromNetwork = {apiClient.getPoster()},
+        saveNetworkResult = {poster.insert(it)}
+    )
     fun getNegar() = DataSourceOperation(
         getFromLocal = {negar.getAllNegare()} ,
         getFromNetwork = {apiClient.getAllNegare()},

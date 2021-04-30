@@ -56,6 +56,10 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun providePosterDao(db: AppDataBase) = db.posterDao
+
+    @Singleton
+    @Provides
     fun provideSelectionPoetryDaoDao(db: AppDataBase) = db.selectionPoetryDao
 
     @Singleton
@@ -83,11 +87,12 @@ object AppModule {
     fun providerepository(poetryDao: PoetryDao,
                           selectionPoetryDao: SelectionPoetryDao
                           , booksDao: BooksDao
-                          , poemBodyDao: PoemBodyDao
+                          , posterDao: PosterDao
                           , booksContentDao: BooksContentDao
                           , subscribtionDao : SubscriptionDao
                           , negareDao: NegareDao
-                          , apiClient: ApiClient) =Repository(poetryDao, selectionPoetryDao, booksDao, poemBodyDao, booksContentDao, subscribtionDao , negareDao , apiClient )
+                          , poemBodyDao: PoemBodyDao
+                          , apiClient: ApiClient) =Repository(poetryDao, selectionPoetryDao, booksDao, poemBodyDao, booksContentDao, subscribtionDao , negareDao,posterDao , apiClient )
 
 
 }

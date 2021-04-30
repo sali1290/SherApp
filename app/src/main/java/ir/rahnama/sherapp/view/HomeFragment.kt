@@ -18,6 +18,7 @@ import ir.rahnama.sherapp.view.adapter.PoemBodyAdapter
 import ir.rahnama.sherapp.view.adapter.SelectionNewPoetryAdapter
 import ir.rahnama.sherapp.view.adapter.SelectionOldPoetryAdapter
 import ir.rahnama.sherapp.viewmodel.PoetryViewModel
+import ir.rahnama.sherapp.viewmodel.PosterViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 
@@ -25,6 +26,7 @@ import org.imaginativeworld.whynotimagecarousel.CarouselItem
 class HomeFragment : Fragment() {
 
     private val viewModel: PoetryViewModel by viewModels()
+    private val posterViewModel:PosterViewModel by viewModels()
     private var binding: FragmentHomeBinding by autoCleared()
     private val selectionOldPoetryAdapter = SelectionOldPoetryAdapter()
     private val selectionNewPoetryAdapter = SelectionNewPoetryAdapter()
@@ -43,25 +45,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (list.size!=3) {
-
-            list.add(
-                CarouselItem(
-                    imageDrawable = R.drawable.image_0
-                )
-            )
-            list.add(
-                CarouselItem(
-                    imageDrawable = R.drawable.image_1
-                )
-            )
-            list.add(
-                CarouselItem(
-                    imageDrawable = R.drawable.image_2
-                )
-            )
-        }
-
+        observePosterViewModel()
         setUpRecyclerViews()
         setUpLastSeenPoem()
         observeViewModel()
@@ -71,7 +55,6 @@ class HomeFragment : Fragment() {
             newPoetrySelect.setOnClickListener { loadPoetryListFragment("0") }
             OldPoetrySelect.setOnClickListener { loadPoetryListFragment("1") }
             search_bar.setOnClickListener { loadSearchFragment() }
-            carousel.addData(list)
             btnFab.setOnClickListener {
                 MainDialogFragmentPopUp().show(
                     requireActivity().supportFragmentManager,
@@ -81,6 +64,33 @@ class HomeFragment : Fragment() {
 
         }
 
+    }
+
+    private fun observePosterViewModel() {
+
+        posterViewModel.posterModel.observe(viewLifecycleOwner, {
+
+            when (it.status) {
+                SUCCESS -> {
+                    it.data?.let { it1 ->
+                        list.clear()
+                        for (i in 0 until it1.size) {
+                            list.add(
+                                CarouselItem(
+                                    imageUrl = it1[i].image
+                                )
+                            )
+                        }
+                        binding.carousel.addData(list)
+                    }
+                }
+                ERROR -> {
+                    it.message?.let { message -> dataObserveError(message) }
+                }
+                LOADING -> {
+                }
+            }
+        })
     }
 
     private fun setUpRecyclerViews() = binding.run {
