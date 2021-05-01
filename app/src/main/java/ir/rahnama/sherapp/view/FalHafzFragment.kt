@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FargmentFalHafzBinding
 import ir.rahnama.sherapp.databinding.FragmentShowPoemsBinding
+import ir.rahnama.sherapp.model.SelectionPoetryModel
 import ir.rahnama.sherapp.utiles.*
 import ir.rahnama.sherapp.view.adapter.BookContentAdapter
 import ir.rahnama.sherapp.view.adapter.PoemBodyAdapter
 import ir.rahnama.sherapp.view.adapter.PoemBodySpaceItem
+import ir.rahnama.sherapp.viewmodel.BookContentViewModel
 import ir.rahnama.sherapp.viewmodel.BooksViewModel
 import ir.rahnama.sherapp.viewmodel.PoemBodyViewModel
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -21,7 +23,9 @@ import java.util.Observer
 
 class FalHafzFragment : Fragment(){
 
-    private val viewModel: BooksViewModel by viewModels()
+    private var poetryList: MutableList<SelectionPoetryModel> = arrayListOf()
+
+    private val viewModel: BookContentViewModel by viewModels()
     private val poemViewModel : PoemBodyViewModel by viewModels()
     private val poemBodyAdapter = PoemBodyAdapter()
     private var binding: FargmentFalHafzBinding by autoCleared()
@@ -41,7 +45,7 @@ class FalHafzFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         val id = "24"
-        viewModel.getBooksList(id)
+
 
         fal_hafez.setOnClickListener{
 
@@ -60,18 +64,5 @@ class FalHafzFragment : Fragment(){
 
     }
 
-//    private fun obserViewModel() {
-//        poemViewModel.poemBody.observe(viewLifecycleOwner, Observer {
-//            when (it.status) {
-//                SUCCESS -> it.data?.let {
-//                    poemBodyAdapter.updatePoems(it)
-//                }
-//                ERROR -> {
-//                    it.message?.let { requireActivity().toast(it) }
-//                }
-//                LOADING -> {
-//                }
-//            }
-//        })
-//    }
+
 }
