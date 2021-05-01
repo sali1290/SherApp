@@ -52,8 +52,8 @@ class HomeFragment : Fragment() {
 
         binding.run {
             // 0 -> get old poetry list // 1 -> get new poetry list
-            newPoetrySelect.setOnClickListener { loadPoetryListFragment("0") }
-            OldPoetrySelect.setOnClickListener { loadPoetryListFragment("1") }
+            newPoetrySelect.setOnClickListener { loadPoetryListFragment("0","شاعرهای کهن") }
+            OldPoetrySelect.setOnClickListener { loadPoetryListFragment("1","شاعر های معاصر") }
             search_bar.setOnClickListener { loadSearchFragment() }
             btnFab.setOnClickListener {
                 MainDialogFragmentPopUp().show(
@@ -140,8 +140,8 @@ class HomeFragment : Fragment() {
         oldPoetryError.setVisible()
     }
 
-    private fun loadPoetryListFragment(type: String) {
-        val bundle = bundleOf("type" to type)
+    private fun loadPoetryListFragment(type: String,name: String) {
+        val bundle = bundleOf("type" to type,"name" to name)
         view?.findNavController()?.navigate(R.id.poetryCategoryFragment,bundle)
 
     }

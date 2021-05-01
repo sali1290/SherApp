@@ -15,6 +15,7 @@ import ir.rahnama.sherapp.view.adapter.BookContentAdapter
 import ir.rahnama.sherapp.viewmodel.BookContentViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.toast
+import kotlinx.android.synthetic.main.fragment_poetry_category.*
 
 
 @AndroidEntryPoint
@@ -39,8 +40,13 @@ class BookContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
             val id =requireArguments().getString("id").toString()
+            val name =requireArguments().getString("name").toString()
             viewModel.getBookContent(id)
             Log.i("tag", id)
+
+        binding.run {
+            poetry_type_title.text = name
+        }
 
         setupRecylerView()
         observViewModel()
