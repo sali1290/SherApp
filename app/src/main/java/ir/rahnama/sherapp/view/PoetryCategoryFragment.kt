@@ -14,6 +14,7 @@ import ir.rahnama.sherapp.viewmodel.PoetryViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.utiles.toast
+import kotlinx.android.synthetic.main.fragment_poetry_category.*
 
 
 @AndroidEntryPoint
@@ -42,6 +43,7 @@ class PoetryCategoryFragment : Fragment() {
 
 
         val type = requireArguments().getString("type")
+        val name = requireArguments().getString("name").toString()
 
             viewModel.getPoetryNames(type!!)
 
@@ -49,6 +51,7 @@ class PoetryCategoryFragment : Fragment() {
 
         binding.poetryListRecyclerView.apply {
 
+            poetry_type_title.text = name
             layoutManager = GridLayoutManager(requireActivity(),3)
             adapter=categoryAdapter
 

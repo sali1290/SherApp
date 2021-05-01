@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.orhanobut.hawk.Hawk
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.R
@@ -51,16 +50,14 @@ class HomeFragment : Fragment() {
         setUpLastSeenPoem()
         observeViewModel()
 
-        binding.constraintLayout6.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToFalHafzFragment()
-            view.let { NavHostFragment.findNavController(this).navigate(action) }
-        }
-
-
         binding.run {
             // 0 -> get old poetry list // 1 -> get new poetry list
             newPoetrySelect.setOnClickListener { loadPoetryListFragment("0","شاعرهای کهن") }
             OldPoetrySelect.setOnClickListener { loadPoetryListFragment("1","شاعر های معاصر") }
+            constraintLayout6.setOnClickListener { loadFalHafzFragment()}
+
+
+
             search_bar.setOnClickListener { loadSearchFragment() }
             btnFab.setOnClickListener {
                 MainDialogFragmentPopUp().show(
@@ -71,6 +68,11 @@ class HomeFragment : Fragment() {
 
         }
 
+    }
+
+    private fun loadFalHafzFragment() {
+
+        view?.findNavController()?.navigate(R.id.falHafzFragment)
     }
 
     private fun observePosterViewModel() {

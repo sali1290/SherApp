@@ -74,7 +74,4 @@ class FalHafzFragment : Fragment(){
 //            }
 //        })
 //    }
-
-
-
 }

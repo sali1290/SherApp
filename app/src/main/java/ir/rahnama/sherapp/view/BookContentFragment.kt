@@ -44,10 +44,6 @@ class BookContentFragment : Fragment() {
             viewModel.getBookContent(id)
             Log.i("tag", id)
 
-        binding.run {
-            poetry_type_title.text = name
-        }
-
         setupRecylerView()
         observViewModel()
     }

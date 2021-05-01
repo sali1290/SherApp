@@ -54,9 +54,7 @@
             android:name="type"
             android:defaultValue="1"
             app:argType="string" />
-        <action
-            android:id="@+id/actionPoetryToBooks"
-            app:destination="@id/booksListFragment" />
+        <action android:id="@+id/actionPoetryToBooks" />
         <argument
             android:name="name"
             app:argType="string" />
