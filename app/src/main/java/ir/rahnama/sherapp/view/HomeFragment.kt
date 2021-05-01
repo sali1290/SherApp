@@ -124,8 +124,7 @@ class HomeFragment : Fragment() {
                         val newPoetry = poetry.filter { poetry -> poetry.poet_type == "1" }
                         selectionOldPoetryAdapter.refreshData(oldPoetry)
                         selectionNewPoetryAdapter.refreshData(newPoetry)
-                        binding.newPoetryError.setGone()
-                        binding.oldPoetryError.setGone()
+
                     }
                 }
 
@@ -145,8 +144,6 @@ class HomeFragment : Fragment() {
 
     private fun dataObserveError(message: String) = with(binding) {
         requireActivity().toast(message)
-        newPoetryError.setVisible()
-        oldPoetryError.setVisible()
     }
 
     private fun loadPoetryListFragment(type: String,name: String) {
