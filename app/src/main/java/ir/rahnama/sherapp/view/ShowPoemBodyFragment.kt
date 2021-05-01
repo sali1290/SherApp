@@ -104,6 +104,9 @@ class ShowPoemBodyFragment : Fragment(){
 
         }
 
+        //for slide between pages
+
+
         if (mId==fId) {
 
             binding.previousPage.visibility = View.INVISIBLE

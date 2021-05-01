@@ -15,7 +15,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="@dimen/_140sdp"
     android:layout_margin="4dp"
-    android:layout_height="165dp">
+    android:layout_height="165dp"
+    android:background="@drawable/books_left_style"
+    >
 
 
 
@@ -23,7 +25,7 @@
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pattern"
+        android:background="@drawable/book_item_left_background"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,30 +41,28 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                app:srcCompat="@drawable/ic_svg_note"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_svg_note" />
 
             <TextView
                 android:id="@+id/poem_menu_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/books_text_left_style"
+                android:paddingLeft="6dp"
                 android:text="@{book.books}"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/books_text_left_style"
-                android:layout_marginLeft="4dp"
-                android:layout_marginBottom="3dp"
-                android:paddingLeft="6dp"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

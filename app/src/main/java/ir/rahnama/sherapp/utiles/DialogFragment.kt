@@ -37,7 +37,7 @@ import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
-import kotlinx.android.synthetic.main.fragment_us_info.view.*
+import kotlinx.android.synthetic.main.fragment_more.view.*
 import kotlinx.android.synthetic.main.height_size_text_fab.view.*
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
@@ -78,11 +78,12 @@ class MainDialogFragmentPopUp : DialogFragment() {
             loadFragments(R.id.ticket_mainFab_Linear, view)
             dialog?.dismiss()
         }
-        view.game_mainFab_Linear.setOnClickListener {
-            val toast = Toast(requireActivity())
-            toast.setText("این ویژگی فعلا در دسترس نیست!")
-            toast.duration = Toast.LENGTH_LONG
-            toast.show()
+        view.fal_hafez_mainFab_Linear.setOnClickListener {
+            loadFragments(R.id.fal_hafez_mainFab_Linear , view)
+            dialog?.dismiss()
+        }
+        view.search_mainFab_Linear.setOnClickListener {
+
             //dialog?.dismiss()
         }
         view.dictionary_mainFab_Linear.setOnClickListener{
@@ -111,6 +112,10 @@ class MainDialogFragmentPopUp : DialogFragment() {
             }
             R.id.ticket_mainFab_Linear -> {
                 val action = HomeFragmentDirections.actionHomeToTicket()
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
+            }
+            R.id.fal_hafez_mainFab_Linear -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToFalHafzFragment()
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
         }

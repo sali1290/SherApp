@@ -35,6 +35,9 @@
             android:id="@+id/action_homeFragment_to_morePageFragment"
             app:destination="@id/morePageFragment" />
         <action
+            android:id="@+id/action_homeFragment_to_falHafzFragment"
+            app:destination="@id/falHafzFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
 
@@ -141,6 +144,10 @@
         android:name="ir.rahnama.sherapp.view.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/falHafzFragment"
+        android:name="ir.rahnama.sherapp.view.FalHafzFragment"
+        android:label="FalHafzFragment" />
 
 
 </navigation>

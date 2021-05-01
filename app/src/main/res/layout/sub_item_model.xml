@@ -80,6 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_gravity="right"
                         >
 
                         <TextView
@@ -89,7 +90,8 @@
                             android:text="@{Sub.detail_1}"
                             android:textColor="@color/black"
                             tools:layout_editor_absoluteX="8dp"
-                            tools:layout_editor_absoluteY="16dp" />
+                            tools:layout_editor_absoluteY="16dp"
+                            android:gravity="right"/>
 
                         <ImageView
                             android:layout_width="12dp"
@@ -97,6 +99,7 @@
                             android:src="@drawable/ic_circle"
                             android:layout_marginLeft="4dp"
                             android:layout_marginTop="4dp"
+
                             />
 
 
@@ -106,6 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_gravity="right"
                         android:gravity="right"
                         >
 
@@ -116,7 +120,9 @@
                             android:text="@{Sub.detail_2}"
                             android:textColor="@color/black"
                             tools:layout_editor_absoluteX="8dp"
-                            tools:layout_editor_absoluteY="16dp" />
+                            tools:layout_editor_absoluteY="16dp"
+                            android:gravity="right"
+                           />
 
                         <ImageView
                             android:layout_width="12dp"
@@ -133,6 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_gravity="right"
                         >
 
                         <TextView
@@ -142,7 +149,9 @@
                             android:text="@{Sub.detail_3}"
                             android:textColor="@color/black"
                             tools:layout_editor_absoluteX="8dp"
-                            tools:layout_editor_absoluteY="16dp" />
+                            tools:layout_editor_absoluteY="16dp"
+                            android:gravity="right"
+                            />
 
                         <ImageView
                             android:layout_width="12dp"
@@ -150,6 +159,7 @@
                             android:src="@drawable/ic_circle"
                             android:layout_marginLeft="4dp"
                             android:layout_marginTop="4dp"
+
                             />
 
 

@@ -295,7 +295,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/game_mainFab_Linear"
+                    android:id="@+id/search_mainFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -309,19 +309,20 @@
                         android:layout_gravity="center"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_game"
+                        android:src="@drawable/ic_search"
                         android:background="@drawable/fab_image_background_night"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/game"
+                        android:text="@string/search"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/fal_hafez_mainFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
