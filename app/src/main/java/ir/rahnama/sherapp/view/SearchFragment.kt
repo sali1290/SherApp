@@ -14,14 +14,13 @@ import ir.rahnama.sherapp.databinding.FragmentSearchBinding
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.SearchAdapter
 import ir.rahnama.sherapp.viewmodel.SearchVieModel
-import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding by autoCleared()
     private val viewModel: SearchVieModel by viewModels()
-    private var lId by Delegates.notNull<Int>()
+    private var pos:Int=0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,17 +39,17 @@ class SearchFragment : Fragment() {
             when (checkedId) {
 
                 R.id.radio_button_shaer -> {
-                    lId = 0
+                    pos = 0
                 }
 
 
                 R.id.radio_button_asar -> {
-                    lId = 1
+                    pos = 1
 
                 }
 
                 R.id.radio_button_sher -> {
-                    lId = 2
+                    pos = 2
 
                 }
             }
@@ -72,7 +71,7 @@ class SearchFragment : Fragment() {
 
 
                 binding.cardView5.visibility = View.GONE
-                query?.let { viewModel.getSearchResult(it,lId)}
+                query?.let { viewModel.getSearchResult(it,pos)}
 
                 return false
             }
@@ -80,7 +79,7 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 binding.cardView5.visibility = View.GONE
-                newText?.let { viewModel.getSearchResult(it,lId)}
+                newText?.let { viewModel.getSearchResult(it,pos)}
 
                 return false
             }
