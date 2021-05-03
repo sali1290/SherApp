@@ -33,9 +33,7 @@ data class SelectionPoetryModel(
     @SerializedName("name")
     var name : String ,
     @SerializedName("image_url")
-    var image :String){
-
-}
+    var image :String){}
 
 @Entity(tableName = "books")
 data class BookModel(
@@ -47,7 +45,7 @@ data class BookModel(
     @SerializedName("category_id")
     var category_id :String ,
     @SerializedName("body")
-    var books : String ,
+    var body : String ,
     @SerializedName("kind")
     var kind :Int){}
 
@@ -60,13 +58,13 @@ data class BookContentModel (
     var id : String ,
     @SerializedName("category_id")
     var catgeory_id : Int ,
-    @SerializedName("title")
-    var title :String){}
+    @SerializedName("body")
+    var body :String){}
 
 @Entity(tableName =  "poem_body")
 data class PoemBodyModel(
-    @SerializedName("list_id")
-    var list_id : String ,
+    @SerializedName("category_id")
+    var category_id : String ,
     @PrimaryKey(autoGenerate = false)
     @SerializedName("order")
     var order : Int ,
@@ -153,19 +151,13 @@ data class User(
     val negareCount : Int
 )
 
-@Entity(tableName = "search")
 data class SearchModel(
-    @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
-    var id :Int ,
+    var id: Int?,
     @SerializedName("category_id")
-    var category_id: Int,
-    @SerializedName("biography_id")
-    var biography_id: Int,
-    @SerializedName("list_id")
-    var list_id: Int,
-    @SerializedName("name")
-    var name : String){}
+    var category_id: Int?,
+    @SerializedName("body")
+    var body : String?){}
 
 @Entity(tableName = "poster")
 data class PosterModel(

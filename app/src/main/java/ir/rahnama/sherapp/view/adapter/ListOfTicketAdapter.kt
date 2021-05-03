@@ -26,8 +26,6 @@ class ListOfTicketAdapter(
         notifyDataSetChanged()
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
         return MyViewHolder(inflater.inflate(R.layout.list_ticket_item_model, parent, false))

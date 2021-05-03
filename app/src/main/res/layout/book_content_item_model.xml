@@ -3,14 +3,11 @@
 <layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
     <data>
 
         <variable
             name="bookContent"
             type="ir.rahnama.sherapp.model.BookContentModel" />
-
 
     </data>
 
@@ -39,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_15sdp"
             android:padding="@dimen/_5sdp"
-            android:text="@{bookContent.title}"
+            android:text="@{bookContent.body}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

@@ -40,7 +40,6 @@ class BookContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
             val id =requireArguments().getString("id").toString()
-            val name =requireArguments().getString("name").toString()
             viewModel.getBookContent(id)
             Log.i("tag", id)
 

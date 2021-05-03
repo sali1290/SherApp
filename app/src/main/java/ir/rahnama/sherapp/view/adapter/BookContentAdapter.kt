@@ -36,12 +36,10 @@ class BookContentAdapter: RecyclerView.Adapter<BookContentAdapter.MyViewHolder>(
             val bundle = bundleOf("id" to bookContentList[position].id,"fId" to bookContentList[0].id,"lId" to bookContentList[bookContentList.size-1].id )
             holder.itemView.findNavController().navigate(R.id.showPoemBodyFragment,bundle)
         }
-
     }
 
     override fun getItemCount() = bookContentList.size
 
     class MyViewHolder(var view : BookContentItemModelBinding) : RecyclerView.ViewHolder(view.root)
-
 
 }

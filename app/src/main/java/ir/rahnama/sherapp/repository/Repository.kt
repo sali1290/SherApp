@@ -73,4 +73,6 @@ class Repository @Inject constructor(
         saveNetworkResult = {subscribtion.insert(it)}
     )
 
+    suspend fun getSearchResult(name:String,id:Int) = apiClient.getSearchResult(name,id)
+
 }
