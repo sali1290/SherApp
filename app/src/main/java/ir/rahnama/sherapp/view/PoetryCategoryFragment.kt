@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.databinding.FragmentPoetryCategoryBinding
@@ -54,10 +56,17 @@ class PoetryCategoryFragment : Fragment() {
             poetry_type_title.text = name
             layoutManager = GridLayoutManager(requireActivity(),3)
             adapter=categoryAdapter
+            imageView2.setOnClickListener { loadHomeFragment() }
 
         }
 
         observeViewModel()
+
+    }
+
+    private fun loadHomeFragment() {
+
+        view?.findNavController()?.popBackStack()
 
     }
 
