@@ -93,7 +93,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:layout_width="@dimen/_250sdp"
+                        android:layout_width="@dimen/_210sdp"
                         android:layout_height="match_parent"
                         android:id="@+id/resultText"
                         android:layout_marginEnd="5dp"

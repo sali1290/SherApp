@@ -24,15 +24,15 @@ interface ApiService {
 
     @POST("get_poetry_books.php")
     @FormUrlEncoded
-    suspend fun getPoetryBooks (@Field("category_id") category_id:String):Response<MutableList<BookModel>>
+    suspend fun getPoetryBooks (@Field("category_id") category_id:Int):Response<MutableList<BookModel>>
 
     @POST("get_book_content.php")
     @FormUrlEncoded
-    suspend fun getBookContent (@Field("category_id") category_id:String):Response<MutableList<BookContentModel>>
+    suspend fun getBookContent (@Field("category_id") category_id:Int):Response<MutableList<BookContentModel>>
 
     @POST("get_poem_body.php")
     @FormUrlEncoded
-    suspend fun getPoemById (@Field("poem_id") poem_id:String):Response<MutableList<PoemBodyModel>>
+    suspend fun getPoemById (@Field("poem_id") poem_id:Int):Response<MutableList<PoemBodyModel>>
 
 
     @GET("get_all_negar.php")

@@ -10,10 +10,10 @@ import javax.inject.Inject
 class PoemBodyViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
-    private val _id = MutableLiveData<String>()
+    private val _id = MutableLiveData<Int>()
     private val _poemBody = _id.switchMap { repository.getPoemById(it) }
     val poemBody = _poemBody
 
-    fun getPoemById(poem_id:String){ _id.value=poem_id }
+    fun getPoemById(poem_id:Int){ _id.value=poem_id }
 
 }

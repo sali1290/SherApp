@@ -18,6 +18,6 @@ interface BooksContentDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM book_content WHERE catgeory_id = :category_id")
-     fun getBooksContent (category_id : String) : LiveData<MutableList<BookContentModel>>
+     fun getBooksContent (category_id: Int) : LiveData<MutableList<BookContentModel>>
 
 }

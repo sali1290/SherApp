@@ -6,7 +6,7 @@ import ir.rahnama.sherapp.repository.Repository
 import javax.inject.Inject
 
 @HiltViewModel
-class PosterViewModel @Inject constructor(private val repository: Repository):ViewModel() {
+class PosterViewModel @Inject constructor(repository: Repository):ViewModel() {
 
      val posterModel=repository.getPoster()
 

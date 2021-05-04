@@ -1,13 +1,11 @@
 package ir.rahnama.sherapp.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.databinding.FragmentBooksListBinding
 import ir.rahnama.sherapp.utiles.autoCleared
@@ -15,7 +13,7 @@ import ir.rahnama.sherapp.view.adapter.BookContentAdapter
 import ir.rahnama.sherapp.viewmodel.BookContentViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.toast
-import kotlinx.android.synthetic.main.fragment_poetry_category.*
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -24,6 +22,7 @@ class BookContentFragment : Fragment() {
 
     private val viewModel:BookContentViewModel by viewModels()
     private var binding :FragmentBooksListBinding by autoCleared()
+    private var bookId by Delegates.notNull<Int>()
 
     private var  bookContentAdapter = BookContentAdapter()
 
@@ -39,9 +38,9 @@ class BookContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            val id =requireArguments().getString("id").toString()
-            viewModel.getBookContent(id)
-            Log.i("tag", id)
+            bookId=requireArguments().getInt("id")
+            viewModel.getBookContent(bookId)
+
 
         setupRecylerView()
         observViewModel()
@@ -52,10 +51,10 @@ class BookContentFragment : Fragment() {
     }
 
     private fun observViewModel(){
-        viewModel.bookContent.observe(viewLifecycleOwner , Observer {
+        viewModel.bookContent.observe(viewLifecycleOwner , {
             when (it.status) {
-                SUCCESS -> it.data?.let { bookContentAdapter.refreshData(it) }
-                ERROR ->  it.message?.let { requireActivity().toast(it) }
+                SUCCESS -> it.data?.let { it1 -> bookContentAdapter.refreshData(it1) }
+                ERROR ->  it.message?.let { it2 -> requireActivity().toast(it2) }
                 LOADING -> {}
             }
         })

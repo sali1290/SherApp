@@ -52,8 +52,8 @@ class HomeFragment : Fragment() {
 
         binding.run {
             // 0 -> get old poetry list // 1 -> get new poetry list
-            newPoetrySelect.setOnClickListener { loadPoetryListFragment("0","شاعرهای کهن") }
-            OldPoetrySelect.setOnClickListener { loadPoetryListFragment("1","شاعر های معاصر") }
+            newPoetrySelect.setOnClickListener { loadPoetryListFragment(0,"شاعرهای کهن") }
+            OldPoetrySelect.setOnClickListener { loadPoetryListFragment(1,"شاعر های معاصر") }
             constraintLayout6.setOnClickListener { loadFalHafzFragment()}
 
 
@@ -120,8 +120,8 @@ class HomeFragment : Fragment() {
             when (it.status) {
                 SUCCESS -> {
                     it.data?.let { poetry ->
-                        val oldPoetry = poetry.filter { poetry -> poetry.poet_type == "0" }
-                        val newPoetry = poetry.filter { poetry -> poetry.poet_type == "1" }
+                        val oldPoetry = poetry.filter { poetry -> poetry.poet_type == 0 }
+                        val newPoetry = poetry.filter { poetry -> poetry.poet_type == 1 }
                         selectionOldPoetryAdapter.refreshData(oldPoetry)
                         selectionNewPoetryAdapter.refreshData(newPoetry)
 
@@ -146,7 +146,7 @@ class HomeFragment : Fragment() {
         requireActivity().toast(message)
     }
 
-    private fun loadPoetryListFragment(type: String,name: String) {
+    private fun loadPoetryListFragment(type: Int,name: String) {
         val bundle = bundleOf("type" to type,"name" to name)
         view?.findNavController()?.navigate(R.id.poetryCategoryFragment,bundle)
 

@@ -16,6 +16,7 @@ import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.utiles.toast
 import kotlinx.android.synthetic.main.fragment_poetry_category.*
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class PoetryCategoryFragment : Fragment() {
     private var binding : FragmentPoetryCategoryBinding by autoCleared()
 
 
-    var type = "" // -> type of Poetry
+    private var type by Delegates.notNull<Int>() // -> type of Poetry
     private val categoryAdapter = PoetryCategoryAdapter()
 
    // private val binding get() =_binding!!
@@ -43,10 +44,10 @@ class PoetryCategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val type = requireArguments().getString("type")
+        type = requireArguments().getInt("type")
         val name = requireArguments().getString("name").toString()
 
-            viewModel.getPoetryNames(type!!)
+            viewModel.getPoetryNames(type)
 
 
 
@@ -73,8 +74,8 @@ class PoetryCategoryFragment : Fragment() {
 
         viewModel.poetryNames.observe(viewLifecycleOwner, {
             when (it.status) {
-                SUCCESS -> it.data?.let { categoryAdapter.refreshData(it) }
-                ERROR -> { it.message?.let { requireActivity().toast(it) } }
+                SUCCESS -> it.data?.let { it1 -> categoryAdapter.refreshData(it1) }
+                ERROR -> { it.message?.let { it2 -> requireActivity().toast(it2) } }
                 LOADING -> {}
             }
         })

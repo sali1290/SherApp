@@ -17,5 +17,5 @@ interface BooksDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM BOOKS WHERE kind = :category_id")
-    fun getBooksList(category_id:String): LiveData<MutableList<BookModel>>
+    fun getBooksList(category_id: Int): LiveData<MutableList<BookModel>>
 }

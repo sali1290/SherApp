@@ -12,11 +12,11 @@ import javax.inject.Inject
 class BookContentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
-    private val _id = MutableLiveData<String>()
+    private val _id = MutableLiveData<Int>()
     private val _bookContent = _id.switchMap { repository.getBooksContent(it) }
     val bookContent = _bookContent
 
-    fun getBookContent(category_id:String){_id.value=category_id}
+    fun getBookContent(category_id:Int){_id.value=category_id}
 
 
 }

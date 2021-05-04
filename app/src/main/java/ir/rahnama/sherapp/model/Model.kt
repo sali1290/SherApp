@@ -11,13 +11,13 @@ data class PoetModel(
     @SerializedName("id")
     var id :Int ,
     @SerializedName("category_id")
-    var category_id : String ,
+    var category_id : Int ,
     @SerializedName("nickname")
     var nickname : String ,
     @SerializedName("body")
     var body : String ,
     @SerializedName("poet_type")
-    var poet_type : String ,
+    var poet_type : Int ,
     @SerializedName("image_url")
     var image :String){}
 
@@ -27,9 +27,9 @@ data class SelectionPoetryModel(
     @SerializedName("id")
     var id :Int ,
     @SerializedName("category_id")
-    var category_id : String ,
+    var category_id : Int ,
     @SerializedName("poet_type")
-    var poet_type :String ,
+    var poet_type :Int ,
     @SerializedName("body")
     var body : String ,
     @SerializedName("image_url")
@@ -41,9 +41,9 @@ data class BookModel(
     @SerializedName("row")
     var row : Int ,
     @SerializedName("id")
-    var id :String ,
+    var id :Int ,
     @SerializedName("category_id")
-    var category_id :String ,
+    var category_id :Int ,
     @SerializedName("body")
     var body : String ,
     @SerializedName("kind")
@@ -55,7 +55,7 @@ data class BookContentModel (
     @SerializedName("row")
     var row :Int ,
     @SerializedName("id")
-    var id : String ,
+    var id : Int ,
     @SerializedName("category_id")
     var catgeory_id : Int ,
     @SerializedName("body")
@@ -64,7 +64,7 @@ data class BookContentModel (
 @Entity(tableName =  "poem_body")
 data class PoemBodyModel(
     @SerializedName("category_id")
-    var category_id : String ,
+    var category_id : Int ,
     @PrimaryKey(autoGenerate = false)
     @SerializedName("order")
     var order : Int ,

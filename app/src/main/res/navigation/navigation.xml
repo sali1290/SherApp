@@ -52,8 +52,7 @@
 
         <argument
             android:name="type"
-            android:defaultValue="1"
-            app:argType="string" />
+            app:argType="integer" />
         <action android:id="@+id/actionPoetryToBooks" />
         <argument
             android:name="name"
@@ -71,8 +70,7 @@
 
         <argument
             android:name="petry_id"
-            app:nullable="true"
-            app:argType="string" />
+            app:argType="integer" />
         <action
             android:id="@+id/actionBookToBookContent"
             app:destination="@id/bookContentFragment" />
@@ -85,8 +83,7 @@
         tools:layout="@layout/fragment_book_content" >
         <argument
             android:name="bookId"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="integer" />
         <action
             android:id="@+id/actionToPoemBody"
             app:destination="@id/showPoemBodyFragment" />
@@ -97,16 +94,7 @@
         android:label="ShowPoemBodyFragment" >
         <argument
             android:name="pome_id"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="first_id"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="last_id"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/subscriptionFragment"

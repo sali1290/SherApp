@@ -40,12 +40,12 @@ class FragmentFav : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         shared = context?.getSharedPreferences("shared_fav", MODE_PRIVATE)
-        val id = shared!!.getString("id", "")
+        val id = shared!!.getInt("id", 0)
 
 
 
         arguments?.let {
-            viewModel.getPoemById(id!!)
+            viewModel.getPoemById(id)
         }
 
         obserViewModel()

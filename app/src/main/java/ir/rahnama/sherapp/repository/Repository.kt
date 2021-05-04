@@ -20,7 +20,7 @@ class Repository @Inject constructor(
 
 
 
-    fun getPoetryNames(type:String) = DataSourceOperation(
+    fun getPoetryNames(type: Int) = DataSourceOperation(
         getFromLocal = {poetryDao.getPoetryNames(type)} ,
         getFromNetwork = {apiClient.getPoetryName()},
         saveNetworkResult = {poetryDao.insert(it)}
@@ -34,26 +34,26 @@ class Repository @Inject constructor(
     )
 
 
-    fun getBooksList(category_id :String) = DataSourceOperation(
+    fun getBooksList(category_id :Int) = DataSourceOperation(
         getFromLocal = {booksDao.getBooksList(category_id)} ,
         getFromNetwork = {apiClient.getPoetryBooks(category_id)},
         saveNetworkResult = {booksDao.insert(it)}
     )
 
 
-    fun getBooksContent(category_id :String) = DataSourceOperation(
+    fun getBooksContent(category_id :Int) = DataSourceOperation(
         getFromLocal = {booksContentDao.getBooksContent(category_id)} ,
         getFromNetwork = {apiClient.getBookContent(category_id)},
         saveNetworkResult = {booksContentDao.insert(it)}
     )
 
-    fun getPoemById(poem_id :String) = DataSourceOperation(
+    fun getPoemById(poem_id :Int) = DataSourceOperation(
         getFromLocal = {poemBodyDao.getPoemBody(poem_id)} ,
         getFromNetwork = {apiClient.getPoemById(poem_id)},
         saveNetworkResult = {poemBodyDao.insert(it)}
     )
 
-    fun getLastSeenPoem(poem_id:String) = poemBodyDao.getPoemBody(poem_id)
+    fun getLastSeenPoem(poem_id:Int) = poemBodyDao.getPoemBody(poem_id)
 
 
     fun getPoster() = DataSourceOperation(

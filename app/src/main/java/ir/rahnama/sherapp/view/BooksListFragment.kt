@@ -14,6 +14,7 @@ import ir.rahnama.sherapp.viewmodel.BooksViewModel
 import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.utiles.toast
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -24,9 +25,7 @@ class BooksListFragment : Fragment() {
     private var binding : FragmentBooksListBinding by autoCleared()
 
     private val bookAdapter = BooksAdapter()
-    var poetryId = ""
-    var image = ""
-   // private val binding get() = _binding!!
+    private var poetryId by Delegates.notNull<Int>()
 
 
     override fun onCreateView(
@@ -42,7 +41,7 @@ class BooksListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        poetryId= requireArguments().getString("id").toString()
+        poetryId= requireArguments().getInt("id")
         viewModel.getBooksList(poetryId)
 
 
@@ -60,8 +59,8 @@ class BooksListFragment : Fragment() {
     private fun observeViewModel(){
         viewModel.books.observe(viewLifecycleOwner, {
             when (it.status) {
-                SUCCESS -> it.data?.let { bookAdapter.refreshData(it) }
-                ERROR -> it.message?.let { requireActivity().toast(it) }
+                SUCCESS -> it.data?.let { it1 -> bookAdapter.refreshData(it1) }
+                ERROR -> it.message?.let { it2 -> requireActivity().toast(it2) }
                 LOADING ->{}
 
             }

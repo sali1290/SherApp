@@ -83,7 +83,7 @@ class FalHafzFragment : Fragment(){
 
         // from 2093 to 2624
         val id = Random().nextInt(573) + 2051
-        poemViewModel.getPoemById(id.toString())
+        poemViewModel.getPoemById(id)
         observeModel()
 
         fal_hafez.setOnClickListener {

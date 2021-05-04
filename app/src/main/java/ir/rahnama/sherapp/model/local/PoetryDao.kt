@@ -17,7 +17,7 @@ interface PoetryDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM POETRY_TABLE WHERE poet_type = :poetry_type")
-     fun getPoetryNames(poetry_type:String): LiveData<MutableList<PoetModel>>
+     fun getPoetryNames(poetry_type: Int): LiveData<MutableList<PoetModel>>
 
 
 }

@@ -15,6 +15,6 @@ interface PoemBodyDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM poem_body WHERE category_id = :poem_id")
-    fun getPoemBody (poem_id : String) :LiveData<MutableList<PoemBodyModel>>
+    fun getPoemBody (poem_id: Int) :LiveData<MutableList<PoemBodyModel>>
 
 }

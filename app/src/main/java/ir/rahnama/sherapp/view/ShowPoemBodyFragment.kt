@@ -33,8 +33,6 @@ class ShowPoemBodyFragment : Fragment(){
     private var binding: FragmentShowPoemsBinding by autoCleared()
     private var shared: SharedPreferences? = null
     private var mId by Delegates.notNull<Int>()
-    private var fId by Delegates.notNull<Int>()
-    private var lId by Delegates.notNull<Int>()
     private var sharedBackground: SharedPreferences? = null
     private var sharedImage: SharedPreferences? = null
 
@@ -54,12 +52,9 @@ class ShowPoemBodyFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id = requireArguments().getString("id")?.toIntOrNull()!!
-        fId = requireArguments().getString("fId")?.toIntOrNull()!!
-        lId = requireArguments().getString("lId")?.toIntOrNull()!!
-        viewModel.getPoemById(id.toString())
-        Hawk.put("lastSeen", id.toString())
-        Log.i("pomeid", id.toString())
+        val id = requireArguments().getInt("id")
+        viewModel.getPoemById(id)
+        Hawk.put("lastSeen", id)
         mId = id
 
         obserViewModel()
@@ -92,7 +87,7 @@ class ShowPoemBodyFragment : Fragment(){
             )
         }
 
-        if (mId == lId) {
+     /*   if (mId == lId) {
 
             binding.nextPage.visibility = View.INVISIBLE
 
@@ -102,11 +97,11 @@ class ShowPoemBodyFragment : Fragment(){
 
             nextPage()
 
-        }
+        }*/
 
         //for slide between pages
 
-
+/*
         if (mId==fId) {
 
             binding.previousPage.visibility = View.INVISIBLE
@@ -117,7 +112,10 @@ class ShowPoemBodyFragment : Fragment(){
             previousPage()
 
         }
-    }
+        }
+
+ */
+
 
         //Set Background Text
         sharedBackground =
@@ -157,20 +155,18 @@ class ShowPoemBodyFragment : Fragment(){
         })
     }
 
-      private fun nextPage(){
+     /* private fun nextPage(){
          binding.previousPage.visibility = View.VISIBLE
          mId += 1
-         viewModel.getPoemById(mId.toString())
-         Hawk.put("lastSeen", mId.toString())
-         Log.i("pomeid", mId.toString())
+         viewModel.getPoemById(mId)
+         Hawk.put("lastSeen", mId)
          obserViewModel()
     }
     private fun previousPage(){
         binding.nextPage.visibility = View.VISIBLE
         mId -= 1
-        viewModel.getPoemById(mId.toString())
-        Hawk.put("lastSeen", mId.toString())
-        Log.i("pomeid", mId.toString())
+        viewModel.getPoemById(mId)
+        Hawk.put("lastSeen", mId)
         obserViewModel()
-    }
+    }*/
 }
