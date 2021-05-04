@@ -52,7 +52,7 @@
                     android:id="@+id/filterImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
+                    android:layout_marginStart="8dp"
                     android:src="@drawable/baseline_filter_alt_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +86,7 @@
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:visibility="gone"
+                    android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,19 +95,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/searchText"
+                        android:id="@+id/resultText"
                         android:layout_marginEnd="5dp"
                         android:gravity="center"
-                        android:text="درحال جست و جو :"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/resultText"
+                        android:id="@+id/searchText"
                         android:layout_marginEnd="5dp"
+                        android:text="درحال جست و جو :"
                         android:gravity="center"
                         android:textSize="@dimen/_12ssp" />
+
+
 
                 </LinearLayout>
 

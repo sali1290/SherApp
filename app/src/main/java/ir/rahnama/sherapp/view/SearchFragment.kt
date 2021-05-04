@@ -100,13 +100,14 @@ class SearchFragment : Fragment() {
                 binding.searchText.visibility = View.VISIBLE
                 binding.resultText.visibility = View.VISIBLE
                 binding.resultText.text = query
-
                 if(query!="")
                 query?.let { viewModel.getSearchResult(it,pos)}
+                else
+                    binding.resultView.visibility = View.GONE
+
 
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 searchAdapter.clearData()
@@ -118,9 +119,14 @@ class SearchFragment : Fragment() {
 
                 if(newText!="")
                 newText?.let { viewModel.getSearchResult(it,pos)}
+                else
+                    binding.resultView.visibility = View.GONE
+
+
 
                 return false
             }
+
         })
 
         observerViewModel()
