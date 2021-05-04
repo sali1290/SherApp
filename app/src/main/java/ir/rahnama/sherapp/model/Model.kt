@@ -12,8 +12,8 @@ data class PoetModel(
     var id :Int ,
     @SerializedName("category_id")
     var category_id : String ,
-    @SerializedName("name")
-    var name : String ,
+    @SerializedName("nickname")
+    var nickname : String ,
     @SerializedName("body")
     var body : String ,
     @SerializedName("poet_type")
@@ -30,8 +30,8 @@ data class SelectionPoetryModel(
     var category_id : String ,
     @SerializedName("poet_type")
     var poet_type :String ,
-    @SerializedName("name")
-    var name : String ,
+    @SerializedName("body")
+    var body : String ,
     @SerializedName("image_url")
     var image :String){}
 

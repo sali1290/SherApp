@@ -141,7 +141,17 @@
         android:id="@+id/searchFragment"
         android:name="ir.rahnama.sherapp.view.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_bookContentFragment"
+            app:destination="@id/bookContentFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_booksListFragment"
+            app:destination="@id/booksListFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_showPoemBodyFragment"
+            app:destination="@id/showPoemBodyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/falHafzFragment"
         android:name="ir.rahnama.sherapp.view.FalHafzFragment"

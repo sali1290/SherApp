@@ -6,7 +6,7 @@ class ApiClient @Inject constructor(private val apiService: ApiService) : CheckA
 
 
     suspend fun getPoster() = getResult{apiService.getPoster()}
-    suspend fun getSearchResult(name:String,id:Int) = apiService.getSearchResult(name,id)
+    suspend fun getSearchResult(name:String,id:Int) = getResult {apiService.getSearchResult(name, id)}
     suspend fun getPoetryName() = getResult { apiService.getPoetryList() }
     suspend fun getSelectionPoetry() =  getResult { apiService.getSelectionPoetry() }
     suspend fun getPoetryBooks(category_id:String) = getResult { apiService.getPoetryBooks(category_id) }

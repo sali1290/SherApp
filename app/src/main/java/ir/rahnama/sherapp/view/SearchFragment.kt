@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.FragmentSearchBinding
+import ir.rahnama.sherapp.utiles.ResultHandler
 import ir.rahnama.sherapp.utiles.autoCleared
 import ir.rahnama.sherapp.view.adapter.SearchAdapter
 import ir.rahnama.sherapp.viewmodel.SearchVieModel
@@ -20,6 +21,7 @@ class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding by autoCleared()
     private val viewModel: SearchVieModel by viewModels()
+    private val searchAdapter:SearchAdapter = SearchAdapter()
     private var pos:Int=0
 
     override fun onCreateView(
@@ -53,24 +55,53 @@ class SearchFragment : Fragment() {
 
                 }
             }
+
+            searchAdapter.clearData()
+            searchAdapter.pos = pos
+
         }
 
+        binding.searchRecycler.apply {
+
+            adapter = searchAdapter
+            layoutManager = LinearLayoutManager(requireActivity())
+
+        }
 
             binding.filterImage.setOnClickListener {
 
-            if( binding.cardView5.visibility == View.VISIBLE)
-            binding.cardView5.visibility = View.GONE
-            else
-                binding.cardView5.visibility = View.VISIBLE
-        }
+                if (binding.resultView.visibility == View.VISIBLE && binding.radioGroupFilter.visibility == View.VISIBLE) {
+                    binding.resultView.visibility = View.GONE
+                    binding.radioGroupFilter.visibility = View.GONE
+                }
+
+                else if (binding.resultView.visibility == View.VISIBLE && binding.radioGroupFilter.visibility == View.GONE) {
+                    binding.searchText.visibility = View.GONE
+                    binding.resultText.visibility = View.GONE
+                    binding.radioGroupFilter.visibility = View.VISIBLE
+                } else {
+                    binding.resultView.visibility = View.VISIBLE
+                    binding.searchText.visibility = View.GONE
+                    binding.resultText.visibility = View.GONE
+                    binding.radioGroupFilter.visibility = View.VISIBLE
+
+                }
+            }
+
 
         binding.search.setOnQueryTextListener(object :SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
 
+                searchAdapter.clearData()
+                binding.resultView.visibility = View.VISIBLE
+                binding.radioGroupFilter.visibility = View.GONE
+                binding.searchText.visibility = View.VISIBLE
+                binding.resultText.visibility = View.VISIBLE
+                binding.resultText.text = query
 
-                binding.cardView5.visibility = View.GONE
+                if(query!="")
                 query?.let { viewModel.getSearchResult(it,pos)}
 
                 return false
@@ -78,7 +109,14 @@ class SearchFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
-                binding.cardView5.visibility = View.GONE
+                searchAdapter.clearData()
+                binding.resultView.visibility = View.VISIBLE
+                binding.radioGroupFilter.visibility = View.GONE
+                binding.searchText.visibility = View.VISIBLE
+                binding.resultText.visibility = View.VISIBLE
+                binding.resultText.text = newText
+
+                if(newText!="")
                 newText?.let { viewModel.getSearchResult(it,pos)}
 
                 return false
@@ -91,10 +129,29 @@ class SearchFragment : Fragment() {
     private fun observerViewModel() {
 
         viewModel.searchModel.observe(viewLifecycleOwner,{
-            val searchAdapter = SearchAdapter(it)
-            binding.searchRecycler.apply {
-                adapter = searchAdapter
-                layoutManager = LinearLayoutManager(requireActivity())
+
+            when(it){
+
+                is ResultHandler.Loading -> {
+                    binding.resultView.visibility = View.VISIBLE
+                    binding.searchText.visibility = View.VISIBLE
+                    binding.resultText.visibility = View.VISIBLE
+
+                }
+                is ResultHandler.Error -> {
+                    binding.resultView.visibility = View.VISIBLE
+                    binding.searchText.visibility = View.GONE
+                    binding.resultText.visibility = View.VISIBLE
+                    binding.resultText.text = it.message
+
+                }
+
+                is ResultHandler.Success -> {
+
+                    searchAdapter.addData(it.data)
+
+                }
+
             }
 
         })

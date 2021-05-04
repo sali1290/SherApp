@@ -65,11 +65,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:elevation="4dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
-            android:visibility="gone"
             app:cardCornerRadius="@dimen/def_radius"
             tools:ignore="MissingConstraints">
 
@@ -77,8 +76,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:layoutDirection="rtl">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/resultView"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/searchText"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center"
+                        android:text="درحال جست و جو :"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/resultText"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
 
                 <RadioGroup
                     android:id="@+id/radioGroupFilter"
@@ -86,6 +116,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:layoutDirection="rtl"
                     android:checkedButton="@id/radio_button_shaer"
                     android:orientation="horizontal"

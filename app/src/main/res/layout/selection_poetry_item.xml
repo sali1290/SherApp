@@ -66,7 +66,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="@{poetry.name}"
+                        android:text="@{poetry.body}"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_9ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
