@@ -55,7 +55,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>()  {
                 }
                 1 -> {
                     val bundle = bundleOf("id" to searchModel[position].id )
-                    holder.itemView.findNavController().navigate(R.id.bookContentFragment,bundle)
+                    holder.itemView.findNavController().navigate(R.id.showPoemBodyFragment,bundle)
                 }
 
                 2 -> {
