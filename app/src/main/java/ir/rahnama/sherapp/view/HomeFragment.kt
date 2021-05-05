@@ -21,6 +21,7 @@ import ir.rahnama.sherapp.viewmodel.PoetryViewModel
 import ir.rahnama.sherapp.viewmodel.PosterViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -68,6 +69,8 @@ class HomeFragment : Fragment() {
 
         }
 
+
+
     }
 
     private fun loadFalHafzFragment() {
@@ -91,6 +94,22 @@ class HomeFragment : Fragment() {
                             )
                         }
                         binding.carousel.addData(list)
+                        carousel.onItemClickListener = object : OnItemClickListener {
+                            override fun onClick(position: Int, carouselItem: CarouselItem) {
+
+                                if(it1[position].clickable==1) {
+                                    val bundle = bundleOf("id" to it1[position].category_id)
+                                    view?.findNavController()
+                                        ?.navigate(R.id.booksListFragment, bundle)
+                                }
+
+                            }
+
+                            override fun onLongClick(position: Int, dataObject: CarouselItem) {
+                                // ...
+                            }
+
+                        }
                     }
                 }
                 ERROR -> {
