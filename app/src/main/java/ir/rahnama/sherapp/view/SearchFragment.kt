@@ -35,7 +35,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        searchAdapter.clearData()
         binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
 
             when (checkedId) {
