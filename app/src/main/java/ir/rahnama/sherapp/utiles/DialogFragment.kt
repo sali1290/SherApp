@@ -12,19 +12,24 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.get
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
 import com.jem.rubberpicker.RubberSeekBar
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.view.HomeFragmentDirections
 import ir.rahnama.sherapp.view.MainActivity
+import kotlinx.android.synthetic.main.abjad_fab_layout.view.*
 import kotlinx.android.synthetic.main.brightness_main_fab_layout.*
 import kotlinx.android.synthetic.main.choose_theme_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
@@ -38,7 +43,10 @@ import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
 import kotlinx.android.synthetic.main.fragment_more.view.*
+import kotlinx.android.synthetic.main.fragment_show_ticket_content.view.*
 import kotlinx.android.synthetic.main.height_size_text_fab.view.*
+import kotlinx.android.synthetic.main.height_size_text_fab.view.btn_save_dialog_height_size
+import kotlinx.android.synthetic.main.height_size_text_fab.view.image_back_dialog_height_size
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_size
@@ -63,6 +71,16 @@ class MainDialogFragmentPopUp : DialogFragment() {
             loadFragments(view.shop_ImageView.id, view)
             dialog?.dismiss()
         }
+
+        //abjad
+        view.abjad_mainFab_Linear.setOnClickListener {
+            dialog?.dismiss()
+            AbjadFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
+
         view.settings_Fab_Lieaner.setOnClickListener {
             dialog?.dismiss()
             SubDialogFragmentPopUp().show(
@@ -803,6 +821,71 @@ class ThemeChooserPopUp : DialogFragment() {
 
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+}
+
+class AbjadFragmentPopUp : DialogFragment() {
+
+    private val abjad = mapOf(
+        "ا" to 1 , "ب" to 2 ,"ج" to 3 , "د" to 4 , "ه" to 5 , "و" to 6 ,
+        "ز" to 7 , "ح" to 8 , "ط" to 9 , "ی" to 10 , "ک" to 20 , "ل" to 30,
+        "م" to 40 , "ن" to 50 , "س" to 60, "ع" to 70 , "ق" to 80 , "ص" to 90 , "ق" to 100,
+        "ر" to 200 , "ش" to 300 , "ت" to 400 , "ث" to 500 , "خ" to 600 , "ذ" to 700 , "ض" to 800,
+        "ظ" to 900, "غ" to 1000, "گ" to 2000, "چ" to 3000, "پ" to 4000, "ژ" to 5000,
+        )
+
+    private val mp = mapOf(
+        "a" to 1 , "b" to 2 , "c" to 3 , "d" to 4
+    )
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.abjad_fab_layout, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.image_back_dialog_abjad.setOnClickListener {
+            dialog?.dismiss()
+            MainDialogFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
+
+        view.btn_save_dialog_abjad.setOnClickListener {
+
+
+            val pT = view.abjad_input.text.toString()
+            val len = pT.length
+            val chars:CharArray = pT.toCharArray()
+            val resultArray: MutableList<Int> = arrayListOf()
+
+            for (i in 0 until len) {
+
+                resultArray.add(abjad.getValue(chars[i].toString()))
+            }
+            if (resultArray.size == len) {
+                var submit = 0
+                for (element in resultArray) {
+                    submit += element
+
+                }
+
+                view.text_result_abjad.text = submit.toString()
+
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()
