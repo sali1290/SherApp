@@ -35,7 +35,6 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchAdapter.clearData()
         binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
 
             when (checkedId) {
@@ -43,7 +42,6 @@ class SearchFragment : Fragment() {
                 R.id.radio_button_shaer -> {
                     pos = 0
                 }
-
 
                 R.id.radio_button_asar -> {
                     pos = 1
@@ -63,6 +61,7 @@ class SearchFragment : Fragment() {
 
         binding.searchRecycler.apply {
 
+            searchAdapter.clearData()
             adapter = searchAdapter
             layoutManager = LinearLayoutManager(requireActivity())
 
@@ -153,7 +152,7 @@ class SearchFragment : Fragment() {
                 }
 
                 is ResultHandler.Success -> {
-
+                    searchAdapter.clearData()
                     searchAdapter.addData(it.data)
 
                 }
