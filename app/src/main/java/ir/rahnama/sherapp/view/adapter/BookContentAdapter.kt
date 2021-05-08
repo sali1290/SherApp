@@ -34,7 +34,7 @@ class BookContentAdapter: RecyclerView.Adapter<BookContentAdapter.MyViewHolder>(
 
         holder.view.bookContentLayout.setOnClickListener {
             val bundle = bundleOf("id" to bookContentList[position].id)
-            holder.itemView.findNavController().navigate(R.id.showPoemBodyFragment,bundle)
+            holder.itemView.findNavController().navigate(R.id.showPoemBodyActivity,bundle)
         }
     }
 

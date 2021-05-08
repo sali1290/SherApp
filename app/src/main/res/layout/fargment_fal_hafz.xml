@@ -55,8 +55,7 @@
                 android:layout_height="match_parent"
                 android:elevation="@dimen/_12sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="2dp" />
+                android:layout_margin="@dimen/_15sdp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

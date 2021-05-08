@@ -82,7 +82,7 @@ class FalHafzFragment : Fragment(){
 //        poemViewModel.getPoemById(size.toString())
 
         // from 2093 to 2624
-        val id = Random().nextInt(573) + 2051
+        var id = Random().nextInt(573) + 2051
         poemViewModel.getPoemById(id)
         observeModel()
 
@@ -91,8 +91,17 @@ class FalHafzFragment : Fragment(){
             fal_hafez.setInvisible()
             fal_hafez_background.setVisible()
 
+            textView7.setText("تکرار فال")
+            textView7.height += 5
+            textView7.setOnClickListener{
+                id = Random().nextInt(573) + 2051
+                poemViewModel.getPoemById(id)
+                observeModel()
+            }
         }
+
     }
+
     private fun observeModel(){
         poemViewModel.poemBody.observe(viewLifecycleOwner , androidx.lifecycle.Observer {
             when (it.status) {

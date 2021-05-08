@@ -98,7 +98,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //prefrences
-   // implementation "androidx.preference:preference-ktx:$prefrencesVersion"
+    // implementation "androidx.preference:preference-ktx:$prefrencesVersion"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

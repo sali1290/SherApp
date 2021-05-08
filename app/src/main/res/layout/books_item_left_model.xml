@@ -51,15 +51,19 @@
                 android:id="@+id/poem_menu_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
                 android:background="@drawable/books_text_left_style"
-                android:paddingLeft="6dp"
                 android:text="@{book.body}"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

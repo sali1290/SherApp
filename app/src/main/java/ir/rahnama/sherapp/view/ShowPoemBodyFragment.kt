@@ -1,16 +1,21 @@
 package ir.rahnama.sherapp.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.orhanobut.hawk.Hawk
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,11 +28,13 @@ import ir.rahnama.sherapp.utiles.Resource.Status.*
 import ir.rahnama.sherapp.utiles.SubDialogFragmentPopUp
 import ir.rahnama.sherapp.utiles.toast
 import ir.rahnama.sherapp.view.adapter.PoemBodySpaceItem
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_show_poems.*
 import kotlinx.android.synthetic.main.fragment_show_poems.view.*
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class ShowPoemBodyFragment : Fragment(){
+class ShowPoemBodyFragment : Fragment() {
 
     private val viewModel: PoemBodyViewModel by viewModels()
     private var binding: FragmentShowPoemsBinding by autoCleared()
@@ -35,7 +42,6 @@ class ShowPoemBodyFragment : Fragment(){
     private var mId by Delegates.notNull<Int>()
     private var sharedBackground: SharedPreferences? = null
     private var sharedImage: SharedPreferences? = null
-
     private val poemAdapter = PoemBodyAdapter()
 
     override fun onCreateView(
@@ -116,7 +122,6 @@ class ShowPoemBodyFragment : Fragment(){
 
  */
 
-
         //Set Background Text
         sharedBackground =
             context?.getSharedPreferences("shared_background_color", Context.MODE_PRIVATE)
@@ -155,18 +160,20 @@ class ShowPoemBodyFragment : Fragment(){
         })
     }
 
-     /* private fun nextPage(){
-         binding.previousPage.visibility = View.VISIBLE
+      private fun nextPage(){
          mId += 1
          viewModel.getPoemById(mId)
          Hawk.put("lastSeen", mId)
          obserViewModel()
     }
     private fun previousPage(){
-        binding.nextPage.visibility = View.VISIBLE
         mId -= 1
         viewModel.getPoemById(mId)
         Hawk.put("lastSeen", mId)
         obserViewModel()
-    }*/
+    }
+
+
+
+
 }

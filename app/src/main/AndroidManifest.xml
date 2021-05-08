@@ -20,6 +20,8 @@
         tools:replace="android:supportsRtl"
         android:theme="@style/Theme.SherApp"
         tools:targetApi="m">
+        <activity android:name=".view.ShowPoemBodyActivity">
+    </activity>
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

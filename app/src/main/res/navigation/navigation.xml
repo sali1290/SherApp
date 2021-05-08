@@ -85,8 +85,8 @@
             android:name="bookId"
             app:argType="integer" />
         <action
-            android:id="@+id/actionToPoemBody"
-            app:destination="@id/showPoemBodyFragment" />
+            android:id="@+id/action_bookContentFragment_to_showPoemBodyActivity"
+            app:destination="@id/showPoemBodyActivity" />
     </fragment>
     <fragment
         android:id="@+id/showPoemBodyFragment"
@@ -144,6 +144,10 @@
         android:id="@+id/falHafzFragment"
         android:name="ir.rahnama.sherapp.view.FalHafzFragment"
         android:label="FalHafzFragment" />
+    <activity
+        android:id="@+id/showPoemBodyActivity"
+        android:name="ir.rahnama.sherapp.view.ShowPoemBodyActivity"
+        android:label="ShowPoemBodyActivity" />
 
 
 </navigation>
