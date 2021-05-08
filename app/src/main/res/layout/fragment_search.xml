@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_search"
+                    android:src="@drawable/baseline_filter_alt_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +100,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:gravity="center"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                         android:layout_marginEnd="5dp"
                         android:text="درحال جست و جو :"
                         android:gravity="center"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_11ssp" />
 
 
 
