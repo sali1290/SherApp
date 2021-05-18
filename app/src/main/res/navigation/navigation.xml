@@ -87,6 +87,9 @@
         <action
             android:id="@+id/action_bookContentFragment_to_showPoemBodyActivity"
             app:destination="@id/showPoemBodyActivity" />
+        <action
+            android:id="@+id/action_bookContentFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/showPoemBodyFragment"

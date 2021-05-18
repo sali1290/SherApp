@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:imeOptions="actionDone"
-    tools:context=".view.ShowPoemBodyFragment">
+    tools:context=".view.ShowPoemBodyFragment"
+    >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +68,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewBack"
                 android:layout_width="@dimen/icon_size_larg"
                 android:layout_height="@dimen/icon_size_larg"
                 android:layout_marginStart="16dp"

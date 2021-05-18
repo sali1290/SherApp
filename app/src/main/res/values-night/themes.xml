@@ -30,7 +30,7 @@
     <style name="main_category_item2">
         <item name="android:background">@drawable/main_category_item_background_night2</item>
     </style>
-    
+
     <style name="last_read_poem_style">
         <item name="android:background">@drawable/gradient_night</item>
     </style>
@@ -55,4 +55,15 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/_10ssp</item>
     </style>
+
+    <style name="icon_color">
+        <item name="android:backgroundTint">@color/light_gray</item>
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="filterBackground">
+        <item name="backgroundTint">@color/transparent</item>\
+        <item name="tint">@color/white</item>
+    </style>
+
 </resources>

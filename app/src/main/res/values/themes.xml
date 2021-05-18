@@ -56,4 +56,15 @@
     <style name="fal_inner_background">
         <item name="android:background">@drawable/corner_radius</item>
     </style>
+
+    <style name="icon_color">
+        <item name="android:backgroundTint">@color/dark_gray</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="filterBackground">
+        <item name="backgroundTint">@color/light_gray_2x</item>
+        <item name="tint">@color/black</item>
+    </style>
+
 </resources>

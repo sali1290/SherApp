@@ -46,7 +46,7 @@ class MorePageFragment : Fragment() {
 
         view.contactUs_image.setOnClickListener(View.OnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.setData(Uri.fromParts("mailto" , "test@gmail.com" , null))
+            intent.setData(Uri.fromParts("mailto" , "info@swan.ir" , null))
             startActivity(intent)
         })
         view.contactUs_tv.setOnClickListener {

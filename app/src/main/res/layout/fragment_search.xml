@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.SearchFragment">
 
     <LinearLayout
@@ -50,10 +50,12 @@
 
                 <ImageView
                     android:id="@+id/filterImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/baseline_filter_alt_24"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_filter"
+                    style="@style/filterBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -66,51 +68,50 @@
             android:id="@+id/cardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:elevation="4dp"
             app:cardCornerRadius="@dimen/def_radius"
             tools:ignore="MissingConstraints">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layoutDirection="rtl">
 
                 <LinearLayout
+                    android:id="@+id/resultView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/resultView"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/resultText"
                         android:layout_width="@dimen/_210sdp"
                         android:layout_height="match_parent"
-                        android:id="@+id/resultText"
                         android:layout_marginEnd="5dp"
                         android:ellipsize="end"
-                        android:maxLines="1"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:textSize="@dimen/_11ssp" />
 
                     <TextView
+                        android:id="@+id/searchText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:id="@+id/searchText"
                         android:layout_marginEnd="5dp"
-                        android:text="درحال جست و جو :"
                         android:gravity="center"
+                        android:text="درحال جست و جو :"
                         android:textSize="@dimen/_11ssp" />
-
 
 
                 </LinearLayout>
@@ -120,11 +121,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:layoutDirection="rtl"
                     android:checkedButton="@id/radio_button_shaer"
+                    android:gravity="center"
+                    android:layoutDirection="rtl"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -180,9 +181,9 @@
             tools:ignore="MissingConstraints">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/searchRecycler" />
+                android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center"
     android:layout_height="wrap_content"
-    >
+    android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,8 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-       >
+        tools:ignore="MissingConstraints">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,10 +23,10 @@
             android:layout_height="0dp"
             android:layout_weight="8.5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-          >
+            >
 
 
             <GridLayout
@@ -47,47 +45,21 @@
                 app:layout_constraintTop_toTopOf="parent"
 
                 >
-                <LinearLayout
-                    android:id="@+id/back_subFab_Linear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/fab_home_dialog_popup"
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
-                        android:layout_gravity="center"
-                        android:elevation="4dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_back"
-                        android:background="@drawable/fab_image_background_night"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/back"
-                        android:textSize="@dimen/_10ssp" />
-
-                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/fontMargin_subFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_height_text"
-                        android:background="@drawable/fab_image_background_night"/>
+                        android:src="@drawable/ic_height_text" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -103,7 +75,8 @@
                 <LinearLayout
                     android:id="@+id/backGroundColor_subFab_Linear"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content"                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -111,11 +84,10 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_background_color"
-                        android:background="@drawable/fab_image_background_night"
-                        />
+                        android:src="@drawable/ic_background_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -136,11 +108,10 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_theme"
-                        android:background="@drawable/fab_image_background_night"
-                         />
+                        android:src="@drawable/ic_theme" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,30 +123,51 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:id="@+id/lighting_subFab_Linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_lighting"
-                        android:background="@drawable/fab_image_background_night"
-                         />
+                        android:src="@drawable/ic_lighting" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/lighting"
+                        android:textSize="@dimen/_10ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/back_to_home_subFsb_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
+                        android:elevation="4dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_home" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/back"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -191,11 +183,10 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_font_type"
-                        android:background="@drawable/fab_image_background_night"
-                         />
+                        android:src="@drawable/ic_font_type" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -217,11 +208,10 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_text_size"
-                        android:background="@drawable/fab_image_background_night"
-                         />
+                        android:src="@drawable/ic_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -237,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+
                     android:orientation="vertical">
 
                     <ImageView
@@ -245,11 +235,10 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_text_color"
-                        android:background="@drawable/fab_image_background_night"
-                         />
+                        android:src="@drawable/ic_text_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -262,7 +251,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/more_subFab_Linear"
+                    android:id="@+id/next_with_volume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -271,21 +260,19 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
+                        android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_more"
-                        android:background="@drawable/fab_image_background_night"
-                        />
+                        android:src="@drawable/ic_more" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/more"
+                        android:text="@string/with_volume"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
-
 
 
             </GridLayout>

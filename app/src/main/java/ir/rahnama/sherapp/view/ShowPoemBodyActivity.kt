@@ -12,7 +12,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.hawk.Hawk
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +50,7 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
         val textOption = findViewById<ImageView>(R.id.textOption)
         val poemBodyRecyclerView = findViewById<RecyclerView>(R.id.poemBodyRecyclerView)
         val backgroundShowPoemBody = findViewById<ConstraintLayout>(R.id.background_show_poem_body)
+        val backButton = findViewById<ImageView>(R.id.imageViewBack)
 
         poemBodyRecyclerView.adapter = poemAdapter
         poemBodyRecyclerView.addItemDecoration(PoemBodySpaceItem())
@@ -55,6 +58,10 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
         val id = intent.getIntExtra("id", 0)
         viewModel.getPoemById(id)
         Hawk.put("lastSeen", id)
+
+        val sharedLastSeen: SharedPreferences = getSharedPreferences("lastSeenPoem", MODE_PRIVATE)
+        sharedLastSeen.edit().putInt("lastSeenPoemId", id).apply()
+
         mId = id
 
         obserViewModel()
@@ -169,7 +176,10 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
             }
         })
 
-
+        // back button
+        backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
 
@@ -180,12 +190,16 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
                     poemAdapter.updatePoems(it)
                 }
                 Resource.Status.ERROR -> {
-                    it.message?.let { Activity().toast(it) }
+                    Toast.makeText(
+                        this, "اتصال به اینترنت قطع می باشد",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 Resource.Status.LOADING -> {
                 }
             }
         })
+
     }
 
     private fun nextPage() {

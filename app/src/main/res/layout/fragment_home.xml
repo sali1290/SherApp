@@ -135,8 +135,8 @@
                     style="@style/main_category_item1"
                     android:layout_width="match_parent"
                     android:layout_height="135dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="@dimen/margin_default"
                     android:elevation="@dimen/default_elevation"
                     tools:ignore="MissingConstraints">
@@ -272,6 +272,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:layoutDirection="rtl"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
 
@@ -286,10 +287,12 @@
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="1.0"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:textDirection="rtl"
+                                android:textAlignment="textEnd"
+                                android:paddingLeft="@dimen/_130sdp"
+                                />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -297,7 +300,6 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:layout_marginTop="8dp"
                             app:cardCornerRadius="200dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

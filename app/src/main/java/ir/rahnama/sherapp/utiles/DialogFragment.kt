@@ -1,6 +1,5 @@
 package ir.rahnama.sherapp.utiles
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -12,45 +11,35 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.get
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.jem.rubberpicker.RubberSeekBar
 import ir.rahnama.sherapp.R
-import ir.rahnama.sherapp.view.HomeFragmentDirections
-import ir.rahnama.sherapp.view.MainActivity
+import ir.rahnama.sherapp.view.*
 import kotlinx.android.synthetic.main.abjad_fab_layout.view.*
 import kotlinx.android.synthetic.main.brightness_main_fab_layout.*
 import kotlinx.android.synthetic.main.choose_theme_main_fab_layout.view.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.colorWheel
 import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.*
-import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.image_background_dialog_size
-import kotlinx.android.synthetic.main.color_background_text_mian_fab_layout.view.text_back_color_dialog
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.*
 import kotlinx.android.synthetic.main.color_text_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.*
-import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.btn_save_dialog_font
 import kotlinx.android.synthetic.main.font_size_mian_fab_layout.view.image_back_font_dialog_size
 import kotlinx.android.synthetic.main.fragment_more.view.*
 import kotlinx.android.synthetic.main.fragment_show_ticket_content.view.*
 import kotlinx.android.synthetic.main.height_size_text_fab.view.*
-import kotlinx.android.synthetic.main.height_size_text_fab.view.btn_save_dialog_height_size
-import kotlinx.android.synthetic.main.height_size_text_fab.view.image_back_dialog_height_size
 import kotlinx.android.synthetic.main.main_fab_menu_layout.view.*
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.*
-import kotlinx.android.synthetic.main.size_mian_fab_layout.view.btn_save_dialog_size
-import kotlinx.android.synthetic.main.size_mian_fab_layout.view.image_back_dialog_size
 import kotlinx.android.synthetic.main.size_mian_fab_layout.view.text_size_dialog
 import kotlinx.android.synthetic.main.sub_mian_fab_layout.view.*
 import kotlinx.android.synthetic.main.volume_button_fab.view.*
@@ -81,13 +70,13 @@ class MainDialogFragmentPopUp : DialogFragment() {
             )
         }
 
-        view.settings_Fab_Lieaner.setOnClickListener {
-            dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
-        }
+//        view.settings_Fab_Lieaner.setOnClickListener {
+//            dialog?.dismiss()
+//            SubDialogFragmentPopUp().show(
+//                requireActivity().supportFragmentManager,
+//                "popup"
+//            )
+//        }
         view.poem_fav_popup.setOnClickListener {
             dialog?.dismiss()
             loadFragments(view.poem_fav_popup.id, view)
@@ -97,19 +86,37 @@ class MainDialogFragmentPopUp : DialogFragment() {
             dialog?.dismiss()
         }
         view.fal_hafez_mainFab_Linear.setOnClickListener {
-            loadFragments(R.id.fal_hafez_mainFab_Linear , view)
+            loadFragments(R.id.fal_hafez_mainFab_Linear, view)
             dialog?.dismiss()
         }
-        view.search_mainFab_Linear.setOnClickListener {
 
-            //dialog?.dismiss()
+        view.search_main_fab.setOnClickListener {
+            loadFragments(R.id.search_main_fab, view)
+            dialog?.dismiss()
         }
-        view.dictionary_mainFab_Linear.setOnClickListener{
+
+        view.dictionary_mainFab_Linear.setOnClickListener {
             val toast = Toast(requireActivity())
             toast.setText("این ویژگی فعلا در دسترس نیست!")
             toast.duration = Toast.LENGTH_LONG
             toast.show()
         }
+
+        view.theme_mainFab_Linear.setOnClickListener {
+            dialog?.dismiss()
+            ThemeChooserPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
+
+        //more
+        view.more_subFab_Linear.setOnClickListener {
+            dialog?.dismiss()
+            val action = HomeFragmentDirections.actionHomeFragmentToMorePageFragment()
+            view.let { NavHostFragment.findNavController(this).navigate(action) }
+        }
+
 
     }
 
@@ -136,6 +143,11 @@ class MainDialogFragmentPopUp : DialogFragment() {
                 val action = HomeFragmentDirections.actionHomeFragmentToFalHafzFragment()
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
+            R.id.search_main_fab -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+                view.let { NavHostFragment.findNavController(this).navigate(action) }
+            }
+
         }
     }
 }
@@ -164,12 +176,10 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
 
         //Home
-        view.back_subFab_Linear.setOnClickListener {
+        view.back_to_home_subFsb_linear.setOnClickListener {
             dialog?.dismiss()
-            MainDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
+            val action = BookContentFragmentDirections.actionBookContentFragmentToHomeFragment()
+            view.let { NavHostFragment.findNavController(this).navigate(action) }
         }
 
         //Font Text
@@ -221,12 +231,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
 
         }
 
-        //more
-        view.more_subFab_Linear.setOnClickListener {
-            dialog?.dismiss()
-            loadFragments(R.id.setting_ImageView, view)
-        }
-
         //theme
         view.theme_subFab_Linear.setOnClickListener {
             dialog?.dismiss()
@@ -243,15 +247,13 @@ class SubDialogFragmentPopUp : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
-    //for more page
-    private fun loadFragments(id: Int, view: View) {
-        when (id) {
-            R.id.setting_ImageView -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToMorePageFragment()
-                view?.let { NavHostFragment.findNavController(this).navigate(action) }
-            }
-        }
-    }
+    //for home page
+//    private fun loadFragments(id: Int, view: View) {
+//        val action = HomeFragmentDirections.actionHomeFragmentToMorePageFragment()
+//        view?.let { NavHostFragment.findNavController(this).navigate(action) }
+//
+//
+//    }
 
 }
 
@@ -774,10 +776,10 @@ class ThemeChooserPopUp : DialogFragment() {
 
         view.image_back_theme_dialog.setOnClickListener {
             dialog?.dismiss()
-            SubDialogFragmentPopUp().show(
-                requireActivity().supportFragmentManager,
-                "popup"
-            )
+//            MainDialogFragmentPopUp().show(
+//                requireActivity().supportFragmentManager,
+//                "popup"
+//            )
         }
 
         when (view.context.getSharedPreferences("Theme", Context.MODE_PRIVATE)
@@ -818,7 +820,6 @@ class ThemeChooserPopUp : DialogFragment() {
         })
 
 
-
     }
 
 
@@ -832,15 +833,15 @@ class ThemeChooserPopUp : DialogFragment() {
 class AbjadFragmentPopUp : DialogFragment() {
 
     private val abjad = mapOf(
-        "ا" to 1 , "ب" to 2 ,"ج" to 3 , "د" to 4 , "ه" to 5 , "و" to 6 ,
-        "ز" to 7 , "ح" to 8 , "ط" to 9 , "ی" to 10 , "ک" to 20 , "ل" to 30,
-        "م" to 40 , "ن" to 50 , "س" to 60, "ع" to 70 , "ق" to 80 , "ص" to 90 , "ق" to 100,
-        "ر" to 200 , "ش" to 300 , "ت" to 400 , "ث" to 500 , "خ" to 600 , "ذ" to 700 , "ض" to 800,
+        "ا" to 1, "ب" to 2, "ج" to 3, "د" to 4, "ه" to 5, "و" to 6,
+        "ز" to 7, "ح" to 8, "ط" to 9, "ی" to 10, "ک" to 20, "ل" to 30,
+        "م" to 40, "ن" to 50, "س" to 60, "ع" to 70, "ق" to 80, "ص" to 90, "ق" to 100,
+        "ر" to 200, "ش" to 300, "ت" to 400, "ث" to 500, "خ" to 600, "ذ" to 700, "ض" to 800,
         "ظ" to 900, "غ" to 1000, "گ" to 2000, "چ" to 3000, "پ" to 4000, "ژ" to 5000,
-        )
+    )
 
     private val mp = mapOf(
-        "a" to 1 , "b" to 2 , "c" to 3 , "d" to 4
+        "a" to 1, "b" to 2, "c" to 3, "d" to 4
     )
 
     override fun onCreateView(
@@ -867,7 +868,7 @@ class AbjadFragmentPopUp : DialogFragment() {
 
             val pT = view.abjad_input.text.toString()
             val len = pT.length
-            val chars:CharArray = pT.toCharArray()
+            val chars: CharArray = pT.toCharArray()
             val resultArray: MutableList<Int> = arrayListOf()
 
             for (i in 0 until len) {
