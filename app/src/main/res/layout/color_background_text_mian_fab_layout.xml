@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="8.5"
-            android:background="@drawable/fab_style"
+            style="subFabItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,7 @@
 
             <LinearLayout
                 android:id="@+id/linear_background"
-                android:layout_width="300dp"
+                android:layout_width="@dimen/_230sdp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">

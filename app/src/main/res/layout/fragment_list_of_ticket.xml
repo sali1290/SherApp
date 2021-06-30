@@ -117,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:text="@string/CreateNewTicket_txt"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_13ssp"
+                style="@style/HeaderTextView"/>
 
             <ImageView
                 android:layout_width="wrap_content"

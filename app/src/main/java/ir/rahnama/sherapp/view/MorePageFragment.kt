@@ -54,6 +54,14 @@ class MorePageFragment : Fragment() {
             intent.setData(Uri.fromParts("mailto" , "test@gmail.com" , null))
             startActivity(intent)
         }
+//        view.invite_image.setOnClickListener {
+//                val shareBody = "http://sarv.iranswan.ir/"
+//                val sharingIntent = Intent(Intent.ACTION_SEND)
+//                sharingIntent.type = "text/plain"
+//                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "دانلود اپ سرو")
+//                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+//                startActivity(Intent.createChooser(sharingIntent, "انتخاب شبکه اجتماعی..."))
+//        }
 
     }
 

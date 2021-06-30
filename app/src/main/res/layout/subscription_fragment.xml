@@ -8,14 +8,11 @@
     android:scrollbarThumbVertical="@drawable/subscription_gradiant"
     android:scrollbars="vertical">
 
-    <!--  put subscriptionStyleNight / subscriptionStyleLight in theme below  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/_4sdp"
-
         >
-
 
         <LinearLayout
             android:id="@+id/linearLayout5"
@@ -40,6 +37,7 @@
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:text="نگاردون"
+                style="@style/HeaderTextView"
                 android:textSize="@dimen/_20ssp" />
 
             <LinearLayout
@@ -59,6 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:text="مانده نگار"
+                        style="@style/HeaderTextView"
                         android:textSize="@dimen/_12ssp"
 
                         />
@@ -70,6 +69,7 @@
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:text="100"
+                        style="@style/HeaderTextView"
                         android:textSize="@dimen/_12ssp" />
 
 
@@ -90,6 +90,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:text="بیشترین نگاره درماه"
+                        style="@style/HeaderTextView"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
@@ -99,6 +100,7 @@
                         android:layout_gravity="right"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:text="100"
+                        style="@style/HeaderTextView"
                         android:textSize="@dimen/_12ssp" />
 
 

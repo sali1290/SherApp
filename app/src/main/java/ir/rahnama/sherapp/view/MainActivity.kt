@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import ir.rahnama.sherapp.R
@@ -43,7 +44,6 @@ class MainActivity : AppCompatActivity(){
 
 
 
-
     }
 
     fun isDarkTheme(activity: Activity): Boolean {
@@ -75,5 +75,6 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
+
 
 }

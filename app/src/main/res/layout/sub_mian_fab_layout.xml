@@ -263,7 +263,7 @@
                         android:background="@drawable/fab_image_background_night"
                         android:elevation="4dp"
                         android:padding="10dp"
-                        android:src="@drawable/ic_more" />
+                        android:src="@drawable/ic_next_with_volume" />
 
                     <TextView
                         android:layout_width="wrap_content"

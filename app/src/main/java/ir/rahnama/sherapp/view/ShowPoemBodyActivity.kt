@@ -33,10 +33,8 @@ import kotlin.properties.Delegates
 class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
 
     private val viewModel: PoemBodyViewModel by viewModels()
-    private var shared: SharedPreferences? = null
     private var mId by Delegates.notNull<Int>()
     private var sharedBackground: SharedPreferences? = null
-    private var sharedImage: SharedPreferences? = null
     private val poemAdapter = PoemBodyAdapter()
 
 
@@ -64,28 +62,41 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
 
         mId = id
 
+
         obserViewModel()
 
-        var fav: Int? = null
-
+        val sharedFav: SharedPreferences = getSharedPreferences(mId.toString(), MODE_PRIVATE)
+        val sharedPoemBody : SharedPreferences = getSharedPreferences(mId.toString() , MODE_PRIVATE)
+        markFavShowPoem.setImageResource(
+            sharedFav.getInt(
+                mId.toString() + "Image",
+                R.drawable.ic_star
+            )
+        )
+        var fav: Int = sharedFav.getInt(mId.toString(), 0)
         markFavShowPoem.setOnClickListener {
 
-            if (fav == 1) {
-                fav = 0
-                markFavShowPoem.setImageResource(R.drawable.ic_star)
-
-            } else {
+            if (fav == 0) {
                 fav = 1
+                sharedFav.edit().putInt(mId.toString(), 1).apply()
+                sharedFav.edit().putInt(mId.toString() + "Image", R.drawable.ic_star_bold).apply()
                 markFavShowPoem.setImageResource(R.drawable.ic_star_bold)
-                shared = getSharedPreferences("shared_fav", Context.MODE_PRIVATE)
-                val editor: SharedPreferences.Editor = shared!!.edit()
-                editor.putString("id", mId.toString())
                 Toast.makeText(this, "به لیست علاقه مندی ها اضافه شد", Toast.LENGTH_SHORT).show()
-                editor.apply()
+//                FavoriteFragment().updatedId(mId)
+//                FavoriteFragment().getItemCount()
+            } else if (fav == 1) {
+                fav = 0
+                sharedFav.edit().putInt(mId.toString() , 0).apply()
+                sharedFav.edit().putInt(mId.toString() + "Image", R.drawable.ic_star).apply()
+                markFavShowPoem.setImageResource(R.drawable.ic_star)
+//                FavoriteFragment().removeId(mId)
+//                FavoriteFragment().getItemCount()
             }
 
-
         }
+
+
+
 
         textOption.setOnClickListener {
             SubDialogFragmentPopUp().show(
@@ -145,36 +156,37 @@ class ShowPoemBodyActivity : AppCompatActivity(), Animation.AnimationListener {
                  .into(view.image_poem_adapter)
          }*/
 
-        poemBodyRecyclerView.setOnTouchListener(object :
-            OnSwipeTouchListener(this@ShowPoemBodyActivity) {
-            override fun onSwipeRight() {
-                val anim1 = AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.move_out_anim
-                ) as Animation
-                val anim2 = AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.move_in_anim_left
-                ) as Animation
-                backgroundShowPoemBody.startAnimation(anim1)
-                backgroundShowPoemBody.startAnimation(anim2)
-                previousPage()
-            }
+        poemBodyRecyclerView.setOnTouchListener(
+            object :
+                OnSwipeTouchListener(this@ShowPoemBodyActivity) {
+                override fun onSwipeRight() {
+                    val anim1 = AnimationUtils.loadAnimation(
+                        applicationContext,
+                        R.anim.move_out_anim
+                    ) as Animation
+                    val anim2 = AnimationUtils.loadAnimation(
+                        applicationContext,
+                        R.anim.move_in_anim_left
+                    ) as Animation
+                    backgroundShowPoemBody.startAnimation(anim1)
+                    backgroundShowPoemBody.startAnimation(anim2)
+                    previousPage()
+                }
 
-            override fun onSwipeLeft() {
-                val anim1 = AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.move_out_anim
-                ) as Animation
-                val anim2 = AnimationUtils.loadAnimation(
-                    applicationContext,
-                    R.anim.move_in_anim_right
-                ) as Animation
-                backgroundShowPoemBody.startAnimation(anim1)
-                backgroundShowPoemBody.startAnimation(anim2)
-                nextPage()
-            }
-        })
+                override fun onSwipeLeft() {
+                    val anim1 = AnimationUtils.loadAnimation(
+                        applicationContext,
+                        R.anim.move_out_anim
+                    ) as Animation
+                    val anim2 = AnimationUtils.loadAnimation(
+                        applicationContext,
+                        R.anim.move_in_anim_right
+                    ) as Animation
+                    backgroundShowPoemBody.startAnimation(anim1)
+                    backgroundShowPoemBody.startAnimation(anim2)
+                    nextPage()
+                }
+            })
 
         // back button
         backButton.setOnClickListener {

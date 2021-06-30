@@ -77,12 +77,12 @@
                     android:text="200"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_buy_negar_fab"
                     app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
+                    app:layout_constraintTop_toTopOf="@+id/btn_buy_negar_fab" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/btn_buy_negar_fab"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginLeft="8dp"

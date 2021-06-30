@@ -1,14 +1,17 @@
 package ir.rahnama.sherapp.view.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import dagger.hilt.android.qualifiers.ActivityContext
 import ir.rahnama.sherapp.R
 import ir.rahnama.sherapp.databinding.SelectionPoetryItemBinding
 import ir.rahnama.sherapp.model.SelectionPoetryModel
@@ -52,8 +55,8 @@ class SelectionOldPoetryAdapter : RecyclerView.Adapter<SelectionOldPoetryAdapter
         }
 
         holder.view.cardview.setOnClickListener {
-            val bundle = bundleOf("id" to poetryList[position].category_id,"image" to image)
-            holder.itemView.findNavController().navigate(R.id.booksListFragment,bundle)
+                val bundle = bundleOf("id" to poetryList[position].category_id, "image" to image)
+                holder.itemView.findNavController().navigate(R.id.booksListFragment, bundle)
         }
 
         val sharedImage: SharedPreferences =

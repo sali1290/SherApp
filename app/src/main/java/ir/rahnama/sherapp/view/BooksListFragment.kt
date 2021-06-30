@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +22,8 @@ import kotlin.properties.Delegates
 class BooksListFragment : Fragment() {
 
 
-    private val viewModel:BooksViewModel by viewModels()
-    private var binding : FragmentBooksListBinding by autoCleared()
+    private val viewModel: BooksViewModel by viewModels()
+    private var binding: FragmentBooksListBinding by autoCleared()
 
     private val bookAdapter = BooksAdapter()
     private var poetryId by Delegates.notNull<Int>()
@@ -33,7 +34,7 @@ class BooksListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentBooksListBinding.inflate(inflater,container,false)
+        binding = FragmentBooksListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,14 +42,14 @@ class BooksListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        poetryId= requireArguments().getInt("id")
+        poetryId = requireArguments().getInt("id")
         viewModel.getBooksList(poetryId)
 
 
 
         binding.booksListRecycler.apply {
-            layoutManager=GridLayoutManager(requireActivity(),2)
-            adapter=bookAdapter
+            layoutManager = GridLayoutManager(requireActivity(), 2)
+            adapter = bookAdapter
         }
 
 
@@ -56,12 +57,20 @@ class BooksListFragment : Fragment() {
 
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         viewModel.books.observe(viewLifecycleOwner, {
             when (it.status) {
                 SUCCESS -> it.data?.let { it1 -> bookAdapter.refreshData(it1) }
-                ERROR -> it.message?.let { it2 -> requireActivity().toast(it2) }
-                LOADING ->{}
+                ERROR -> it.message?.let {
+//                        it2 -> requireActivity().toast(it2)
+                    Toast.makeText(
+                        requireContext(),
+                        "این کتاب فعلا در دسترس نیست",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                LOADING -> {
+                }
 
             }
         })

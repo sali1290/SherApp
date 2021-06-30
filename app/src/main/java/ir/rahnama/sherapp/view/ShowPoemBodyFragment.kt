@@ -93,17 +93,17 @@ class ShowPoemBodyFragment : Fragment() {
             )
         }
 
-     /*   if (mId == lId) {
+        /*   if (mId == lId) {
 
-            binding.nextPage.visibility = View.INVISIBLE
+               binding.nextPage.visibility = View.INVISIBLE
 
-        } else
+           } else
 
-        binding.nextPage.setOnClickListener {
+           binding.nextPage.setOnClickListener {
 
-            nextPage()
+               nextPage()
 
-        }*/
+           }*/
 
         //for slide between pages
 
@@ -132,27 +132,34 @@ class ShowPoemBodyFragment : Fragment() {
         }
 
         //Set Image
-       /* sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
-        val image: String? = sharedImage!!.getString("image", "")
-        context?.let {
+        /* sharedImage = context?.getSharedPreferences("imagePoem", Context.MODE_PRIVATE)
+         val image: String? = sharedImage!!.getString("image", "")
+         context?.let {
 
-            Glide.with(this)
-                .load(image)
-                .centerCrop()
-                .error(R.drawable.ic_launcher_foreground)
-                .into(view.image_poem_adapter)
-        }*/
+             Glide.with(this)
+                 .load(image)
+                 .centerCrop()
+                 .error(R.drawable.ic_launcher_foreground)
+                 .into(view.image_poem_adapter)
+         }*/
 
     }
 
-      private fun obserViewModel() {
+    private fun obserViewModel() {
         viewModel.poemBody.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 SUCCESS -> it.data?.let {
                     poemAdapter.updatePoems(it)
                 }
                 ERROR -> {
-                    it.message?.let { requireActivity().toast(it) }
+                    it.message?.let {
+//                        requireActivity().toast(it)
+                        Toast.makeText(
+                            requireContext(),
+                            "این شعر فعلا در دسترس نیست ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
                 LOADING -> {
                 }
@@ -160,20 +167,19 @@ class ShowPoemBodyFragment : Fragment() {
         })
     }
 
-      private fun nextPage(){
-         mId += 1
-         viewModel.getPoemById(mId)
-         Hawk.put("lastSeen", mId)
-         obserViewModel()
-    }
-    private fun previousPage(){
-        mId -= 1
+    private fun nextPage() {
+        mId += 1
         viewModel.getPoemById(mId)
         Hawk.put("lastSeen", mId)
         obserViewModel()
     }
 
-
+    private fun previousPage() {
+        mId -= 1
+        viewModel.getPoemById(mId)
+        Hawk.put("lastSeen", mId)
+        obserViewModel()
+    }
 
 
 }

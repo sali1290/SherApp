@@ -66,4 +66,11 @@
         <item name="tint">@color/white</item>
     </style>
 
+    <style name="subFabItemBackground">
+        <item name="background">@drawable/fab_background_night</item>
+    </style>
+
+    <style name="logUpBackground">
+        <item name="android:background">@color/dark_gray</item>
+    </style>
 </resources>

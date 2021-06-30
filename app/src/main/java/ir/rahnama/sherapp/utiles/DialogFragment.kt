@@ -14,12 +14,11 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.jem.rubberpicker.RubberSeekBar
@@ -56,9 +55,15 @@ class MainDialogFragmentPopUp : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         view.shop_ImageView.setOnClickListener {
-            loadFragments(view.shop_ImageView.id, view)
-            dialog?.dismiss()
+//            loadFragments(view.shop_ImageView.id, view)
+//            dialog?.dismiss()
+            Toast.makeText(
+                requireContext(),
+                "برای شما کاربر عزیز رایگان است",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         //abjad
@@ -78,8 +83,13 @@ class MainDialogFragmentPopUp : DialogFragment() {
 //            )
 //        }
         view.poem_fav_popup.setOnClickListener {
-            dialog?.dismiss()
-            loadFragments(view.poem_fav_popup.id, view)
+//            dialog?.dismiss()
+//            loadFragments(view.poem_fav_popup.id, view)
+            Toast.makeText(
+                requireContext(),
+                "این ویژگی فعلا در دسترس نیست",
+                Toast.LENGTH_SHORT
+            ).show()
         }
         view.ticket_mainFab_Linear.setOnClickListener {
             loadFragments(R.id.ticket_mainFab_Linear, view)
@@ -117,6 +127,15 @@ class MainDialogFragmentPopUp : DialogFragment() {
             view.let { NavHostFragment.findNavController(this).navigate(action) }
         }
 
+        view.btn_buy_negar_fab.setOnClickListener {
+//            loadFragments(view.shop_ImageView.id, view)
+//            dialog?.dismiss()
+            Toast.makeText(
+                requireContext(),
+                "برای شما کاربر عزیز رایگان است",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
     }
 
@@ -132,7 +151,7 @@ class MainDialogFragmentPopUp : DialogFragment() {
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.poem_fav_popup -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToFragmentFav()
+                val action = HomeFragmentDirections.actionHomeFragmentToFavoriteFragment()
                 view.let { NavHostFragment.findNavController(this).navigate(action) }
             }
             R.id.ticket_mainFab_Linear -> {
@@ -178,8 +197,10 @@ class SubDialogFragmentPopUp : DialogFragment() {
         //Home
         view.back_to_home_subFsb_linear.setOnClickListener {
             dialog?.dismiss()
-            val action = BookContentFragmentDirections.actionBookContentFragmentToHomeFragment()
-            view.let { NavHostFragment.findNavController(this).navigate(action) }
+//            val action = BookContentFragmentDirections.actionBookContentFragmentToHomeFragment()
+//            view.let { NavHostFragment.findNavController(this).navigate(action) }
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
 
         //Font Text
@@ -240,6 +261,15 @@ class SubDialogFragmentPopUp : DialogFragment() {
             )
         }
 
+        //next with volume
+        view.next_with_volume.setOnClickListener {
+            dialog?.dismiss()
+            NextVolumeFragmentPopUp().show(
+                requireActivity().supportFragmentManager,
+                "popup"
+            )
+        }
+
     }
 
     override fun onStart() {
@@ -256,7 +286,6 @@ class SubDialogFragmentPopUp : DialogFragment() {
 //    }
 
 }
-
 
 class SizeDialogFragmentPopUp : DialogFragment() {
 
@@ -724,7 +753,7 @@ class BrightnessFragmentPopUp : DialogFragment() {
 
 class NextVolumeFragmentPopUp : DialogFragment() {
 
-    private var bb: Boolean? = true
+    private var situation: Boolean? = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -737,6 +766,16 @@ class NextVolumeFragmentPopUp : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.volume_button.setChecked(
+            view.context.getSharedPreferences("volumeCheck", MODE_PRIVATE)
+                .getBoolean("volumeSituation", false)
+        )
+
+        view.volume_button.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            view.context.getSharedPreferences("volumeCheck", MODE_PRIVATE).edit()
+                .putBoolean("volumeSituation", b).apply()
+        })
+
         view.image_back_dialog_volume.setOnClickListener {
             dialog?.dismiss()
             SubDialogFragmentPopUp().show(
@@ -744,13 +783,6 @@ class NextVolumeFragmentPopUp : DialogFragment() {
                 "popup"
             )
         }
-        /*val shared: SharedPreferences =
-                context?.getSharedPreferences("shared", MODE_PRIVATE)!!
-        val editor: SharedPreferences.Editor = shared.edit()
-        editor.putInt("situation", )
-        bb?.let { it1 -> editor.putBoolean("bb", it1) }
-        editor.apply()
-        dialog?.dismiss()*/
 
     }
 
@@ -806,13 +838,13 @@ class ThemeChooserPopUp : DialogFragment() {
                 }
             } else if (checkedId == R.id.radio_button_night_theme) {
                 if (!MainActivity().isDarkTheme(requireActivity())) {
-                    view?.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+                    view.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
                         ?.edit()
                         ?.putString("theme", "Dark")?.apply()
                     MainActivity().toggleTheme(MainActivity().isDarkTheme(requireActivity()))
                 }
             } else if (checkedId == R.id.radio_button_system_theme) {
-                view?.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
+                view.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)
                     ?.edit()
                     ?.putString("theme", "System default")?.apply()
                 MainActivity.ThemeManager.applyTheme("System")

@@ -44,6 +44,8 @@ class HomeFragment : Fragment() {
     private val selectionNewPoetryAdapter = SelectionNewPoetryAdapter()
     private val list = mutableListOf<CarouselItem>()
     private val lastPoemAdapter = LastSeenPoemAdapter()
+    private val favoritePoemsId: MutableList<Int> = arrayListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +68,10 @@ class HomeFragment : Fragment() {
             newPoetrySelect.setOnClickListener { loadPoetryListFragment(0, "شاعرهای کهن") }
             OldPoetrySelect.setOnClickListener { loadPoetryListFragment(1, "شاعر های معاصر") }
             constraintLayout6.setOnClickListener { loadFalHafzFragment() }
-
+            cardView2.setOnClickListener {
+                Toast.makeText(requireContext(), "این ویژگی فعلا در دسترس نیست", Toast.LENGTH_SHORT)
+                    .show()
+            }
 
 
             search_bar.setOnClickListener { loadSearchFragment() }
@@ -134,7 +139,7 @@ class HomeFragment : Fragment() {
         newPoetryRecycler.adapter = selectionOldPoetryAdapter
         oldPoetryRecycler.adapter = selectionNewPoetryAdapter
         lastSeenRecycler.adapter = lastPoemAdapter
-       // lastSeenRecycler.adapter = poemAdapter
+        // lastSeenRecycler.adapter = poemAdapter
     }
 
 
@@ -208,5 +213,10 @@ class HomeFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun createFavorite() {
+        val favorites: MutableList<Int>
+        // favorites.addAll()
     }
 }
