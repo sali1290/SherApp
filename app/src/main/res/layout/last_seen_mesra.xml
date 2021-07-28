@@ -17,12 +17,15 @@
 
     <TextView
         android:id="@+id/last_seen_tv_mesra"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_12sdp"
+        android:gravity="right"
+        android:textAlignment="gravity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
